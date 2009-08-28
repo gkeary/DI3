@@ -1,0 +1,13 @@
+C:\w\SubSonic1\DispatchAR\bin\Release\DispatchAR.dll.config
+C:\w\SubSonic1\DispatchAR\bin\Release\DispatchAR.dll
+C:\w\SubSonic1\DispatchAR\bin\Release\DispatchAR.pdb
+C:\w\SubSonic1\DispatchAR\bin\Release\SubSonic.Core.dll
+C:\w\SubSonic1\DispatchAR\obj\Release\ResolveAssemblyReference.cache
+C:\w\SubSonic1\DispatchAR\obj\Release\DispatchAR.dll
+C:\w\SubSonic1\DispatchAR\obj\Release\DispatchAR.pdb
+C:\Program Files\Git\DI3\DispatchAR\bin\Release\DispatchAR.dll.config
+C:\Program Files\Git\DI3\DispatchAR\bin\Release\DispatchAR.dll
+C:\Program Files\Git\DI3\DispatchAR\bin\Release\DispatchAR.pdb
+C:\Program Files\Git\DI3\DispatchAR\obj\Release\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\DispatchAR\obj\Release\DispatchAR.dll
+C:\Program Files\Git\DI3\DispatchAR\obj\Release\DispatchAR.pdb
