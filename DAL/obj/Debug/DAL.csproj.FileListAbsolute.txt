@@ -1,0 +1,10 @@
+C:\w\DI2\DI\DAL\bin\Debug\DAL.dll
+C:\w\DI2\DI\DAL\bin\Debug\DAL.pdb
+C:\w\DI2\DI\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\w\DI2\DI\DAL\obj\Debug\DAL.dll
+C:\w\DI2\DI\DAL\obj\Debug\DAL.pdb
+C:\Program Files\Git\DI3\DAL\bin\Debug\DAL.dll
+C:\Program Files\Git\DI3\DAL\bin\Debug\DAL.pdb
+C:\Program Files\Git\DI3\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\DAL\obj\Debug\DAL.dll
+C:\Program Files\Git\DI3\DAL\obj\Debug\DAL.pdb

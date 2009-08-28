@@ -1,0 +1,10 @@
+C:\w\DI2\DI\DAL\bin\Release\DAL.dll
+C:\w\DI2\DI\DAL\bin\Release\DAL.pdb
+C:\w\DI2\DI\DAL\obj\Release\ResolveAssemblyReference.cache
+C:\w\DI2\DI\DAL\obj\Release\DAL.dll
+C:\w\DI2\DI\DAL\obj\Release\DAL.pdb
+C:\Program Files\Git\DI3\DAL\bin\Release\DAL.dll
+C:\Program Files\Git\DI3\DAL\bin\Release\DAL.pdb
+C:\Program Files\Git\DI3\DAL\obj\Release\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\DAL\obj\Release\DAL.dll
+C:\Program Files\Git\DI3\DAL\obj\Release\DAL.pdb

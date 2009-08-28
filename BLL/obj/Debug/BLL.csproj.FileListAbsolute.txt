@@ -1,0 +1,30 @@
+C:\w\DI2\DI\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\w\DI2\DI\BLL\bin\Debug\BLL.dll
+C:\w\DI2\DI\BLL\bin\Debug\BLL.pdb
+C:\w\DI2\DI\BLL\bin\Debug\antlr.runtime.dll
+C:\w\DI2\DI\BLL\bin\Debug\Common.Logging.dll
+C:\w\DI2\DI\BLL\bin\Debug\DAL.dll
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Aop.dll
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Core.dll
+C:\w\DI2\DI\BLL\bin\Debug\DAL.pdb
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Core.pdb
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Core.xml
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Aop.pdb
+C:\w\DI2\DI\BLL\bin\Debug\Spring.Aop.xml
+C:\w\DI2\DI\BLL\obj\Debug\BLL.dll
+C:\w\DI2\DI\BLL\obj\Debug\BLL.pdb
+C:\Program Files\Git\DI3\BLL\bin\Debug\BLL.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\BLL.pdb
+C:\Program Files\Git\DI3\BLL\bin\Debug\antlr.runtime.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\Common.Logging.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\DAL.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Aop.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.dll
+C:\Program Files\Git\DI3\BLL\bin\Debug\DAL.pdb
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.pdb
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.xml
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Aop.pdb
+C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Aop.xml
+C:\Program Files\Git\DI3\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\BLL\obj\Debug\BLL.dll
+C:\Program Files\Git\DI3\BLL\obj\Debug\BLL.pdb
