@@ -14,3 +14,6 @@ C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Aop.xml
 C:\Program Files\Git\DI3\BLL\obj\Release\ResolveAssemblyReference.cache
 C:\Program Files\Git\DI3\BLL\obj\Release\BLL.dll
 C:\Program Files\Git\DI3\BLL\obj\Release\BLL.pdb
+C:\Program Files\Git\DI3\BLL\bin\Release\DispatchAR.dll
+C:\Program Files\Git\DI3\BLL\bin\Release\SubSonic.Core.dll
+C:\Program Files\Git\DI3\BLL\bin\Release\DispatchAR.pdb

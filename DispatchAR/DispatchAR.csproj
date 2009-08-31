@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\w\Dspring\DAL\bin\Release\DAL.dll</HintPath>
+    </Reference>
     <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files\SubSonic\SubSonic 3 Final\Binaries\SubSonic.Core.dll</HintPath>
@@ -59,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Driver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedures.cs">
       <AutoGen>True</AutoGen>

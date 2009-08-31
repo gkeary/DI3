@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using DAL.Interface;
+using DispatchAR;
 
 namespace BLL.Customer
 {
@@ -13,6 +14,7 @@ namespace BLL.Customer
         public CustomerBLL()
             : base()
         {
+            var x = new DispatchAR.CUSTOMER();
             _customerDAL = (IDAL)_applicationContext["CustomerDAL"];
         }
 

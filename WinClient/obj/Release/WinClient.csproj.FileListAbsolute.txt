@@ -27,3 +27,6 @@ C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.Properties.Resources.re
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.csproj.GenerateResource.Cache
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.exe
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.pdb
+C:\Program Files\Git\DI3\WinClient\bin\Release\DispatchAR.dll
+C:\Program Files\Git\DI3\WinClient\bin\Release\SubSonic.Core.dll
+C:\Program Files\Git\DI3\WinClient\bin\Release\DispatchAR.pdb

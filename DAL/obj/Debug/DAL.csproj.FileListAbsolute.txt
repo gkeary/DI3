@@ -8,3 +8,6 @@ C:\Program Files\Git\DI3\DAL\bin\Debug\DAL.pdb
 C:\Program Files\Git\DI3\DAL\obj\Debug\ResolveAssemblyReference.cache
 C:\Program Files\Git\DI3\DAL\obj\Debug\DAL.dll
 C:\Program Files\Git\DI3\DAL\obj\Debug\DAL.pdb
+C:\Program Files\Git\DI3\DAL\bin\Debug\DispatchAR.dll
+C:\Program Files\Git\DI3\DAL\bin\Debug\SubSonic.Core.dll
+C:\Program Files\Git\DI3\DAL\bin\Debug\DispatchAR.pdb
