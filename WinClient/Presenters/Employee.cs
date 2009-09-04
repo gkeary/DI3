@@ -7,13 +7,13 @@ using BLL.Interface;
 
 namespace WinClient.Presenters
 {
-    public class Employee : IPresenter
+    public class Driver : IPresenter
     {
-        private IBLL employeeBLL = null;
+        private IBLL driverBLL = null;
 
-        public Employee()
+        public Driver()
         {
-            employeeBLL = (IBLL)WinClient.ApplicationContext["EmployeeBLL"];
+            driverBLL = (IBLL)WinClient.ApplicationContext["DriverBLL"];
         }
 
         #region IPresenter Members
@@ -22,18 +22,18 @@ namespace WinClient.Presenters
         {
             if (ID == null || ID.Length == 0 )
             {
-                return employeeBLL.GetAll();
+                return driverBLL.GetAll();
             }
             else
             {
-                return employeeBLL.GetById(ID);
+                return driverBLL.GetById(ID);
             }
         }
        
 
         public bool SaveOrUpdate(DataTable entity)
         {
-            return employeeBLL.SaveOrUpdate(entity);
+            return driverBLL.SaveOrUpdate(entity);
         }
 
         #endregion

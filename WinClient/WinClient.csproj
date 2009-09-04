@@ -91,11 +91,11 @@
     <Compile Include="Customer\frmCustomer.Designer.cs">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Employee\frmEmployee.cs">
+    <Compile Include="Driver\frmDriver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Employee\frmEmployee.Designer.cs">
-      <DependentUpon>frmEmployee.cs</DependentUpon>
+    <Compile Include="Driver\frmDriver.Designer.cs">
+      <DependentUpon>frmDriver.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -112,9 +112,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Employee\frmEmployee.resx">
+    <EmbeddedResource Include="Driver\frmDriver.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>frmEmployee.cs</DependentUpon>
+      <DependentUpon>frmDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <SubType>Designer</SubType>

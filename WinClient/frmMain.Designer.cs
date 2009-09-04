@@ -69,7 +69,7 @@ namespace WinClient
             // 
             this.toolStripMenuItemEmployee.Name = "toolStripMenuItemEmployee";
             this.toolStripMenuItemEmployee.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItemEmployee.Text = "Employee";
+            this.toolStripMenuItemEmployee.Text = "Driver";
             this.toolStripMenuItemEmployee.Click += new System.EventHandler(this.toolStripMenuItemEmployee_Click);
             // 
             // toolStripMenuItem1

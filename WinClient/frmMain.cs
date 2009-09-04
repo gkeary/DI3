@@ -24,7 +24,7 @@ namespace WinClient
 
         private void toolStripMenuItemEmployee_Click(object sender, EventArgs e)
         {
-            Employee.frmEmployee employeeForm = new Employee.frmEmployee();
+            Driver.frmDriver employeeForm = new Driver.frmDriver();
             employeeForm.MdiParent = this;
             employeeForm.Show();
         }

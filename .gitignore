@@ -10,6 +10,7 @@ foo.txt
 # Ignore dlls and pdbs
 *.dll
 *.pdb
+# Ignore cache, exe and manifest files 
 *.cache
 *.exe
 *.exe.manifest

@@ -40,10 +40,10 @@ C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Aop.pdb
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Aop.xml
 C:\Program Files\Git\DI3\WinClient\obj\Debug\ResolveAssemblyReference.cache
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Customer.frmCustomer.resources
-C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Employee.frmEmployee.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmMain.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Properties.Resources.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.csproj.GenerateResource.Cache
 C:\Program Files\Git\DI3\WinClient\bin\Debug\SubSonic.Core.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.pdb
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Driver.frmDriver.resources
