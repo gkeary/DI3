@@ -17,7 +17,6 @@ namespace BLL.Customer
        /// </summary>
  private IDAL _customerDAL = null;
         private IQueryable<CUSTOMER> qry = null;
-        //private DispatchAR.CUSTOMERSTable tbl ;
 
         public CustomerBLL() : base()
         {

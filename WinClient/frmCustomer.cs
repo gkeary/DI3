@@ -7,18 +7,15 @@ using System.Text;
 using System.Windows.Forms;
 using SubSonic.Repository;
 
-using WinClient.Presenters;
 
 namespace WinClient.Customer
 {
     public partial class frmCustomer : Form
     {
-        private IPresenter presenter = null;
 		private SimpleRepository repo = (SimpleRepository)WinClient.ApplicationContext["myRepo"];
         public frmCustomer()
         {
             InitializeComponent();
-            presenter = (IPresenter) WinClient.ApplicationContext["CustomerPresenter"];
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
