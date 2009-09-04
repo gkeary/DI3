@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using DAL.Interface;
+using SubSonic.Repository;
+using SubSonic.Query;
+using SubSonic.Linq;
+using DispatchAR;
+using System.Linq;
 
 namespace BLL.Employee
 {
     public class EmployeeBLL : BaseBLL
     {
         private IDAL _employeeDAL = null;
+        private IQueryable<DRIVER> qry = null;
 
         public EmployeeBLL()
             : base()
         {
-            _employeeDAL = (IDAL)_applicationContext["EmployeeDAL"];
+            SimpleRepository repo = (SimpleRepository)_applicationContext["myRepo"];
+            qry = repo.All<DRIVER>();
+            //_employeeDAL = (IDAL)_applicationContext["EmployeeDAL"];
         }
 
         #region IBLL Members
