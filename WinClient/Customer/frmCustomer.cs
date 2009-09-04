@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SubSonic.Repository;
 
 using WinClient.Presenters;
 
@@ -13,7 +14,7 @@ namespace WinClient.Customer
     public partial class frmCustomer : Form
     {
         private IPresenter presenter = null;
-
+		private SimpleRepository repo = (SimpleRepository)WinClient.ApplicationContext["myRepo"];
         public frmCustomer()
         {
             InitializeComponent();
@@ -23,7 +24,9 @@ namespace WinClient.Customer
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             string customerID = textBoxID.Text.Trim();
-            dataGridViewCustomers.DataSource = presenter.GetData(customerID);
+          
+            var foo = repo.All<DispatchAR.CUSTOMER>();
+            CUSTOMERSTableBindingSource.DataSource = foo;
         }
 
         private void buttonSaveChanges_Click(object sender, EventArgs e)

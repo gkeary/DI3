@@ -5,9 +5,9 @@ C:\w\DI2\DI\DAL\obj\Release\DAL.dll
 C:\w\DI2\DI\DAL\obj\Release\DAL.pdb
 C:\Program Files\Git\DI3\DAL\bin\Release\DAL.dll
 C:\Program Files\Git\DI3\DAL\bin\Release\DAL.pdb
-C:\Program Files\Git\DI3\DAL\obj\Release\ResolveAssemblyReference.cache
-C:\Program Files\Git\DI3\DAL\obj\Release\DAL.dll
-C:\Program Files\Git\DI3\DAL\obj\Release\DAL.pdb
 C:\Program Files\Git\DI3\DAL\bin\Release\DispatchAR.dll
 C:\Program Files\Git\DI3\DAL\bin\Release\SubSonic.Core.dll
 C:\Program Files\Git\DI3\DAL\bin\Release\DispatchAR.pdb
+C:\Program Files\Git\DI3\DAL\obj\Release\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\DAL\obj\Release\DAL.dll
+C:\Program Files\Git\DI3\DAL\obj\Release\DAL.pdb

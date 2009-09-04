@@ -44,6 +44,6 @@ C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Employee.frmEmployee.reso
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmMain.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Properties.Resources.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.csproj.GenerateResource.Cache
-C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\SubSonic.Core.dll
+C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.pdb

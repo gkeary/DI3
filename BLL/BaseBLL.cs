@@ -7,6 +7,7 @@ using BLL.Interface;
 using Spring.Core;
 using Spring.Context;
 using Spring.Context.Support;
+using SubSonic.Repository;
 
 namespace BLL
 {
@@ -28,5 +29,6 @@ namespace BLL
         public abstract bool SaveOrUpdate(DataTable entity);
 
         #endregion
+
     }
 }
