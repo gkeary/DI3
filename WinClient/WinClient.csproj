@@ -146,10 +146,6 @@
       <Project>{2E3ACCD1-D396-404C-9297-486D0CFB2F50}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{E1E9220A-63B2-41C3-AA26-2DC58BE56C75}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -7,7 +7,7 @@ namespace BLL.Interface
 {
     public interface IBLL
     {
-        DataTable GetAll();
+        List<T> GetAll();
         DataTable GetById(string ID);
         bool SaveOrUpdate(DataTable entity);
     }

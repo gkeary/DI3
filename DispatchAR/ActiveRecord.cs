@@ -15,7 +15,6 @@ using SubSonic;
 using SubSonic.Repository;
 using System.ComponentModel;
 using System.Data.Common;
-using DAL;
 
 namespace DispatchAR
 {
@@ -2402,24 +2401,6 @@ namespace DispatchAR
 
 
 
-        #region IDAL Members
-
-        DataTable IDAL.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        DataTable IDAL.GetById(string ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IDAL.SaveOrUpdate(DataTable entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     } 
     
     

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 
-using BLL.Interface;
 using Spring.Core;
 using Spring.Context;
 using Spring.Context.Support;
@@ -11,7 +10,7 @@ using SubSonic.Repository;
 
 namespace BLL
 {
-    public abstract class BaseBLL : IBLL
+    public abstract class BaseBLL 
     {
         protected IApplicationContext _applicationContext = null;
 
@@ -19,16 +18,5 @@ namespace BLL
         {
             _applicationContext = ContextRegistry.GetContext();
         }
-
-        #region IBLL Members
-
-        public abstract DataTable GetAll();
-
-        public abstract DataTable GetById(string ID);
-
-        public abstract bool SaveOrUpdate(DataTable entity);
-
-        #endregion
-
     }
 }

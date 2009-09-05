@@ -29,11 +29,9 @@ C:\Program Files\Git\DI3\WinClient\bin\Debug\WinClient.pdb
 C:\Program Files\Git\DI3\WinClient\bin\Debug\antlr.runtime.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\BLL.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Common.Logging.dll
-C:\Program Files\Git\DI3\WinClient\bin\Debug\DAL.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Aop.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Core.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\BLL.pdb
-C:\Program Files\Git\DI3\WinClient\bin\Debug\DAL.pdb
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Core.pdb
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Core.xml
 C:\Program Files\Git\DI3\WinClient\bin\Debug\Spring.Aop.pdb

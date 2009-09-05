@@ -17,10 +17,8 @@ C:\Program Files\Git\DI3\BLL\bin\Debug\BLL.dll
 C:\Program Files\Git\DI3\BLL\bin\Debug\BLL.pdb
 C:\Program Files\Git\DI3\BLL\bin\Debug\antlr.runtime.dll
 C:\Program Files\Git\DI3\BLL\bin\Debug\Common.Logging.dll
-C:\Program Files\Git\DI3\BLL\bin\Debug\DAL.dll
 C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Aop.dll
 C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.dll
-C:\Program Files\Git\DI3\BLL\bin\Debug\DAL.pdb
 C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.pdb
 C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Core.xml
 C:\Program Files\Git\DI3\BLL\bin\Debug\Spring.Aop.pdb

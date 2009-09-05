@@ -47,10 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\CustomerDAL.cs" />
-    <Compile Include="Employee\EmployeeDAL.cs" />
-    <Compile Include="Interface\IDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customer\" />
+    <Folder Include="Employee\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

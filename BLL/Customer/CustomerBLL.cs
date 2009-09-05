@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-using DAL.Interface;
 using DispatchAR;
 using SubSonic.Repository;
 using SubSonic.Query;
@@ -15,30 +14,34 @@ namespace BLL.Customer
        /// <summary>
        ///
        /// </summary>
- private IDAL _customerDAL = null;
         private IQueryable<CUSTOMER> qry = null;
+        private SimpleRepository repo;
 
         public CustomerBLL() : base()
         {
-            SimpleRepository repo = (SimpleRepository) _applicationContext["myRepo"];
+             repo = (SimpleRepository) _applicationContext["myRepo"];
 			qry = repo.All<CUSTOMER>(); 
         }
 
-        #region IBLL Members
+        #region Members
 
-        public override DataTable GetAll()
+        public IQueryable<CUSTOMER> GetAll()
         {
-            return _customerDAL.GetAll();
+            return repo.All<CUSTOMER>();
         }
 
-        public override DataTable GetById(string ID)
+        public CUSTOMER GetById(string ID)
         {
-            return _customerDAL.GetById(ID);
+            var q = from c in repo.All<CUSTOMER>()
+                    where c.CustomerID == ID
+                    select c;
+            return q.ElementAtOrDefault<CUSTOMER>(0);
+
         }
 
-        public override bool SaveOrUpdate(DataTable entity)
+        public bool SaveOrUpdate(List<CUSTOMER> entity)
         {
-            return _customerDAL.SaveOrUpdate(entity);
+            return true;
         }
 
         #endregion

@@ -84,7 +84,6 @@
     <Compile Include="BaseBLL.cs" />
     <Compile Include="Customer\CustomerBLL.cs" />
     <Compile Include="Driver\DriverBLL.cs" />
-    <Compile Include="Interface\IBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,10 +114,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{E1E9220A-63B2-41C3-AA26-2DC58BE56C75}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

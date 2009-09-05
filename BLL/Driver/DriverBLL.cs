@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-using DAL.Interface;
 using SubSonic.Repository;
 using SubSonic.Query;
 using SubSonic.Linq;
@@ -10,35 +9,37 @@ using DispatchAR;
 using System.Linq;
 
 namespace BLL.Driver
+    //I map my escape key in normal mode to do the :noh 
+    //as well as an escape (nnoremap <esc> :noh<cr><esc>). 
+    //It somehow seems logical to me to clear the highlight with escape.
 {
     public class DriverBLL : BaseBLL
     {
-        private IDAL _employeeDAL = null;
         private IQueryable<DRIVER> qry = null;
+        private SimpleRepository repo = null;
 
         public DriverBLL()
             : base()
         {
-            SimpleRepository repo = (SimpleRepository)_applicationContext["myRepo"];
+            repo = (SimpleRepository)_applicationContext["myRepo"];
             qry = repo.All<DRIVER>();
-            //_employeeDAL = (IDAL)_applicationContext["EmployeeDAL"];
         }
 
         #region IBLL Members
 
-        public override DataTable GetAll()
+        public IQueryable<DRIVER>  GetAll()
         {
-            return _employeeDAL.GetAll();
+            return repo.All<DRIVER>(); 
         }
 
-        public override DataTable GetById(string ID)
+        public IQueryable<DRIVER>  GetById(string ID)
         {
-            return _employeeDAL.GetById(ID);
+            return repo.All<DRIVER>(); // todo: make it listen to ID
         }
 
-        public override bool SaveOrUpdate(DataTable entity)
+        public bool SaveOrUpdate(IQueryable<DRIVER>  entity)
         {
-            return _employeeDAL.SaveOrUpdate(entity);
+            return false;
         }
 
         #endregion
