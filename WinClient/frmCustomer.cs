@@ -24,10 +24,7 @@ namespace WinClient.Customer
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             string customerID = textBoxID.Text.Trim();
-          
-            var foo = repo.All<DispatchAR.CUSTOMER>();
-            //CUSTOMERSTableBindingSource.DataSource = foo;
-            CUSTOMERSTableBindingSource.DataSource = cust.GetAll();
+            CUSTOMERSTableBindingSource.DataSource = cust.GetAll(); // violated IoC principles...
         }
 
         private void buttonSaveChanges_Click(object sender, EventArgs e)
