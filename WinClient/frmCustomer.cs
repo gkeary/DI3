@@ -24,11 +24,23 @@ namespace WinClient.Customer
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             string customerID = textBoxID.Text.Trim();
-            CUSTOMERSTableBindingSource.DataSource = cust.GetAll(); // violated IoC principles...
+            if (customerID == "")
+            {
+                CUSTOMERSTableBindingSource.DataSource = cust.GetAll(); // violated IoC principles...
+            }
+            else
+            {
+                CUSTOMERSTableBindingSource.DataSource = cust.GetById(customerID);
+            }
         }
 
         private void buttonSaveChanges_Click(object sender, EventArgs e)
         {
+            var foo = this.CUSTOMERSTableBindingSource;
+            var chg = foo.SupportsChangeNotification;
+            var foo1= this.CUSTOMERSTableBindingSource.List; 
+            //foo.
+            //cust.SaveOrUpdate(foo);
 
         }
     }

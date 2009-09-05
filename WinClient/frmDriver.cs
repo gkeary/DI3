@@ -23,8 +23,15 @@ namespace WinClient.Driver
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            string employeeID = textBoxID.Text.Trim();
-            DRIVERTableBindingSource.DataSource = driver.GetAll();
+            string driverID = textBoxID.Text.Trim();
+            if (driverID == "")
+            {
+                DRIVERTableBindingSource.DataSource = driver.GetAll(); // violated IoC principles...
+            }
+            else
+            {
+                DRIVERTableBindingSource.DataSource = driver.GetById(driverID);
+            }
         }
 
         private void buttonSaveChanges_Click(object sender, EventArgs e)

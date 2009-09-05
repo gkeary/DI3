@@ -30,13 +30,9 @@ namespace BLL.Customer
             return repo.All<CUSTOMER>();
         }
 
-        public CUSTOMER GetById(string ID)
+        public IQueryable<CUSTOMER> GetById(string ID)
         {
-            var q = from c in repo.All<CUSTOMER>()
-                    where c.CustomerID == ID
-                    select c;
-            return q.ElementAtOrDefault<CUSTOMER>(0);
-
+            return  repo.Find<CUSTOMER>(x=>x.CustomerID == ID.ToUpper()).AsQueryable<CUSTOMER>();
         }
 
         public bool SaveOrUpdate(List<CUSTOMER> entity)

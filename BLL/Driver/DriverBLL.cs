@@ -34,7 +34,7 @@ namespace BLL.Driver
 
         public IQueryable<DRIVER>  GetById(string ID)
         {
-            return repo.All<DRIVER>(); // todo: make it listen to ID
+            return  repo.Find<DRIVER>(x=>x.DriverID == ID.ToUpper()).AsQueryable<DRIVER>();
         }
 
         public bool SaveOrUpdate(IQueryable<DRIVER>  entity)
