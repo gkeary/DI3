@@ -45,3 +45,6 @@ C:\Program Files\Git\DI3\WinClient\bin\Debug\SubSonic.Core.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.dll
 C:\Program Files\Git\DI3\WinClient\bin\Debug\DispatchAR.pdb
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.Driver.frmDriver.resources
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmRoute.resources
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.MainForm.resources
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.PickupControl.resources

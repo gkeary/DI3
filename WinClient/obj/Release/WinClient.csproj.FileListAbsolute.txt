@@ -30,3 +30,6 @@ C:\Program Files\Git\DI3\WinClient\bin\Release\Spring.Aop.xml
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.exe
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.pdb
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.Driver.frmDriver.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmRoute.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.MainForm.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.PickupControl.resources

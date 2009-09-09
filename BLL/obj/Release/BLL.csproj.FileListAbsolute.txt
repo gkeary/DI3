@@ -4,13 +4,11 @@ C:\Program Files\Git\DI3\BLL\bin\Release\BLL.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\BLL.pdb
 C:\Program Files\Git\DI3\BLL\bin\Release\antlr.runtime.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\Common.Logging.dll
-C:\Program Files\Git\DI3\BLL\bin\Release\DAL.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\DispatchAR.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Aop.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Core.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\SubSonic.Core.dll
 C:\Program Files\Git\DI3\BLL\bin\Release\DispatchAR.pdb
-C:\Program Files\Git\DI3\BLL\bin\Release\DAL.pdb
 C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Core.pdb
 C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Core.xml
 C:\Program Files\Git\DI3\BLL\bin\Release\Spring.Aop.pdb

@@ -82,9 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
+    <Compile Include="CDPCDR\CurrentDayPickup.cs" />
+    <Compile Include="CDPCDR\CurrentDayRoute.cs" />
     <Compile Include="Customer\CustomerBLL.cs" />
     <Compile Include="Driver\DriverBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Route\RouteBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

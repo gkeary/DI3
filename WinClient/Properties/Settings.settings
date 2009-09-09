@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WinClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="terminal" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Station A</Value>
+    </Setting>
+    <Setting Name="server" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">jake</Value>
+    </Setting>
+    <Setting Name="db" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dispatch</Value>
+    </Setting>
+    <Setting Name="dbuser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="dbpw" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">kristian</Value>
+    </Setting>
+    <Setting Name="ActiveStations" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
