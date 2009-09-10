@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 1/3/2008 07:14:11--><Screens>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/10/2009 08:05:58--><Screens>
 <Items xmlns="scr">
-<!--<Item Title="TabForm" Left="0" Top="0" Width="723" Height="659" />-->
 <Item Title="00 Laconia --- 3 Pickups" Left="603" Top="424" Width="340" Height="230" />
 <Item Title="02 Keene --- 3 Pickups" Left="605" Top="140" Width="340" Height="230" />
 <Item Title="04 Wolfboro --- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
@@ -9,7 +8,7 @@
 <Item Title="10 Lebanon --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="12 Conway --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="14 Berlin --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
-<Item Title="16 Concord --- 2 Pickups" Left="568" Top="55" Width="360" Height="230" />
+<Item Title="16 Concord --- 2 Pickups" Left="-179" Top="65" Width="523" Height="516" />
 <Item Title="17 Concord --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="18 Concord --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="20 Lebanon --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
@@ -32,6 +31,5 @@
 <Item Title="76 Spare --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="78 Spare --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="80 Spare --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
-<Item Title="Input" Left="0" Top="0" Width="560" Height="451" />
 </Items>
 </Screens>

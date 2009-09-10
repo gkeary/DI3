@@ -59,12 +59,11 @@ namespace WinClient //Dispatch3
         //public MainForm(Program.XMLStream fileStream)
         public void setup(Stream fileStream)
         {
-            //Begin(fileStream);
             Program.ComputeScreenBoundaries(); // this must be called from somewhere
             // this is no longer a screenarray but a List<SCREENDIMENSION> ... 
             // it should really be springified...
             Program.LoadScreenListFromXml(); //' populates ScreenList from xmlfile 
-            //Program.LoadScreenListFromXml(Stream); //' populates ScreenList from xmlfile 
+            //Program.LoadScreenListFromXml(Stream); //' with a stream 
             //Program.XMLStream = fileStream;
             // Exit gracefully if somethins is wrong with the connection.
             if (!Program.TestConnectionString())
@@ -72,34 +71,14 @@ namespace WinClient //Dispatch3
                 Application.Exit();
             }
 
-            //var cdrcoll = new CurrentDayRouteCollection().Load();
-            //var cdpcoll = new CurrentDayPickupCollection().Load();
-            //var r2coll = new ROUTE2Collection().Load();
-
-            // This call is required by the Windows Form Designer.
-            // This was a nasty bug.. I was initializing MainForm twice.
-            //InitializeComponent();
-
-            // this is a condom
-            // take this out for now...
-            // we may want to implement a validity check for
-            //   cdrcount != r2count  over in BLL ???
-            //if (cdrcoll.Count() != r2coll.Count() && MainForm.blnDayStarted)
-            //{
-            //    MessageBox.Show("CDRCollection invalid");
-            //    Application.Exit();
-            //}
-
-
             // blnDayStarted is controlled here
             var Count1 = Program.GetCDRCount();
             var Count2 = Program.GetCDPCount(); 
             MainForm.blnDayStarted = (Count1 > 0 && Count2 > 0) ? true : false;
 
-            //LoadTabFormWindow()
             if (blnDayStarted)
             {
-                LoadMDIRoutes();
+                LoadfrmRoutes();
                 Stream.Close();
                 //'InputForm.PickupHash = CustomerListBoxHelper.PopulatePickupHash()
                 //'InputForm.Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash()
@@ -115,58 +94,33 @@ namespace WinClient //Dispatch3
             LoadInputWindow();
         }
 
-        private void LoadMDIRoutes()
+        private void LoadfrmRoutes()
         {
             var RouteCount = Program.GetCDRCount();
-            if (Program.ScreenList.Count == 0)
+
+
+            var cdrqry = from cdr in Program.CDRList
+                         select cdr;
+            var sdqry = from sd in Program.ScreenList
+                        select sd;
+
+            for (int i = 0;i<RouteCount;i++)
             {
-                Program.LoadScreenListFromXml(Stream);
+                foreach (DispatchAR.CurrentDayRoute route in cdrqry)
+                {
+                    foreach (ScreenDimension screen in sdqry)
+                    {
+                        if (route.CDRRouteID.Equals(screen.WinTitle.Substring(0, 2)))
+                        {
+                            var rw = new frmRoute(screen, route);
+                            rw.MdiParent = this;
+                            rw.Show();
+                        }
+                    }
+
+                }
+                return;
             }
-            // new route window
-            var qry = from r in Program.CDRList
-                      select r.CDRRouteID;
-            var rr = qry.ToArray();
-            
-            for (int i = 0; i < RouteCount; i++)
-            {
-                Console.WriteLine(rr[i]);
-            }
-            //    var rw = new frmRoute(
-            //foreach(
-            //    var sd=Program.CDRList.FindIn
-            //foreach (var cdr in Program.RouteList)
-            //{
-            //    var sd = Program.RouteList[i];
-
-            //    rw = new frmRoute(i, cdr);
-            //    rw.MdiParent = this;
-            //    rw.Show();
-            //    i += 1;
-            //}
-
-            int intRouteCount = 0;
-            //frmRoute rw = null;
-            //var i = 0;
-
-            intRouteCount = Program.GetCDRCount();
-            return;
-            //if (intRouteCount == 0)
-            //{
-                
-
-            //    CDRCollection.Load();
-            //}
-
-            //int i = 0;
-            //foreach (var cdr in Program.RouteList)
-            //{
-            //    var sd = Program.RouteList[i];
-
-            //    rw = new frmRoute(i, cdr);
-            //    rw.MdiParent = this;
-            //    rw.Show();
-            //    i += 1;
-            //}
         }
 
 
@@ -180,26 +134,8 @@ namespace WinClient //Dispatch3
              //InputForm.Show();
         }
 
-        //private void Begin(xmlStream xmlStream)
-        //{
-        //    // should be done already by Spring.Core...
-        //    // see what to do here, if anything...
-        //    // moved from program.vb so NUnitForm will work..
-        //    var thisdir = Directory.GetCurrentDirectory();
-        //    var appConfigPath = Path.Combine(thisdir, "App.config");
-        //    xmlStream = xmlStream;
-        //    //depricated cuz i'm using SPRING
-        //    //Program.SetProvider(appConfigPath);
-        //    Program.ComputeScreenBoundaries(); // this must be called from somewhere
-        //    // this is no longer a screenarray but a List<SCREENDIMENSION> ... 
-        //    // it should really be springified...
-        //    Program.LoadScreenListFromXml(xmlStream); //' populates ScreenList from xmlfile 
-
-        //}
-
         public void RefreshThisRoute(frmRoute whichForm)
         {
-            /// ???
             frmRoute.SyncRouteWindowTextDriverMsgControls(this.MdiChildren);
             whichForm.RefreshDynamicPickupControls();
         }
@@ -443,7 +379,7 @@ namespace WinClient //Dispatch3
         {
             return;
             //this.PopulateCurrentDayPickups();
-            //this.LoadMDIRoutes();
+            //this.LoadfrmRoutes();
             //this.SetStartItems();
             //MyProject.Forms.InputForm.txtCustomerID.Focus();
         }

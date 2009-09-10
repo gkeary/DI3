@@ -28,7 +28,7 @@ namespace WinClient //Dispatch3
             set { _cdr = value; }
         } 
 
-       public frmRoute(ScreenDimension win, ref CurrentDayRoute cdr)
+       public frmRoute(ScreenDimension win, CurrentDayRoute cdr)
     {
         Cdr = cdr;
         InitializeComponent();
@@ -250,21 +250,21 @@ namespace WinClient //Dispatch3
     //}
     public static void SyncRouteWindowTextDriverMsgControls(Form[] MDIForms)
     {
-        //for (int i = 0; i <= MDIForms.Length - 1; i++) {
-        //    if (((MDIForms[i])  is InputForm)) {
-        //        continue;
-        //    }
+        for (int i = 0; i <= MDIForms.Length - 1; i++) {
+            if (((MDIForms[i])  is InputForm)) {
+                continue;
+            }
 
-            //foreach (CurrentDayRoute cdr in CDRCollection.Load()) {
-            //    frmRoute form = (frmRoute) MDIForms[i];
-            //    if (form.Tag == cdr.CDRRouteID) {
-            //        //frmRoute.RefreshDynamicPickupControls now handles the title
-            //        //form.Text = cdr.CDRRouteID + " " + cdr.CDRRouteName
-            //        form.Controls["lblDriverName"].Text = cdr.CDRDriverLastName;
-            //        form.Controls.Item[0].Text = cdr.CDRDriverMessage;
-            //    }
+            foreach (CurrentDayRoute cdr in Program.CDRList) {
+                frmRoute form = (frmRoute) MDIForms[i];
+                if (form.Tag == cdr.CDRRouteID) {
+                    //frmRoute.RefreshDynamicPickupControls now handles the title
+                    //form.Text = cdr.CDRRouteID + " " + cdr.CDRRouteName
+                    form.Controls["lblDriverName"].Text = cdr.CDRDriverLastName;
+                    form.Controls["txtDriverMessage"].Text = cdr.CDRDriverMessage;
+                }
                 //0 = txtDriverMessage control
-            //}
+            }
         }
         
     private void GetPickupsForThisInstance()

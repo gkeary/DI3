@@ -177,12 +177,70 @@ namespace WinClient
         /// this one does not use XMLReader (i hope)
         /// </summary>
         public static void LoadScreenListFromXml()
+#if true        
         {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            XmlReader reader = default(XmlReader);
+            settings.ConformanceLevel = ConformanceLevel.Fragment;
+            settings.IgnoreWhitespace = true;
+            settings.IgnoreComments = true;
 
             ////see Nunit test pp 99 
             ////this is what it used to be
             //// you have to test for scr.xml
             //// don't build for testing at the expense of needed functionality
+            try
+            {
+                reader = XmlReader.Create(@"scr.xml");
+            }
+            catch
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("The scr.xml file is missing or faulty");
+                sb.AppendLine("Please create it ");
+                sb.AppendLine(" by saving Screen Positions");
+                MessageBox.Show(sb.ToString());
+                return;
+            }
+            while (reader.Read())
+            {
+                switch (reader.Name)
+                {
+                    case "":
+                        continue;
+                    case "xml":
+                        continue;
+                    case "Screens":
+                        continue;
+                    case "Items":
+                        continue;
+                    case "Item":
+
+                        var sd = new ScreenDimension();
+                        var cvt = new System.ComponentModel.Int32Converter();
+
+                        sd.WinTitle = reader.GetAttribute("Title");
+                        sd.TopInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Top"));
+                        sd.LeftInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Left"));
+                        sd.WidthInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Width"));
+                        sd.HeightInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Height"));
+
+                        ScreenList.Add(sd);
+                        continue;
+                    default:
+                        break;
+                }
+            }
+            reader.Close();
+
+        }
+    
+#else 
+            // CANNOT GET q TO POPULATE have to use a reader and a switch stmnt ???
             XElement e = XElement.Load(@"scr.xml");
             var q = from y in e.Descendants()
                     where (y.FirstAttribute != null )
@@ -197,6 +255,7 @@ namespace WinClient
                 ScreenList.Add(sd);
             }
         }
+#endif 
         /// <summary>
         /// one of these should go away
         /// move to BLL and springify
