@@ -15,7 +15,7 @@ namespace WinClient
         private int _screenheight;
         private int _screenwidth;
 
-        private ScreenDimension() { }
+        public ScreenDimension() { }
 
         public ScreenDimension(string t, int ti, int li, int wi, int hi)
         {

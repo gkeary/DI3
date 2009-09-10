@@ -221,6 +221,7 @@
         // 
         this.mnuSaveWindowPositions.Index = 0;
         this.mnuSaveWindowPositions.Text = "&Save Window Positions";
+        this.mnuSaveWindowPositions.Click += new System.EventHandler(this.mnuSaveWindowPositions_Click);
         // 
         // Button4
         // 

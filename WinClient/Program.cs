@@ -5,14 +5,14 @@ using System.Linq;
 using System.Configuration.Provider;
 using System.Configuration;
 using System.IO;
-// ???
-//using TabDispatch.My;
+
 using SubSonic;
 using System.Xml;
 using System.Text;
 using System.Collections;
 using BLL;
 using DispatchAR;
+using System.Xml.Linq;
 
 namespace WinClient
 {
@@ -24,8 +24,10 @@ namespace WinClient
     static class Program
     {
         #region properties
-        public static List<ScreenDimension> ScreenArray;
-        public static List<Route> RouteArray;
+        public static List<Route> RouteList;
+        public static List<CurrentDayRoute> CDRList= new List<CurrentDayRoute>();
+        public static List<CurrentDayPickup> CDPList= new List<CurrentDayPickup>();
+        public static List<ScreenDimension> ScreenList= new List<ScreenDimension>();
         private static int _screenheight;
         private static int _screenwidth;
         //    private static Stream Stream;
@@ -106,7 +108,7 @@ namespace WinClient
             var writer = XmlWriter.Create(Stream, settings);
 
             // bug: what should I do with this, now that I'm using streams?
-            //File.Delete("scr.xml") ' throws no exception if file does not exist
+            //File.Delete("scr.xml"); //' throws no exception if file does not exist
             if (Stream.CanSeek)
             {
                 Stream.SetLength(0);
@@ -169,8 +171,37 @@ namespace WinClient
             //XMLStream.Close()
             writer.Close();
         }
+        /// <summary>
+        /// one of these should go away
+        /// move to BLL and springify
+        /// this one does not use XMLReader (i hope)
+        /// </summary>
+        public static void LoadScreenListFromXml()
+        {
 
-        public static void LoadMDIList(Stream stream)
+            ////see Nunit test pp 99 
+            ////this is what it used to be
+            //// you have to test for scr.xml
+            //// don't build for testing at the expense of needed functionality
+            XElement e = XElement.Load(@"scr.xml");
+            var q = from y in e.Descendants()
+                    where (y.FirstAttribute != null )
+                    select new ScreenDimension( 
+                            (string) y.Attribute("Title"),
+                            (int)    y.Attribute("Top"),
+                            (int)    y.Attribute("Left"),
+                            (int)    y.Attribute("Height"),
+                            (int)    y.Attribute("Width"));
+            foreach (ScreenDimension sd in q)
+            {
+                ScreenList.Add(sd);
+            }
+        }
+        /// <summary>
+        /// one of these should go away
+        /// move to BLL and springify
+        /// </summary>
+        public static void LoadScreenListFromXml(Stream stream)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             XmlReader reader = default(XmlReader);
@@ -178,13 +209,13 @@ namespace WinClient
             settings.IgnoreWhitespace = true;
             settings.IgnoreComments = true;
 
-            //see Nunit test pp 99 
-            //this is what it used to be
-            // you have to test for scr.xml
-            // don't build for testing at the expense of needed functionality
+            ////see Nunit test pp 99 
+            ////this is what it used to be
+            //// you have to test for scr.xml
+            //// don't build for testing at the expense of needed functionality
             try
             {
-                reader = XmlReader.Create(stream);
+                reader = XmlReader.Create(@"scr.xml");
             }
             catch
             {
@@ -207,140 +238,31 @@ namespace WinClient
                         continue;
                     case "Items":
                         continue;
-                    //default:
-                    // TODO: fix this
+                    case "Item":
 
-                    //  ScreenDimension sd = new ScreenDimension();
-                    //sd.WinTitle = reader.Item["Title"];
-                    //sd.TopInt = reader.Item["Top"];
-                    //sd.LeftInt = reader.Item["Left"];
-                    //sd.WidthInt = reader.Item["Width"];
-                    //sd.HeightInt = reader.Item["Height"];
-                    //ScreenArray.Add(sd);
-                    //if (sd.WinTitle != "Input" & sd.WinTitle != "TabForm") {
-                    //    // it is a frmRoute Screen
-                    //    RouteArray.Add(sd);
-                    //}
+                        var sd = new ScreenDimension();
+                        var cvt = new System.ComponentModel.Int32Converter();
 
-                    //break;
+                        sd.WinTitle = reader.GetAttribute("Title");
+                        sd.TopInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Top"));
+                        sd.LeftInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Left"));
+                        sd.WidthInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Width"));
+                        sd.HeightInt = (int)cvt.ConvertFromString(
+                                reader.GetAttribute("Height"));
+
+                        ScreenList.Add(sd);
+                        continue;
+                    default:
+                        break;
                 }
             }
-            //reader
-            // file remains open unless this happens
-            // don't know how to open it at write time however...
-            // todo: find out about stream.close this and fix it
-            //stream.Close()
             reader.Close();
+
         }
-        // depricated because I'm using SPRING...
-        //public static void SetProvider(string appConfigPath)
-        //{
-        //    //clear the providers and reset
-        //    DataService.Provider = new SqlDataProvider();
-        //    DataService.Providers = new DataProviderCollection();
-
-
-        //    //if present, get the connection strings and the SubSonic config
-        //    if (File.Exists(appConfigPath)) {
-        //        ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
-        //        Console.WriteLine("Building configuration from " + Path.Combine(Directory.GetCurrentDirectory(), appConfigPath));
-        //        fileMap.ExeConfigFilename = appConfigPath;
-
-        //        // Open another config file
-        //        Configuration subConfig = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-
-        //        try {
-        //            SubSonicSection section = (SubSonicSection)subConfig.GetSection(ConfigurationSectionName.SUB_SONIC_SERVICE);
-
-        //            if (section != null) {
-        //                DataService.ConfigSection = section;
-        //                //Dim argTemplateDirectory As String = GetArg(ConfigurationPropertyName.TEMPLATE_DIRECTORY)
-        //                //Dim activeTemplateDirectory As String = IIf([String].IsNullOrEmpty(argTemplateDirectory), section.TemplateDirectory, argTemplateDirectory)
-
-
-        //                //Dim argTraceFlag As String = GetArg(ConfigurationPropertyName.ENABLE_TRACE)
-        //                //Dim activeTraceFlag As String = IIf([String].IsNullOrEmpty(argTraceFlag), section.EnableTrace, argTraceFlag)
-
-        //                //If Not [String].IsNullOrEmpty(activeTraceFlag) Then
-        //                //    DataService.EnableTrace = Convert.ToBoolean(activeTraceFlag)
-        //                //End If
-
-        //                //If Not [String].IsNullOrEmpty(activeTemplateDirectory) Then
-        //                //    Console.WriteLine("Overriding default templates with those from " + section.TemplateDirectory)
-        //                //    CodeService.TemplateDirectory = activeTemplateDirectory
-        //                //End If
-
-        //                //initialize
-        //                //need to pull out the default connection string
-        //                //since this application doesn't have a config file, the target one does
-        //                //so reconciling connection string won't work
-        //                string connectionStringName = section.Providers(0).Parameters("connectionStringName");
-        //                if (connectionStringName == null) {
-        //                    throw new ConfigurationErrorsException("The Parameter 'connectionStringName' was not specified");
-        //                }
-
-        //                ConnectionStringSettings connSettings = subConfig.ConnectionStrings.ConnectionStrings(connectionStringName);
-        //                if (connSettings == null) {
-        //                    throw new ConfigurationErrorsException(string.Format("ConnectionStrings section missing connection string with the name '{0}'", connectionStringName));
-        //                }
-
-        //                string connString = subConfig.ConnectionStrings.ConnectionStrings(connectionStringName).ConnectionString;
-        //                //DataService.ConnectionString = connString;
-
-
-        //                System.Web.Configuration.ProvidersHelper.InstantiateProviders(section.Providers, DataService.Providers, typeof(DataProvider));
-
-        //                //this is a tad backwards, but it's what needs to happen since our application
-        //                //is configuring another application's providers
-        //                //go back and reset the provider's connection strings
-        //                //tcp:elwood\sqlexpress;Initial Catalog=dispatch_production;Integrated Security=SSPI;" 
-        //                //               MySettings.Default.Terminal + " Pickups Today: " + frmRoute.DailyCount.ToString()
-        //                foreach (DataProvider provider in DataService.Providers) {
-        //                    Console.WriteLine("Adding connection to " + provider.Name);
-
-        //                    //provider.ConnectionString = subConfig.ConnectionStrings.ConnectionStrings[provider.ConnectionStringName].ConnectionString;
-        //                    if (MySettings.Default.ConnectionType == "AppConfig") {
-        //                        provider.SetDefaultConnectionString(subConfig.ConnectionStrings.ConnectionStrings(provider.ConnectionStringName).ConnectionString);
-        //                    }
-        //                    else {
-        //                        string constr = BuildConnectionString();
-        //                        provider.SetDefaultConnectionString(constr);
-        //                    }
-        //                }
-
-
-        //                //reset the default provider
-        //                //Dim providerName As String = GetArg("provider")
-        //                string providerName = "RossData";
-        //                if (providerName != string.Empty) {
-        //                    try {
-        //                        DataService.Provider = DataService.Providers(providerName);
-        //                    }
-        //                    catch (Exception e) {
-        //                        Console.WriteLine("ERROR: There is no provider with the name '{0}'. Exception: {1}", providerName, e);
-        //                    }
-        //                }
-        //                else {
-        //                    DataService.Provider = DataService.Providers(section.DefaultProvider);
-        //                }
-        //            }
-        //        }
-        //        catch (ConfigurationErrorsException x) {
-        //            //let the user know the config was problematic...
-        //            Console.WriteLine("Can't set the configuration for the providers. There is an error with your config setup (did you remember to configure SubSonic in your config file?). '{0}'", x.Message);
-        //        }
-        //    }
-        //    else {
-        //        throw new Exception("There's no config file present at " + appConfigPath);
-        //    }
-        //}
-        //tcp:elwood\sqlexpress;Initial Catalog=dispatch_production;Integrated Security=SSPI;" 
-        //nini connection string:
-        //connectionString="Provider=SQLOLEDB;
-        //Driver={SQL Server};
-        //Server=elwood\sqlexpress;
-        //    Initial Catalog=dispatch_development;Uid=ross_devel;PWD=123ross321;" />
-
+    
 
         private static string BuildConnectionString()
         {
@@ -363,10 +285,8 @@ namespace WinClient
         }
         public static bool TestConnectionString()
         {
-            var TestConnectionString = true;
             try
             {
-                TestConnectionString = true;
                 var dvr =  (BLL.Driver.DriverBLL)WinClient.ApplicationContext["DriverBLL"];
                 var d = dvr.GetAll();
             }
@@ -383,9 +303,9 @@ namespace WinClient
                 //sb.AppendLine(String.Format("\tDatabase User: {0}", WinClient.Properties.Settings.Default.dbuser));
                 //sb.AppendLine(String.Format("\tDatabase Password: {0}", WinClient.Properties.Settings.Default.dbpw));
                 MessageBox.Show(sb.ToString(), "DB CONNECTION FAILURE");
-                TestConnectionString = false;
+                return false;
             }
-            return TestConnectionString;
+            return true;
         }
         // to add many records, use SimpleRepository.AddMany<T>
     //    public void AddMany<T>(System.Collections.Generic.IEnumerable<T> items)
@@ -401,13 +321,23 @@ namespace WinClient
         }
         internal static int GetCDRCount()
         {
-            return 20;
-        //    throw new NotImplementedException();
+            if (CDRList.Count == 0)
+            {
+                var cdrBLL = (BLL.CDPCDR.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+                var tmplist= cdrBLL.GetAll();
+                CDRList = tmplist.ToList<CurrentDayRoute>(); 
+            }
+            return CDRList.Count;
         }
         internal static int GetCDPCount()
         {
-            return 20;
-         ////   throw new NotImplementedException();
+            if (CDPList.Count == 0)
+            {
+                var cdpBLL = (BLL.CDPCDR.CurrentDayPickupBLL)WinClient.ApplicationContext["CDPBLL"];
+                var tmplist= cdpBLL.GetAll();
+                CDPList = tmplist.ToList<CurrentDayPickup>(); 
+            }
+            return CDPList.Count;
         }
 
         #endregion static methods

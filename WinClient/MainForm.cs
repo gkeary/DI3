@@ -19,7 +19,7 @@ namespace WinClient //Dispatch3
     {
 
         // Todo: springify this...
-        private static Stream Stream = File.Open("scr.xml", FileMode.OpenOrCreate);
+        private static Stream Stream = File.Open("scr1.xml", FileMode.OpenOrCreate);
         //private static Stream _stream = File.Open("scr.xml", FileMode.OpenOrCreate);
         //public Stream Stream { get; set; }
         public MainForm()
@@ -63,7 +63,8 @@ namespace WinClient //Dispatch3
             Program.ComputeScreenBoundaries(); // this must be called from somewhere
             // this is no longer a screenarray but a List<SCREENDIMENSION> ... 
             // it should really be springified...
-            Program.LoadMDIList(Stream); //' populates ScreenArray from xmlfile 
+            Program.LoadScreenListFromXml(); //' populates ScreenList from xmlfile 
+            //Program.LoadScreenListFromXml(Stream); //' populates ScreenList from xmlfile 
             //Program.XMLStream = fileStream;
             // Exit gracefully if somethins is wrong with the connection.
             if (!Program.TestConnectionString())
@@ -99,6 +100,7 @@ namespace WinClient //Dispatch3
             if (blnDayStarted)
             {
                 LoadMDIRoutes();
+                Stream.Close();
                 //'InputForm.PickupHash = CustomerListBoxHelper.PopulatePickupHash()
                 //'InputForm.Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash()
                 //'InputForm.CustomerHash = CustomerListBoxHelper.PopulateCustomerHash()
@@ -115,6 +117,33 @@ namespace WinClient //Dispatch3
 
         private void LoadMDIRoutes()
         {
+            var RouteCount = Program.GetCDRCount();
+            if (Program.ScreenList.Count == 0)
+            {
+                Program.LoadScreenListFromXml(Stream);
+            }
+            // new route window
+            var qry = from r in Program.CDRList
+                      select r.CDRRouteID;
+            var rr = qry.ToArray();
+            
+            for (int i = 0; i < RouteCount; i++)
+            {
+                Console.WriteLine(rr[i]);
+            }
+            //    var rw = new frmRoute(
+            //foreach(
+            //    var sd=Program.CDRList.FindIn
+            //foreach (var cdr in Program.RouteList)
+            //{
+            //    var sd = Program.RouteList[i];
+
+            //    rw = new frmRoute(i, cdr);
+            //    rw.MdiParent = this;
+            //    rw.Show();
+            //    i += 1;
+            //}
+
             int intRouteCount = 0;
             //frmRoute rw = null;
             //var i = 0;
@@ -129,9 +158,9 @@ namespace WinClient //Dispatch3
             //}
 
             //int i = 0;
-            //foreach (var cdr in Program.RouteArray)
+            //foreach (var cdr in Program.RouteList)
             //{
-            //    var sd = Program.RouteArray[i];
+            //    var sd = Program.RouteList[i];
 
             //    rw = new frmRoute(i, cdr);
             //    rw.MdiParent = this;
@@ -164,7 +193,7 @@ namespace WinClient //Dispatch3
         //    Program.ComputeScreenBoundaries(); // this must be called from somewhere
         //    // this is no longer a screenarray but a List<SCREENDIMENSION> ... 
         //    // it should really be springified...
-        //    Program.LoadMDIList(xmlStream); //' populates ScreenArray from xmlfile 
+        //    Program.LoadScreenListFromXml(xmlStream); //' populates ScreenList from xmlfile 
 
         //}
 
@@ -740,6 +769,7 @@ namespace WinClient //Dispatch3
 
         private void mnuSaveWindowPositions_Click(object sender, EventArgs e)
         {
+            Program.SaveWindowPositions(this);
 
         }
 
@@ -748,6 +778,7 @@ namespace WinClient //Dispatch3
 
         }
 #endregion
+
 
 
 
