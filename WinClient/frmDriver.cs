@@ -6,14 +6,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using SubSonic.Repository;
-using BLL.Driver;
+using BLL;
 
 namespace WinClient.Driver
 {
     public partial class frmDriver : Form
     {
         private SimpleRepository repo = (SimpleRepository)WinClient.ApplicationContext["myRepo"];
-        private BLL.Driver.DriverBLL driver;
+        private BLL.DriverBLL driver;
 
         public frmDriver()
         {

@@ -164,7 +164,7 @@ namespace WinClient.Driver
             // 
             // DRIVERTableBindingSource
             // 
-            this.DRIVERTableBindingSource.DataSource = typeof(DispatchAR.DRIVERTable);
+            this.DRIVERTableBindingSource.DataSource = typeof(DispatchAR.DRIVERSTable);
             // 
             // driverTableIDDataGridViewTextBoxColumn
             // 

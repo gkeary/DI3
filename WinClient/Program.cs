@@ -25,9 +25,10 @@ namespace WinClient
     {
         #region properties
         public static List<Route> RouteList;
-        public static List<CurrentDayRoute> CDRList= new List<CurrentDayRoute>();
-        public static List<CurrentDayPickup> CDPList= new List<CurrentDayPickup>();
-        public static List<ScreenDimension> ScreenList= new List<ScreenDimension>();
+        public static List<CurrentDayRoute>  CDRList=     new List<CurrentDayRoute>();
+        public static List<CurrentDayPickup> CDPList=     new List<CurrentDayPickup>();
+        public static List<Pickup>           PickupList=  new List<Pickup>();
+        public static List<ScreenDimension>  ScreenList=  new List<ScreenDimension>();
         private static int _screenheight;
         private static int _screenwidth;
         //    private static Stream Stream;
@@ -238,7 +239,6 @@ namespace WinClient
             reader.Close();
 
         }
-    
 #else 
             // CANNOT GET q TO POPULATE have to use a reader and a switch stmnt ???
             XElement e = XElement.Load(@"scr.xml");
@@ -321,8 +321,6 @@ namespace WinClient
             reader.Close();
 
         }
-    
-
         private static string BuildConnectionString()
         {
             StringBuilder sb = new StringBuilder();
@@ -346,7 +344,7 @@ namespace WinClient
         {
             try
             {
-                var dvr =  (BLL.Driver.DriverBLL)WinClient.ApplicationContext["DriverBLL"];
+                var dvr =  (BLL.DriverBLL)WinClient.ApplicationContext["DriverBLL"];
                 var d = dvr.GetAll();
             }
             catch (Exception ex)
@@ -375,14 +373,14 @@ namespace WinClient
         //internal static IQuery<CurrentDayRoute> GetCDRCollection()
         {
             var cdr = (List<CurrentDayRoute>)WinClient.ApplicationContext["CDRBLL"];
-           // var cdr = (BLL.CDPCDR.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+           // var cdr = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
             return cdr;
         }
         internal static int GetCDRCount()
         {
             if (CDRList.Count == 0)
             {
-                var cdrBLL = (BLL.CDPCDR.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+                var cdrBLL = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
                 var tmplist= cdrBLL.GetAll();
                 CDRList = tmplist.ToList<CurrentDayRoute>(); 
             }
@@ -392,15 +390,30 @@ namespace WinClient
         {
             if (CDPList.Count == 0)
             {
-                var cdpBLL = (BLL.CDPCDR.CurrentDayPickupBLL)WinClient.ApplicationContext["CDPBLL"];
+                var cdpBLL = (BLL.CurrentDay.CurrentDayPickupBLL)WinClient.ApplicationContext["CDPBLL"];
                 var tmplist= cdpBLL.GetAll();
                 CDPList = tmplist.ToList<CurrentDayPickup>(); 
             }
             return CDPList.Count;
         }
 
+        internal static List<Pickup> GetPickupCollection()
+        {
+            var pu = (List<Pickup>)WinClient.ApplicationContext["PickupBLL"];
+            return pu;
+        }
+
+        internal static object GetPickupCount()
+        {
+            if (PickupList.Count == 0)
+            {
+                var cdpBLL = (BLL.PickupBLL)WinClient.ApplicationContext["PickupBLL"];
+                var tmplist= cdpBLL.GetAll();
+                PickupList = tmplist.ToList<Pickup>(); 
+            }
+            return PickupList.Count;
+            
+        }
         #endregion static methods
-
-
     }
 }

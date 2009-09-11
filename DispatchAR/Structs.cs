@@ -1104,13 +1104,13 @@ namespace DispatchAR {
         }
         
         /// <summary>
-        /// Table: DRIVER
+        /// Table: DRIVERS
         /// Primary Key: DriverTableID
         /// </summary>
 
-        public class DRIVERTable: DatabaseTable {
+        public class DRIVERSTable: DatabaseTable {
             
-            public DRIVERTable(IDataProvider provider):base("DRIVER",provider){
+            public DRIVERSTable(IDataProvider provider):base("DRIVERS",provider){
                 ClassName = "DRIVER";
                 SchemaName = "dbo";
                 
@@ -1648,18 +1648,18 @@ namespace DispatchAR {
         }
         
         /// <summary>
-        /// Table: Pickup
-        /// Primary Key: PickupTableID
+        /// Table: Pickups
+        /// Primary Key: ID
         /// </summary>
 
-        public class PickupTable: DatabaseTable {
+        public class PickupsTable: DatabaseTable {
             
-            public PickupTable(IDataProvider provider):base("Pickup",provider){
+            public PickupsTable(IDataProvider provider):base("Pickups",provider){
                 ClassName = "Pickup";
                 SchemaName = "dbo";
                 
 
-                Columns.Add(new DatabaseColumn("PickupTableID", this)
+                Columns.Add(new DatabaseColumn("ID", this)
                 {
 	                IsPrimaryKey = true,
 	                DataType = DbType.Int32,
@@ -1923,15 +1923,15 @@ namespace DispatchAR {
                 
             }
             
-            public IColumn PickupTableID{
+            public IColumn ID{
                 get{
-                    return this.GetColumn("PickupTableID");
+                    return this.GetColumn("ID");
                 }
             }
 				
-   			public static string PickupTableIDColumn{
+   			public static string IDColumn{
 			      get{
-        			return "PickupTableID";
+        			return "ID";
       			}
 		    }
             
@@ -2676,13 +2676,13 @@ namespace DispatchAR {
         }
         
         /// <summary>
-        /// Table: Posting
+        /// Table: Postings
         /// Primary Key: PostingID
         /// </summary>
 
-        public class PostingTable: DatabaseTable {
+        public class PostingsTable: DatabaseTable {
             
-            public PostingTable(IDataProvider provider):base("Posting",provider){
+            public PostingsTable(IDataProvider provider):base("Postings",provider){
                 ClassName = "Posting";
                 SchemaName = "dbo";
                 
@@ -2849,13 +2849,13 @@ namespace DispatchAR {
         }
         
         /// <summary>
-        /// Table: Route
+        /// Table: Routes
         /// Primary Key: Route2TableID
         /// </summary>
 
-        public class RouteTable: DatabaseTable {
+        public class RoutesTable: DatabaseTable {
             
-            public RouteTable(IDataProvider provider):base("Route",provider){
+            public RoutesTable(IDataProvider provider):base("Routes",provider){
                 ClassName = "Route";
                 SchemaName = "dbo";
                 

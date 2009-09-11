@@ -39,9 +39,9 @@ namespace WinClient //Dispatch3
         // but do I need collections
         // the question remains: what do I do withe CDRCollection and CDRController?
         //public static CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
-//        public static CurrentDayRouteController CDRController = new CurrentDayRouteController();
+        //        public static CurrentDayRouteController CDRController = new CurrentDayRouteController();
         //public static CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
-//        public static CurrentDayPickupController CDPController = new CurrentDayPickupController();
+        //        public static CurrentDayPickupController CDPController = new CurrentDayPickupController();
 
         public int intCDPSyncCount = 0;
         public static bool blnWindowOpen = false;
@@ -73,7 +73,8 @@ namespace WinClient //Dispatch3
 
             // blnDayStarted is controlled here
             var Count1 = Program.GetCDRCount();
-            var Count2 = Program.GetCDPCount(); 
+            var Count2 = Program.GetCDPCount();
+            var Count3 = Program.GetPickupCount();
             MainForm.blnDayStarted = (Count1 > 0 && Count2 > 0) ? true : false;
 
             if (blnDayStarted)
@@ -104,7 +105,7 @@ namespace WinClient //Dispatch3
             var sdqry = from sd in Program.ScreenList
                         select sd;
 
-            for (int i = 0;i<RouteCount;i++)
+            for (int i = 0; i < RouteCount; i++)
             {
                 foreach (DispatchAR.CurrentDayRoute route in cdrqry)
                 {
@@ -131,7 +132,7 @@ namespace WinClient //Dispatch3
             // stub it out for now...
             //var InputForm = new InputForm();
             // InputForm.MdiParent = this;
-             //InputForm.Show();
+            //InputForm.Show();
         }
 
         public void RefreshThisRoute(frmRoute whichForm)
@@ -151,7 +152,7 @@ namespace WinClient //Dispatch3
             }
         }
 
-        
+
         private void SyncCustomerList()
         {
             {
@@ -321,7 +322,7 @@ namespace WinClient //Dispatch3
             //       }
             //        }
             //    }
-//            //}
+            //            //}
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -335,7 +336,7 @@ namespace WinClient //Dispatch3
             {
                 case 0:
                     this.SyncCustomerList();
-                break;
+                    break;
                 case 1:
                     this.SyncPosting();
                     break;
@@ -349,7 +350,7 @@ namespace WinClient //Dispatch3
             {
                 case 1:
                     sbarMain.BackColor = System.Drawing.Color.AliceBlue;
-                    sbarMain.Items["statusLabel"].Text  = "Case 1foo";
+                    sbarMain.Items["statusLabel"].Text = "Case 1foo";
                     //sbarMain.Items[0].Text = "foo";
                     //this.sbarMain.Items["StatusLabel"].Text = " Pickups Today: 1";//+ frmRoute.DailyCount.ToString() + ".";
                     //this.sbarMain.Items["StatusLabel"].Text = " Pickups Today: " + frmRoute.DailyCount.ToString() + ".";
@@ -357,7 +358,7 @@ namespace WinClient //Dispatch3
 
                 case 2:
                     sbarMain.BackColor = System.Drawing.Color.Gray;
-                    sbarMain.Items["statusLabel"].Text  = "";
+                    sbarMain.Items["statusLabel"].Text = "";
                     //sbarMain.Text = "Case 2foo";
                     //this.sbarMain.Items["StatusLabel"].Text = " Pickups Today: 2";//+ frmRoute.DailyCount.ToString() + "..";
                     //this.sbarMain.Items["StatusLabel"].Text = " Pickups Today: " + frmRoute.DailyCount.ToString() + "..";
@@ -377,110 +378,90 @@ namespace WinClient //Dispatch3
         }
         private void StartOfDay()
         {
-            return;
-            //this.PopulateCurrentDayPickups();
-            //this.LoadfrmRoutes();
-            //this.SetStartItems();
+            this.PopulateCurrentDayPickups();
+            this.LoadfrmRoutes();
+            this.SetStartItems();
             //MyProject.Forms.InputForm.txtCustomerID.Focus();
+        }
+
+        private void SetStartItems()
+        {
+            this.mnuSaveWindowPositions.Enabled = true;
+            this.mnuCloseRoutes.Enabled = true;
+            this.mnuDefaultRoutes.Enabled = false;
+            this.mnuEditRoutes.Enabled = true;
+            this.Activate();
         }
         public void PopulateCurrentDayPickups()
         {
-            return;
-            //int intCDPSyncCount = 0;
+            int intCDPSyncCount = 0;
             //Form frmNewForm = new Form();
             //PickupCollection pucoll = new PickupCollection();
-            //bool addflag = false;
-            //CDPCollection.Load();
-            //if (CDPCollection.Count == 0)
-            //{
-            //    foreach (Pickup p in pucoll.Load())
-            //    {
-            //        intCDPSyncCount++;
-            //        string strCDPSyncID = Environment.MachineName + "-CDP-" + intCDPSyncCount.ToString();
-            //        string strDriverName = Strings.Replace(p.DriverName, "'", "''", 1, -1, CompareMethod.Binary);
-            //        string strRouteName = Strings.Replace(p.RouteName, "'", "''", 1, -1, CompareMethod.Binary);
-            //        string strCustomerName = Strings.Replace(p.CustomerName, "'", "''", 1, -1, CompareMethod.Binary);
-            //        string strComment = Strings.Replace(p.Comment, "'", "''", 1, -1, CompareMethod.Binary);
-            //        if (p.DefaultRouteID == "")
-            //        {
-            //            MessageBox.Show("MainForm PopulateCDP\r\n The Pickup Table us faulty,  maybe p.defaultRouteID is blank");
-            //        }
-            //        DateTime mToday = DateAndTime.Today;
-            //        switch (((int)mToday.DayOfWeek))
-            //        {
-            //            case 1:
-            //                if ((bool)p.Monday)
-            //                {
-            //                    addflag = true;
-            //                }
-            //                break;
-
-            //            case 2:
-            //                if ((bool)p.Tuesday)
-            //                {
-            //                    addflag = true;
-            //                }
-            //                break;
-
-            //            case 3:
-            //                if ((bool)p.Wednesday)
-            //                {
-            //                    addflag = true;
-            //                }
-            //                break;
-
-            //            case 4:
-            //                if ((bool)p.Thursday)
-            //                {
-            //                    addflag = true;
-            //                }
-            //                break;
-
-            //            case 5:
-            //                if ((bool)p.Friday)
-            //                {
-            //                    addflag = true;
-            //                }
-            //                break;
-
-            //            default:
-            //                addflag = false;
-            //                break;
-            //        }
-            //        if (((!addflag && (p.Comment == "DP")) ? 1 : 0) != 0)
-            //        {
-            //            addflag = true;
-            //        }
-            //        if ((((!addflag && p.PickupDate.HasValue) ? 1 : 0) != 0) && (((DateTime)p.PickupDate) == mToday))
-            //        {
-            //            addflag = true;
-            //        }
-            //        if (addflag)
-            //        {
-            //            addflag = false;
-            //            new CurrentDayPickup
-            //            {
-            //                CDPChecked = true,
-            //                CDPComment = strComment,
-            //                CDPSyncID = strCDPSyncID,
-            //                CDPDriverName = strDriverName,
-            //                CDPRouteName = strRouteName,
-            //                CDPCustomerName = strCustomerName,
-            //                CDPDispatched = false,
-            //                CDPCreatedBy = Environment.MachineName,
-            //                CDPStation = Environment.MachineName,
-            //                CDPCreatedTime = DateAndTime.Now,
-            //                CDPPickupDate = mToday,
-            //                CDPDefaultRouteID = p.DefaultRouteID,
-            //                CDPCustomerID = p.CustomerID,
-            //                CDPRouteName = p.RouteName,
-            //                UserName = Environment.UserName,
-            //                PostedCount = MySettings.Default.ActiveStations - 1,
-            //                Terminal = MySettings.Default.Terminal
-            //            }.Save();
-            //        }
-            //    }
-            //}
+            bool addflag = false;
+            
+            if (Program.PickupList.Count == 0)
+            {
+                Program.GetPickupCollection();
+            }
+            if (Program.CDPList.Count == 0)
+            {
+                foreach (DispatchAR.Pickup p in Program.PickupList)
+                {
+                    intCDPSyncCount++;
+                    string strCDPSyncID = Environment.MachineName + "-CDP-" + intCDPSyncCount.ToString();
+                    string strRouteName = p.RouteName.Replace( "'", "''");
+                    string strDriverName = p.DriverName.Replace( "'", "''");
+                    string strCustomerName = p.CustomerName.Replace( "'", "''");
+                    string strComment = p.Comment.Replace("'", "''");
+                    if (p.DefaultRouteID == "")
+                    {
+                        MessageBox.Show("MainForm PopulateCDP\r\n The Pickup Table is faulty,  maybe p.defaultRouteID is blank");
+                    }
+                    DateTime mToday = DateTime.Now;
+                    switch (((int)mToday.DayOfWeek))
+                    {
+                        case 1: if ((bool)p.Monday)    { addflag = true; } break;
+                        case 2: if ((bool)p.Tuesday)   { addflag = true; } break;
+                        case 3: if ((bool)p.Wednesday) { addflag = true; } break;
+                        case 4: if ((bool)p.Thursday)  { addflag = true; } break;
+                        case 5: if ((bool)p.Friday)    { addflag = true; } break;
+                        default: addflag = false; break;
+                    }
+                    if (((!addflag && (p.Comment == "DP")) ? 1 : 0) != 0)
+                    {
+                        addflag = true;
+                    }
+                    if ((((!addflag && p.PickupDate.HasValue) ? 1 : 0) != 0) 
+                                    && (((DateTime)p.PickupDate) == mToday))
+                    {
+                        addflag = true;
+                    }
+                    if (addflag)
+                    {
+                        addflag = false;
+                        new DispatchAR.CurrentDayPickup
+                        {
+                            CDPChecked = true,
+                            CDPComment = strComment,
+                            CDPSyncID = strCDPSyncID,
+                            CDPDriverName = strDriverName,
+                            //CDPRouteName = strRouteName,// duplicated below
+                            CDPCustomerName = strCustomerName,
+                            CDPDispatched = false,
+                            CDPCreatedBy = Environment.MachineName,
+                            CDPStation = Environment.MachineName,
+                            CDPCreatedTime = DateTime.Now,
+                            CDPPickupDate = mToday,
+                            CDPDefaultRouteID = p.DefaultRouteID,
+                            CDPCustomerID = p.CustomerID,
+                            CDPRouteName = p.RouteName,
+                            //UserName = Environment.UserName,
+                            //PostedCount = Properties.Settings.Default.ActiveStations - 1,
+                            Terminal = Properties.Settings.Default.terminal
+                        }.Save();
+                    }
+                }
+            }
         }
         public void PopulateCurrentDayRoutes()
         {
@@ -502,21 +483,21 @@ namespace WinClient //Dispatch3
             //    }
             //}
         }
-#region menuEventHandlers
+        #region menuEventHandlers
         private void mnuAddDrivers_Click(object sender, EventArgs e)
         {
-          // new frmAddDrivers { MdiParent = this, Text = "Add a New Driver" }.Show();
+            //new frmAddDrivers { MdiParent = this, Text = "Add a New Driver" }.Show();
             return;
         }
 
-         private void mnuAddOneTimePickup_Click(object sender, EventArgs e)
-{
-    //frmOneTimePickup NewWindow = new frmOneTimePickup("Add") {
-    //    MdiParent = this
-    //};
-    //NewWindow.Show();
-    //NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
-}
+        private void mnuAddOneTimePickup_Click(object sender, EventArgs e)
+        {
+            //frmOneTimePickup NewWindow = new frmOneTimePickup("Add") {
+            //    MdiParent = this
+            //};
+            //NewWindow.Show();
+            //NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
+        }
 
 
 
@@ -573,7 +554,7 @@ namespace WinClient //Dispatch3
         {
 
             this.PopulateCurrentDayRoutes();
-            OpenfrmDefaultRoutes(); 
+            OpenfrmDefaultRoutes();
 
         }
 
@@ -596,14 +577,14 @@ namespace WinClient //Dispatch3
             //NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
         }
 
- 
 
- 
+
+
 
 
         private void mnuEditRoutes_Click(object sender, EventArgs e)
         {
-          // new frmEditRoutes { MdiParent = this, Text = "Add a New Driver" }.Show();
+            // new frmEditRoutes { MdiParent = this, Text = "Add a New Driver" }.Show();
             return;
 
         }
@@ -615,13 +596,13 @@ namespace WinClient //Dispatch3
             sb.AppendLine("");
             sb.AppendLine("This is the only way to clear the current day's data.".ToUpper());
             var style = MessageBoxButtons.OKCancel;
-            var clickedOK = MessageBox.Show(sb.ToString(), "End of Day",style).Equals(DialogResult.OK );
-            if( clickedOK)
+            var clickedOK = MessageBox.Show(sb.ToString(), "End of Day", style).Equals(DialogResult.OK);
+            if (clickedOK)
             {
                 Console.WriteLine("hoo");
                 //hmmm...
-               //Program.EndOfDay();
-            //if ( result == DialogResult.OK )// not sure what result will be... 
+                //Program.EndOfDay();
+                //if ( result == DialogResult.OK )// not sure what result will be... 
             }
         }
 
@@ -650,56 +631,56 @@ namespace WinClient //Dispatch3
             return;
         }
 
- 
 
- 
+
+
 
         public void EmptyCurrentDayRoutes()
-{
-    //List<CurrentDayRoute>.Enumerator VB$t_struct$L0;
-    //CDRCollection.Load();
-    //try
-    //{
-    //    VB$t_struct$L0 = CDRCollection.GetEnumerator();
-    //    while (VB$t_struct$L0.MoveNext())
-    //    {
-    //        CurrentDayRoute route = VB$t_struct$L0.Current;
-    //        CDRController.Destroy(route.CurrentDayRouteID);
-    //    }
-    //}
-    //finally
-    //{
-    //    VB$t_struct$L0.Dispose();
-    //}
+        {
+            //List<CurrentDayRoute>.Enumerator VB$t_struct$L0;
+            //CDRCollection.Load();
+            //try
+            //{
+            //    VB$t_struct$L0 = CDRCollection.GetEnumerator();
+            //    while (VB$t_struct$L0.MoveNext())
+            //    {
+            //        CurrentDayRoute route = VB$t_struct$L0.Current;
+            //        CDRController.Destroy(route.CurrentDayRouteID);
+            //    }
+            //}
+            //finally
+            //{
+            //    VB$t_struct$L0.Dispose();
+            //}
             return;
-}
+        }
 
- 
 
- 
+
+
 
 
         public void EmptyCurrentDayPickups()
-{
-    //List<CurrentDayPickup>.Enumerator VB$t_struct$L0;
-    //CurrentDayPickupCollection cdpCollection = new CurrentDayPickupCollection();
-    //CurrentDayPickupController cdpController = new CurrentDayPickupController();
-    //cdpCollection.Load();
-    //try
-    //{
-    //    VB$t_struct$L0 = cdpCollection.GetEnumerator();
-    //    while (VB$t_struct$L0.MoveNext())
-    //    {
-    //        CurrentDayPickup pickup = VB$t_struct$L0.Current;
-    //        cdpController.Destroy(pickup.CurrentDayPickupID);
-    //    }
-    //}
-    //finally
-    //{
-    //    VB$t_struct$L0.Dispose();
-    //}
+        {
+            //List<CurrentDayPickup>.Enumerator VB$t_struct$L0;
+            //CurrentDayPickupCollection cdpCollection = new CurrentDayPickupCollection();
+            //CurrentDayPickupController cdpController = new CurrentDayPickupController();
+            //cdpCollection.Load();
+            //try
+            //{
+            //    VB$t_struct$L0 = cdpCollection.GetEnumerator();
+            //    while (VB$t_struct$L0.MoveNext())
+            //    {
+            //        CurrentDayPickup pickup = VB$t_struct$L0.Current;
+            //        cdpController.Destroy(pickup.CurrentDayPickupID);
+            //    }
+            //}
+            //finally
+            //{
+            //    VB$t_struct$L0.Dispose();
+            //}
             return;
-}
+        }
 
         private void mnuExit_Click(object sender, EventArgs e) { Application.Exit(); }
 
@@ -711,9 +692,10 @@ namespace WinClient //Dispatch3
 
         private void mnuStartOfDay_Click(object sender, EventArgs e)
         {
-
+            this.StartOfDay();
+            blnDayStarted = true;
         }
-#endregion
+        #endregion
 
 
 

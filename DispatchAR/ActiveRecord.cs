@@ -1722,7 +1722,7 @@ namespace DispatchAR
     
     
     /// <summary>
-    /// A class which represents the DRIVER table in the Dispatch Database.
+    /// A class which represents the DRIVERS table in the Dispatch Database.
     /// </summary>
     public partial class DRIVER: IActiveRecord
     {
@@ -2398,8 +2398,7 @@ namespace DispatchAR
             if (closeReader)
                 rdr.Dispose();
         }
-
-
+        
 
     } 
     
@@ -2954,7 +2953,7 @@ namespace DispatchAR
     
     
     /// <summary>
-    /// A class which represents the Pickup table in the Dispatch Database.
+    /// A class which represents the Pickups table in the Dispatch Database.
     /// </summary>
     public partial class Pickup: IActiveRecord
     {
@@ -3170,12 +3169,12 @@ namespace DispatchAR
 
         public string KeyName()
         {
-            return "PickupTableID";
+            return "ID";
         }
 
         public object KeyValue()
         {
-            return this.PickupTableID;
+            return this.ID;
         }
         
         public void SetKeyValue(object value) {
@@ -3200,7 +3199,7 @@ namespace DispatchAR
 
         
         public override int GetHashCode() {
-            return this.PickupTableID;
+            return this.ID;
         }
         
         public string DescriptorValue()
@@ -3213,7 +3212,7 @@ namespace DispatchAR
         }
         public static string GetKeyColumn()
         {
-            return "PickupTableID";
+            return "ID";
         }        
         public static string GetDescriptorColumn()
         {
@@ -3224,15 +3223,15 @@ namespace DispatchAR
         #endregion
         
 
-        int _PickupTableID;
-        public int PickupTableID
+        int _ID;
+        public int ID
         {
-            get { return _PickupTableID; }
+            get { return _ID; }
             set
             {
-                if(_PickupTableID!=value){
-                    _PickupTableID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PickupTableID");
+                if(_ID!=value){
+                    _ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -4603,7 +4602,7 @@ namespace DispatchAR
     
     
     /// <summary>
-    /// A class which represents the Posting table in the Dispatch Database.
+    /// A class which represents the Postings table in the Dispatch Database.
     /// </summary>
     public partial class Posting: IActiveRecord
     {
@@ -5133,7 +5132,7 @@ namespace DispatchAR
     
     
     /// <summary>
-    /// A class which represents the Route table in the Dispatch Database.
+    /// A class which represents the Routes table in the Dispatch Database.
     /// </summary>
     public partial class Route: IActiveRecord
     {

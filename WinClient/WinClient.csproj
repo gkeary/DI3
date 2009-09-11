@@ -57,10 +57,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Spring.NET 1.2.0\bin\net\2.0\release\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="DispatchAR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\w\SubSonic1\DispatchAR\bin\Release\DispatchAR.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Aop, Version=1.1.0.2, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Spring.NET 1.2.0\bin\net\2.0\release\Spring.Aop.dll</HintPath>
@@ -178,6 +174,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{2E3ACCD1-D396-404C-9297-486D0CFB2F50}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DispatchAR\DispatchAR.csproj">
+      <Project>{0C233CA2-04FF-45C7-BEC0-9E89C4384827}</Project>
+      <Name>DispatchAR</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

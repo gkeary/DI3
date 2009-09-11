@@ -6,15 +6,15 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using SubSonic.Repository;
-using BLL.Customer;
+using BLL;
 
 
 namespace WinClient.Customer
 {
     public partial class frmCustomer : Form
     {
-		private SimpleRepository repo = (SimpleRepository)WinClient.ApplicationContext["myRepo"];
-        private BLL.Customer.CustomerBLL cust;
+		//private SimpleRepository repo = (SimpleRepository)WinClient.ApplicationContext["myRepo"];
+        private BLL.CustomerBLL cust;
         public frmCustomer()
         {
             InitializeComponent();

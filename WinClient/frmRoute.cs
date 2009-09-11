@@ -248,24 +248,31 @@ namespace WinClient //Dispatch3
     //        }
     //    }
     //}
-    public static void SyncRouteWindowTextDriverMsgControls(Form[] MDIForms)
-    {
-        for (int i = 0; i <= MDIForms.Length - 1; i++) {
-            if (((MDIForms[i])  is InputForm)) {
+    public static void SyncRouteWindowTextDriverMsgControls(Form[] MDIForms)
+    {
+        for (int i = 0; i <= MDIForms.Length - 1; i++)
+        {
+            if (((MDIForms[i]) is frmRoute))
+            //todo: fix this once InputForm works...
+            //if (((MDIForms[i]) is InputForm))
+            {
                 continue;
             }
 
-            foreach (CurrentDayRoute cdr in Program.CDRList) {
-                frmRoute form = (frmRoute) MDIForms[i];
-                if (form.Tag == cdr.CDRRouteID) {
+            foreach (CurrentDayRoute cdr in Program.CDRList)
+            {
+                frmRoute form = (frmRoute)MDIForms[i];
+                if (form.Tag == cdr.CDRRouteID)
+                {
                     //frmRoute.RefreshDynamicPickupControls now handles the title
                     //form.Text = cdr.CDRRouteID + " " + cdr.CDRRouteName
                     form.Controls["lblDriverName"].Text = cdr.CDRDriverLastName;
                     form.Controls["txtDriverMessage"].Text = cdr.CDRDriverMessage;
                 }
-                //0 = txtDriverMessage control
-            }
-        }
+                //0 = txtDriverMessage control
+            }
+        }
+    }
         
     private void GetPickupsForThisInstance()
     {

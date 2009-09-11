@@ -13,10 +13,12 @@ namespace BLL
     public abstract class BaseBLL 
     {
         protected IApplicationContext _applicationContext = null;
+        public SimpleRepository Repo { get; set; } 
 
         public BaseBLL()
         {
             _applicationContext = ContextRegistry.GetContext();
+            Repo = (SimpleRepository)_applicationContext["myRepo"];
         }
     }
 }

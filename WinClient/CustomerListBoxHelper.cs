@@ -14,7 +14,7 @@ namespace Dispatch3
         private static CustomerCollection mCustomerCollection = new CustomerCollection();
         private static PickupCollection mPickupCollection = new PickupCollection();
         private static ROUTE2Collection mRoute2Collection = new ROUTE2Collection();
-        private static Hashtable PickupHash = new Hashtable();
+        //private static Hashtable PickupHash = new Hashtable();
         private static Hashtable CustListHash = new Hashtable();
         private static Hashtable CustomerHash = new Hashtable();
         private static Hashtable Route2Hash = new Hashtable();

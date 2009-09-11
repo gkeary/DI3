@@ -248,12 +248,12 @@ namespace DispatchAR
 			{
             	DataProvider.Schema.Tables.Add(new CUSTOMERSTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new CurrentDayPickupsTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new DRIVERTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new DRIVERSTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new ScreenPositionsTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new PickupTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new PickupsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new CurrentDayRoutesTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new PostingTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new RouteTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new PostingsTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new RoutesTable(DataProvider));
             }
             #endregion
         }
