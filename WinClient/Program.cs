@@ -28,6 +28,7 @@ namespace WinClient
         public static List<CurrentDayRoute>  CDRList=     new List<CurrentDayRoute>();
         public static List<CurrentDayPickup> CDPList=     new List<CurrentDayPickup>();
         public static List<Pickup>           PickupList=  new List<Pickup>();
+        public static List<Posting>          PostingList= new List<Posting>();
         public static List<ScreenDimension>  ScreenList=  new List<ScreenDimension>();
         private static int _screenheight;
         private static int _screenwidth;
@@ -403,7 +404,7 @@ namespace WinClient
             return pu;
         }
 
-        internal static object GetPickupCount()
+        internal static int GetPickupCount()
         {
             if (PickupList.Count == 0)
             {
@@ -413,6 +414,18 @@ namespace WinClient
             }
             return PickupList.Count;
             
+        }
+
+        internal static int GetPostingCount()
+        {
+            if (PostingList.Count == 0)
+            {
+                var postingBLL = (BLL.PostingBLL)WinClient.ApplicationContext["PostingBLL"];
+                var tmplist= postingBLL.GetAll();
+               // PostingList = tmplist.ToList<Posting>(); 
+            }
+            return PostingList.Count;
+
         }
         #endregion static methods
     }

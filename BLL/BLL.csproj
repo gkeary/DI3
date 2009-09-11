@@ -83,6 +83,7 @@
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="DriverBLL.cs" />
     <Compile Include="PickupBll.cs" />
+    <Compile Include="PostingBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteBLL.cs" />
   </ItemGroup>
@@ -118,13 +119,6 @@
       <Project>{0C233CA2-04FF-45C7-BEC0-9E89C4384827}</Project>
       <Name>DispatchAR</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CDPCDR\" />
-    <Folder Include="Customer\" />
-    <Folder Include="Driver\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Route\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

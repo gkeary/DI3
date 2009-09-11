@@ -75,6 +75,7 @@ namespace WinClient //Dispatch3
             var Count1 = Program.GetCDRCount();
             var Count2 = Program.GetCDPCount();
             var Count3 = Program.GetPickupCount();
+            var Count4 = Program.GetPostingCount();
             MainForm.blnDayStarted = (Count1 > 0 && Count2 > 0) ? true : false;
 
             if (blnDayStarted)
