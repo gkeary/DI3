@@ -420,9 +420,9 @@ namespace WinClient
         {
             if (PostingList.Count == 0)
             {
-                var postingBLL = (BLL.PostingBLL)WinClient.ApplicationContext["PostingBLL"];
+                var postingBLL = (PostingBLL)WinClient.ApplicationContext["PostingBLL"];
                 var tmplist= postingBLL.GetAll();
-               // PostingList = tmplist.ToList<Posting>(); 
+               // PostingList = (List<Posting>)tmplist.ToList<Posting>(); 
             }
             return PostingList.Count;
 

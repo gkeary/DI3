@@ -84,24 +84,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCustomer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCustomer.Designer.cs">
-      <DependentUpon>frmCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDriver.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDriver.Designer.cs">
-      <DependentUpon>frmDriver.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmRoute.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,18 +106,6 @@
     <Compile Include="PickupControl\Settings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCustomer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDriver.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmDriver.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmRoute.resx">
       <DependentUpon>frmRoute.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\scr.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpringOriginal\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
