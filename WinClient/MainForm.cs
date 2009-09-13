@@ -31,18 +31,6 @@ namespace WinClient //Dispatch3
         }
         #region Declarations
 
-        // move to SubSonic 3.0
-        // how best to do this ???
-        // look at BLL.Customers and decide...
-        // all i have to do is implement CDR and CDP...
-        // now I've done that (CDR and CDP are implemented.
-        // but do I need collections
-        // the question remains: what do I do withe CDRCollection and CDRController?
-        //public static CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
-        //        public static CurrentDayRouteController CDRController = new CurrentDayRouteController();
-        //public static CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
-        //        public static CurrentDayPickupController CDPController = new CurrentDayPickupController();
-
         public int intCDPSyncCount = 0;
         public static bool blnWindowOpen = false;
         public static bool blnDayStarted = false;
@@ -520,20 +508,16 @@ namespace WinClient //Dispatch3
 
         public void OpenfrmDefaultRoutes()
         {
-            // frmDefaultRoutes has lots of issues.
-            // table it for now...
-
-            //blnWindowOpen = true;
-            //frmDefaultRoutes NewWindow = new frmDefaultRoutes();
-            //if (blnDayStarted)
-            //{
-            //    NewWindow.btnSetRoutes.Text = "Change Route(s)";
-            //    NewWindow.btnSetRoutes.Enabled = false;
-            //}
-            //NewWindow.MdiParent = this;
-            //NewWindow.Parent.Name = this.Name;
-            //NewWindow.Show();
-            //NewWindow.Closed += new EventHandler(this.hfrmDefaultRoutes_Closed);
+            frmDefaultRoutes NewWindow = new frmDefaultRoutes();
+            if (blnDayStarted)
+            {
+                NewWindow.btnSetRoutes.Text = "Change Route(s)";
+                NewWindow.btnSetRoutes.Enabled = false;
+            }
+            NewWindow.MdiParent = this;
+            NewWindow.Parent.Name = this.Name;
+            NewWindow.Show();
+            NewWindow.Closed += new EventHandler(this.hfrmDefaultRoutes_Closed);
             return;
         }
 

@@ -13,6 +13,7 @@ using System.Collections;
 using BLL;
 using DispatchAR;
 using System.Xml.Linq;
+using SubSonic.Repository;
 
 namespace WinClient
 {
@@ -24,12 +25,13 @@ namespace WinClient
     static class Program
     {
         #region properties
-        public static List<Route> RouteList;
-        public static List<CurrentDayRoute>  CDRList=     new List<CurrentDayRoute>();
-        public static List<CurrentDayPickup> CDPList=     new List<CurrentDayPickup>();
-        public static List<Pickup>           PickupList=  new List<Pickup>();
-        public static List<Posting>          PostingList= new List<Posting>();
-        public static List<ScreenDimension>  ScreenList=  new List<ScreenDimension>();
+        public static List<Route> RouteList             = new List<Route>();
+        public static List<DRIVER> DriverList           = new List<DRIVER>();
+        public static List<CurrentDayRoute>  CDRList    = new List<CurrentDayRoute>();
+        public static List<CurrentDayPickup> CDPList    = new List<CurrentDayPickup>();
+        public static List<Pickup>           PickupList = new List<Pickup>();
+        public static List<DispatchAR.Posting>          PostingList= new List<DispatchAR.Posting>();
+        public static List<ScreenDimension>  ScreenList = new List<ScreenDimension>();
         private static int _screenheight;
         private static int _screenwidth;
         //    private static Stream Stream;
@@ -371,11 +373,22 @@ namespace WinClient
     //Member of SubSonic.Repository.SimpleRepository
 
         internal static List<CurrentDayRoute> GetCDRCollection()
-        //internal static IQuery<CurrentDayRoute> GetCDRCollection()
         {
-            var cdr = (List<CurrentDayRoute>)WinClient.ApplicationContext["CDRBLL"];
-           // var cdr = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
-            return cdr;
+            var bll = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+            CDRList.AddRange(bll.GetAll());
+            return CDRList;
+        }
+        internal static List<DRIVER> GetDriverCollection()
+        {
+            var bll = (DriverBLL) WinClient.ApplicationContext["DriverBLL"];
+            DriverList.AddRange(bll.GetAll());
+            return DriverList;
+        }
+        internal static List<DispatchAR.Posting> GetPostingCollection()
+        {
+            var bll = (PostingBLL)WinClient.ApplicationContext["PostingBLL"];
+            PostingList.AddRange(bll.GetAll());
+            return PostingList;
         }
         internal static int GetCDRCount()
         {
@@ -422,7 +435,7 @@ namespace WinClient
             {
                 var postingBLL = (PostingBLL)WinClient.ApplicationContext["PostingBLL"];
                 var tmplist= postingBLL.GetAll();
-               // PostingList = (List<Posting>)tmplist.ToList<Posting>(); 
+                PostingList.AddRange(tmplist);
             }
             return PostingList.Count;
 
