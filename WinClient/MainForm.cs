@@ -477,8 +477,7 @@ namespace WinClient //Dispatch3
         #region menuEventHandlers
         private void mnuAddDrivers_Click(object sender, EventArgs e)
         {
-            //new frmAddDrivers { MdiParent = this, Text = "Add a New Driver" }.Show();
-            return;
+            new frmAddDrivers { MdiParent = this, Text = "xxxAdd a New Driver" }.Show();
         }
 
         private void mnuAddOneTimePickup_Click(object sender, EventArgs e)
@@ -547,7 +546,7 @@ namespace WinClient //Dispatch3
 
         private void mnuDeleteDrivers_Click(object sender, EventArgs e)
         {
-            //new frmDeleteDrivers { MdiParent = this, Text = "Delete one or more drivers" }.Show();
+            new frmDeleteDrivers { MdiParent = this, Text = "Delete one or more drivers" }.Show();
         }
 
 

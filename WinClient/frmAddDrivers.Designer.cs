@@ -1,6 +1,6 @@
-﻿namespace Dispatch3
+﻿namespace WinClient //Dispatch3
 {
-[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
+//[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
 partial class frmAddDrivers : System.Windows.Forms.Form
 {
 
@@ -113,6 +113,7 @@ partial class frmAddDrivers : System.Windows.Forms.Form
         this.txtDriverID.Name = "txtDriverID";
         this.txtDriverID.Size = new System.Drawing.Size(40, 20);
         this.txtDriverID.TabIndex = 1;
+        this.txtDriverID.TextChanged += new System.EventHandler(this.txtDriverID_TextChanged);
         // 
         // txtFirstName
         // 
@@ -145,7 +146,6 @@ partial class frmAddDrivers : System.Windows.Forms.Form
         this.btnSaveAndClose.Text = "Save and Close";
         this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
         // 
-        // 
         // btnSaveAndAddAnother
         // 
         this.btnSaveAndAddAnother.Location = new System.Drawing.Point(72, 160);
@@ -153,7 +153,7 @@ partial class frmAddDrivers : System.Windows.Forms.Form
         this.btnSaveAndAddAnother.Size = new System.Drawing.Size(136, 23);
         this.btnSaveAndAddAnother.TabIndex = 6;
         this.btnSaveAndAddAnother.Text = "Save and Add Another";
-        this.btnSaveAndAddAnother.Click += new System.EventHandler(this.btnSaveAndAddAnother_Click );
+        this.btnSaveAndAddAnother.Click += new System.EventHandler(this.btnSaveAndAddAnother_Click);
         // 
         // btnClearForm
         // 
@@ -184,6 +184,7 @@ partial class frmAddDrivers : System.Windows.Forms.Form
         this.Name = "frmAddDrivers";
         this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
         this.Text = "Add Driver";
+        this.Load += new System.EventHandler(this.frmAddDrivers_Load);
         this.ResumeLayout(false);
         this.PerformLayout();
 

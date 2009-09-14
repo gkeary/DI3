@@ -13,3 +13,5 @@ C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.MainForm.resources
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.PickupControl.resources
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.Properties.Resources.resources
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.csproj.GenerateResource.Cache
+C:\Program Files\Git\DI3\WinClient\obj\Release\Dispatch3.frmAddDrivers.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmDefaultRoutes.resources

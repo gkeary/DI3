@@ -7,35 +7,37 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dispatch.LINQ;
+using DispatchAR;
 using SubSonic;
 
-namespace Dispatch3
+namespace WinClient //Dispatch3
 {
     public partial class frmAddDrivers : Form
     {
         bool blnSaveDriver;
+        // TODO: inject this one too.
         DispatchDB db = new DispatchDB();
 
        // Odbc.OdbcDataAdapter dadDrivers = new Odbc.OdbcDataAdapter();
        // Data.DataSet dstDrivers = new Data.DataSet();
-        public frmAddDrivers()
+        //public frmAddDrivers()
+        //{
+        //    InitializeComponent();
+        //}
+
+        private void frmAddDrivers_Load(object sender, System.EventArgs e)
         {
-            InitializeComponent();
+            btnSaveAndClose.Enabled = false;
+            btnSaveAndAddAnother.Enabled = false;
         }
 
-        private void frmAddDriver_Load(object sender, System.EventArgs e)
-        {
-            return;
-        }
-
-        private void CheckDriverID(string id)
+        private bool DriverIDExists(string id)
         {
             var existingdriver = from d in db.DRIVERS
                                  where d.DriverID == id
                                  select d;
             int dd = existingdriver.ToList<DRIVER>().Count();
-           blnSaveDriver = (dd == 0) ? true : false;
+           return  (dd == 0) ? false : true;
             ///
             ///
             /// prototype LINQ query
@@ -45,12 +47,14 @@ namespace Dispatch3
             //               select p;
             //foreach (var p in products) {
             //    Console.WriteLine(p.ProductName);
+            
             }
 
         private void SaveDriver()
         {
             this.Top = (Top < 45) ? 45 : Top;
-            if ((blnSaveDriver))
+
+            if (ValidateForm())
             { db.Insert.Into<DRIVER>( x => x.DriverID, x => x.LastName, x => x.FirstName, x => x.MiddleInitial)
                .Values( txtDriverID.Text, txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text)
                .Execute();
@@ -61,7 +65,7 @@ namespace Dispatch3
             }
             else
             {
-                string msg = "That DriverId is in use, please choose another";
+                string msg = "Invalid Data";
                 MessageBox.Show(msg);
             }
         }
@@ -73,11 +77,37 @@ namespace Dispatch3
             txtMiddleInitial.Text = "";
         }
 
+        private bool ValidateForm()
+        {
+            bool result= false;
+
+            if (
+                txtDriverID.Text.Length == 2 &&
+                ! DriverIDExists(txtDriverID.Text) &&
+                txtFirstName.Text.Length>0 &&
+                txtLastName.Text.Length>0){
+                result = true;
+            }
+            return result;
+                
+        }
         private void txtDriverID_TextChanged(System.Object sender, System.EventArgs e)
         {
             if ((txtDriverID.Text.Length > 1))
             {
-                CheckDriverID(txtDriverID.Text);
+                if (DriverIDExists(txtDriverID.Text))
+                {
+                    string msg = "That DriverId is in use, please choose another";
+                    MessageBox.Show(msg);
+                    btnSaveAndClose.Enabled = false;
+                    btnSaveAndAddAnother.Enabled = false;
+                    txtDriverID.Focus();
+                }
+                else
+                {
+                btnSaveAndAddAnother.Enabled = true;
+                btnSaveAndClose.Enabled = true;
+                }
             }
         }
 
@@ -99,6 +129,10 @@ namespace Dispatch3
             ClearForm();
             txtDriverID.Focus();
         }
+
+    
+
+
 
 
 
