@@ -43,5 +43,13 @@ namespace BLL
         }
 
         #endregion
+        public void DeleteById(string p)
+        {
+            Repo.Delete<Posting>(p);
+        }
+        public void DeleteAll(List<Posting> list)
+        {
+            Repo.DeleteMany<Posting>(list);
+        }
     }
 }

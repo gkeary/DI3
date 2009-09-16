@@ -456,8 +456,12 @@ namespace WinClient //Dispatch3
         }
         public void PopulateCurrentDayRoutes()
         {
-            return;
+            if (Program.CDRList.Count == 0)
+            {
+                Program.GetCDRCollection();
+            }
             //int intCDRSyncCount = 0;
+
             //CDRCollection.Load();
             //int CDRCount = CDRCollection.Count;
             //VDefaultRouteCollection defRouteCollection = new VDefaultRouteCollection();
@@ -547,7 +551,7 @@ namespace WinClient //Dispatch3
         private void mnuDefaultRoutes_Click(object sender, EventArgs e)
         {
 
-            this.PopulateCurrentDayRoutes();
+            PopulateCurrentDayRoutes();
             OpenfrmDefaultRoutes();
 
         }
@@ -593,88 +597,89 @@ namespace WinClient //Dispatch3
             var clickedOK = MessageBox.Show(sb.ToString(), "End of Day", style).Equals(DialogResult.OK);
             if (clickedOK)
             {
-                Console.WriteLine("hoo");
-                //hmmm...
-                //Program.EndOfDay();
-                //if ( result == DialogResult.OK )// not sure what result will be... 
+                Program.EndOfDay();
+                mnuEndOfDay.Enabled = false;
+                // ToDO: Set a message saying: EndOFDay has run-- next time screens are gone.
+
+                
             }
         }
 
 
-        private void EndofDay()
-        {
-            this.EmptyCurrentDayRoutes();
-            this.EmptyCurrentDayPickups();
-            this.EmptyPosting();
-            this.mnuEndOfDay.Enabled = false;
+        //private void EndofDay()
+        //{
+        //    this.EmptyCurrentDayRoutes();
+        //    this.EmptyCurrentDayPickups();
+        //    this.EmptyPosting();
+        //    this.mnuEndOfDay.Enabled = false;
 
-        }
+        //}
 
-        public void EmptyPosting()
-        {
-            //PostingCollection PostingCollection = new PostingCollection();
-            //PostingController PostingController = new PostingController();
-            //PostingCollection.Load();
-            //if (PostingCollection.Count > 0)
-            //{
-            //    foreach (Posting job in PostingCollection)
-            //    {
-            //        PostingController.Destroy(job.PostingID);
-            //    }
-            //}
-            return;
-        }
-
-
-
-
-
-        public void EmptyCurrentDayRoutes()
-        {
-            //List<CurrentDayRoute>.Enumerator VB$t_struct$L0;
-            //CDRCollection.Load();
-            //try
-            //{
-            //    VB$t_struct$L0 = CDRCollection.GetEnumerator();
-            //    while (VB$t_struct$L0.MoveNext())
-            //    {
-            //        CurrentDayRoute route = VB$t_struct$L0.Current;
-            //        CDRController.Destroy(route.CurrentDayRouteID);
-            //    }
-            //}
-            //finally
-            //{
-            //    VB$t_struct$L0.Dispose();
-            //}
-            return;
-        }
+        //public void EmptyPosting()
+        //{
+        //    //PostingCollection PostingCollection = new PostingCollection();
+        //    //PostingController PostingController = new PostingController();
+        //    //PostingCollection.Load();
+        //    //if (PostingCollection.Count > 0)
+        //    //{
+        //    //    foreach (Posting job in PostingCollection)
+        //    //    {
+        //    //        PostingController.Destroy(job.PostingID);
+        //    //    }
+        //    //}
+        //    return;
+        //}
 
 
 
 
 
+        //public void EmptyCurrentDayRoutes()
+        //{
+        //    //List<CurrentDayRoute>.Enumerator VB$t_struct$L0;
+        //    //CDRCollection.Load();
+        //    //try
+        //    //{
+        //    //    VB$t_struct$L0 = CDRCollection.GetEnumerator();
+        //    //    while (VB$t_struct$L0.MoveNext())
+        //    //    {
+        //    //        CurrentDayRoute route = VB$t_struct$L0.Current;
+        //    //        CDRController.Destroy(route.CurrentDayRouteID);
+        //    //    }
+        //    //}
+        //    //finally
+        //    //{
+        //    //    VB$t_struct$L0.Dispose();
+        //    //}
+        //    return;
+        //}
 
-        public void EmptyCurrentDayPickups()
-        {
-            //List<CurrentDayPickup>.Enumerator VB$t_struct$L0;
-            //CurrentDayPickupCollection cdpCollection = new CurrentDayPickupCollection();
-            //CurrentDayPickupController cdpController = new CurrentDayPickupController();
-            //cdpCollection.Load();
-            //try
-            //{
-            //    VB$t_struct$L0 = cdpCollection.GetEnumerator();
-            //    while (VB$t_struct$L0.MoveNext())
-            //    {
-            //        CurrentDayPickup pickup = VB$t_struct$L0.Current;
-            //        cdpController.Destroy(pickup.CurrentDayPickupID);
-            //    }
-            //}
-            //finally
-            //{
-            //    VB$t_struct$L0.Dispose();
-            //}
-            return;
-        }
+
+
+
+
+
+        //public void EmptyCurrentDayPickups()
+        //{
+        //    //List<CurrentDayPickup>.Enumerator VB$t_struct$L0;
+        //    //CurrentDayPickupCollection cdpCollection = new CurrentDayPickupCollection();
+        //    //CurrentDayPickupController cdpController = new CurrentDayPickupController();
+        //    //cdpCollection.Load();
+        //    //try
+        //    //{
+        //    //    VB$t_struct$L0 = cdpCollection.GetEnumerator();
+        //    //    while (VB$t_struct$L0.MoveNext())
+        //    //    {
+        //    //        CurrentDayPickup pickup = VB$t_struct$L0.Current;
+        //    //        cdpController.Destroy(pickup.CurrentDayPickupID);
+        //    //    }
+        //    //}
+        //    //finally
+        //    //{
+        //    //    VB$t_struct$L0.Dispose();
+        //    //}
+        //    return;
+        //}
 
         private void mnuExit_Click(object sender, EventArgs e) { Application.Exit(); }
 

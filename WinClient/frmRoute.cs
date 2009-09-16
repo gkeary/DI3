@@ -58,7 +58,7 @@ namespace WinClient //Dispatch3
 
         // move to BLL
         // 
-       private CurrentDayPickup PickupsThisRoute; // temporary, until I figure it out...
+       private List<CurrentDayPickup> PickupsThisRoute; // temporary, until I figure it out...
        // todo: figure it out...
     //private CurrentDayPickupsTable  PickupsThisRoute ;
     public static int DailyCount;
@@ -125,24 +125,24 @@ namespace WinClient //Dispatch3
         
         int PUCount = 0;
         //NEW PANEL  NEW PANEL NEW PANEL NEW PANEL
-        //foreach (var cdp in PickupsThisRoute) { 
+        foreach (var cdp in PickupsThisRoute) { 
 
-        //    PickupControl pnlPickup = new PickupControl(cdp);
-        //    PUCount += 1;
-        //    if ((PUCount == 1)) {
-        //        pnlPickup.Top = 0;
-        //    }
-        //    else {
-        //        //pnlPickup.Top = ((PUCount - 1) * 26) ' original 
-        //        pnlPickup.Top = ((PUCount - 1) * (pnlPickup.Height + 5));
-        //    }
-        //    pnlContainer.Controls.Add(pnlPickup);
+            PickupControl pnlPickup = new PickupControl(cdp);
+            PUCount += 1;
+            if ((PUCount == 1)) {
+                pnlPickup.Top = 0;
+            }
+            else {
+                //pnlPickup.Top = ((PUCount - 1) * 26) ' original 
+                pnlPickup.Top = ((PUCount - 1) * (pnlPickup.Height + 5));
+            }
+            pnlContainer.Controls.Add(pnlPickup);
             
-        //    // Todo: MAKE THIS WORK...
-        //    //pnlPickup.Controls.Item[0].Controls.Item("btnCustomerName").MouseDown += HandlepnlPickup_MOUSEDOWN;
+            // Todo: MAKE THIS WORK...
+            //pnlPickup.Controls.Item[0].Controls.Item("btnCustomerName").MouseDown += HandlepnlPickup_MOUSEDOWN;
             
         //    //RefreshDriverMessage()
-        //}
+        }
     }
     public void RefreshDriverMessage()
     {
@@ -285,7 +285,7 @@ namespace WinClient //Dispatch3
                                where cdp.CDPDefaultRouteID == this.Tag
                                select cdp;
 
-         //PickupsThisRoute= qry.ToList<CurrentDayPickup>();
+         PickupsThisRoute= qry.ToList<CurrentDayPickup>();
         
     }
     private void SaveDragandDropPickup()

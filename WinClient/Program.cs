@@ -449,6 +449,19 @@ namespace WinClient
             return PostingList.Count;
 
         }
+
+        internal static void EndOfDay()
+        {   
+            var cdpBLL = (BLL.CurrentDay.CurrentDayPickupBLL)WinClient.ApplicationContext["CDPBLL"];
+            cdpBLL.DeleteAll(CDPList);
+            CDPList.Clear();
+            var cdrBLL = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+            cdrBLL.DeleteAll(CDRList); 
+            CDRList.Clear();
+            var postingBLL = (PostingBLL)WinClient.ApplicationContext["PostingBLL"];
+            postingBLL.DeleteAll(PostingList); 
+            PostingList.Clear();
+        }
         #endregion static methods
     }
 }
