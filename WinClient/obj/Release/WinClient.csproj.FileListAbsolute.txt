@@ -15,3 +15,6 @@ C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.Properties.Resources.re
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.csproj.GenerateResource.Cache
 C:\Program Files\Git\DI3\WinClient\obj\Release\Dispatch3.frmAddDrivers.resources
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmDefaultRoutes.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmAddDrivers.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmDeleteDrivers.resources
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.frmOneTimePickup.resources

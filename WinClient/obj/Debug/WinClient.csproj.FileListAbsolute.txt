@@ -48,3 +48,4 @@ C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.PickupControl.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmDefaultRoutes.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmAddDrivers.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmDeleteDrivers.resources
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmOneTimePickup.resources

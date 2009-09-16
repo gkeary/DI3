@@ -477,18 +477,26 @@ namespace WinClient //Dispatch3
         #region menuEventHandlers
         private void mnuAddDrivers_Click(object sender, EventArgs e)
         {
-            new frmAddDrivers { MdiParent = this, Text = "xxxAdd a New Driver" }.Show();
+            new frmAddDrivers { MdiParent = this, Text = "Add a New Driver" }.Show();
         }
 
         private void mnuAddOneTimePickup_Click(object sender, EventArgs e)
         {
-            //frmOneTimePickup NewWindow = new frmOneTimePickup("Add") {
-            //    MdiParent = this
-            //};
-            //NewWindow.Show();
-            //NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
+            frmOneTimePickup NewWindow = new frmOneTimePickup("Add");
+            NewWindow.MdiParent = this;
+            NewWindow.Show();
+            NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
         }
 
+        public void hfrmOneTimePickup_Closed(object sender, EventArgs e)
+        {
+            blnWindowOpen = false;
+            sender = null;
+        }
+
+ 
+
+ 
 
 
         private void mnuCloseRoutes_Click(object sender, EventArgs e)
@@ -555,12 +563,12 @@ namespace WinClient //Dispatch3
 
         private void mnuEditOneTimePickup_Click(object sender, EventArgs e)
         {
-            //frmOneTimePickup NewWindow = new frmOneTimePickup("Edit")
-            //{
-            //    MdiParent = this
-            //};
-            //NewWindow.Show();
-            //NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
+            frmOneTimePickup NewWindow = new frmOneTimePickup("Edit")
+            {
+                MdiParent = this
+            };
+            NewWindow.Show();
+            NewWindow.Closed += new EventHandler(this.hfrmOneTimePickup_Closed);
         }
 
 

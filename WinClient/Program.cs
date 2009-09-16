@@ -416,7 +416,16 @@ namespace WinClient
             var pu = (List<Pickup>)WinClient.ApplicationContext["PickupBLL"];
             return pu;
         }
-
+        internal static List<Route> GetRouteCollection()
+        {
+            if (RouteList.Count == 0)
+            {
+                var routeBLL = (BLL.RouteBLL)WinClient.ApplicationContext["RouteBLL"];
+                var tmplist = routeBLL.GetAll();
+                RouteList = tmplist.ToList<Route>();
+            }
+            return RouteList;
+        }
         internal static int GetPickupCount()
         {
             if (PickupList.Count == 0)
