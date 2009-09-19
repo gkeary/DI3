@@ -831,6 +831,555 @@ namespace DispatchAR
     
     
     /// <summary>
+    /// A class which represents the Postings table in the Dispatch Database.
+    /// </summary>
+    public partial class Posting: IActiveRecord
+    {
+    
+        #region Built-in testing
+        static TestRepository<Posting> _testRepo;
+        
+
+        
+        static void SetTestRepo(){
+            _testRepo = _testRepo ?? new TestRepository<Posting>(new DispatchAR.DispatchDB());
+        }
+        public static void ResetTestRepo(){
+            _testRepo = null;
+            SetTestRepo();
+        }
+        public static void Setup(List<Posting> testlist){
+            SetTestRepo();
+            _testRepo._items = testlist;
+        }
+        public static void Setup(Posting item) {
+            SetTestRepo();
+            _testRepo._items.Add(item);
+        }
+        public static void Setup(int testItems) {
+            SetTestRepo();
+            for(int i=0;i<testItems;i++){
+                Posting item=new Posting();
+                _testRepo._items.Add(item);
+            }
+        }
+        
+        public bool TestMode = false;
+
+
+        #endregion
+
+        IRepository<Posting> _repo;
+        ITable tbl;
+        bool _isNew;
+        public bool IsNew(){
+            return _isNew;
+        }
+        
+        public void SetIsLoaded(bool isLoaded){
+            _isLoaded=isLoaded;
+            if(isLoaded)
+                OnLoaded();
+        }
+        
+        public void SetIsNew(bool isNew){
+            _isNew=isNew;
+        }
+        bool _isLoaded;
+        public bool IsLoaded(){
+            return _isLoaded;
+        }
+                
+        List<IColumn> _dirtyColumns;
+        public bool IsDirty(){
+            return _dirtyColumns.Count>0;
+        }
+        
+        public List<IColumn> GetDirtyColumns (){
+            return _dirtyColumns;
+        }
+
+        DispatchAR.DispatchDB _db;
+        public Posting(string connectionString, string providerName) {
+
+            _db=new DispatchAR.DispatchDB(connectionString, providerName);
+            Init();            
+         }
+        void Init(){
+            TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
+            _dirtyColumns=new List<IColumn>();
+            if(TestMode){
+                Posting.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<Posting>(_db);
+            }
+            tbl=_repo.GetTable();
+            SetIsNew(true);
+            OnCreated();       
+
+        }
+        
+        public Posting(){
+             _db=new DispatchAR.DispatchDB();
+            Init();            
+        }
+        
+       
+        partial void OnCreated();
+            
+        partial void OnLoaded();
+        
+        partial void OnSaved();
+        
+        partial void OnChanged();
+        
+        public IList<IColumn> Columns{
+            get{
+                return tbl.Columns;
+            }
+        }
+
+        public Posting(Expression<Func<Posting, bool>> expression):this() {
+
+            SetIsLoaded(_repo.Load(this,expression));
+        }
+        
+       
+        
+        internal static IRepository<Posting> GetRepo(string connectionString, string providerName){
+            DispatchAR.DispatchDB db;
+            if(String.IsNullOrEmpty(connectionString)){
+                db=new DispatchAR.DispatchDB();
+            }else{
+                db=new DispatchAR.DispatchDB(connectionString, providerName);
+            }
+            IRepository<Posting> _repo;
+            
+            if(db.TestMode){
+                Posting.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<Posting>(db);
+            }
+            return _repo;        
+        }       
+        
+        internal static IRepository<Posting> GetRepo(){
+            return GetRepo("","");
+        }
+        
+        public static Posting SingleOrDefault(Expression<Func<Posting, bool>> expression) {
+
+            var repo = GetRepo();
+            var results=repo.Find(expression);
+            Posting single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+                single.OnLoaded();
+                single.SetIsLoaded(true);
+                single.SetIsNew(false);
+            }
+
+            return single;
+        }      
+        
+        public static Posting SingleOrDefault(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
+            var repo = GetRepo(connectionString,providerName);
+            var results=repo.Find(expression);
+            Posting single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+            }
+
+            return single;
+
+
+        }
+        
+        
+        public static bool Exists(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
+           
+            return All(connectionString,providerName).Any(expression);
+        }        
+        public static bool Exists(Expression<Func<Posting, bool>> expression) {
+           
+            return All().Any(expression);
+        }        
+
+        public static IList<Posting> Find(Expression<Func<Posting, bool>> expression) {
+            
+            var repo = GetRepo();
+            return repo.Find(expression).ToList();
+        }
+        
+        public static IList<Posting> Find(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
+
+            var repo = GetRepo(connectionString,providerName);
+            return repo.Find(expression).ToList();
+
+        }
+        public static IQueryable<Posting> All(string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetAll();
+        }
+        public static IQueryable<Posting> All() {
+            return GetRepo().GetAll();
+        }
+        
+        public static PagedList<Posting> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
+        }
+      
+        public static PagedList<Posting> GetPaged(string sortBy, int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
+        }
+
+        public static PagedList<Posting> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
+            
+        }
+
+
+        public static PagedList<Posting> GetPaged(int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(pageIndex, pageSize);
+            
+        }
+
+        public string KeyName()
+        {
+            return "PostingID";
+        }
+
+        public object KeyValue()
+        {
+            return this.PostingID;
+        }
+        
+        public void SetKeyValue(object value) {
+            if (value != null && value!=DBNull.Value) {
+                var settable = value.ChangeTypeTo<int>();
+                this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
+            }
+        }
+        
+        public override string ToString(){
+            return this.DataType.ToString();
+        }
+
+        public override bool Equals(object obj){
+            if(obj.GetType()==typeof(Posting)){
+                Posting compare=(Posting)obj;
+                return compare.KeyValue()==this.KeyValue();
+            }else{
+                return base.Equals(obj);
+            }
+        }
+
+        
+        public override int GetHashCode() {
+            return this.PostingID;
+        }
+        
+        public string DescriptorValue()
+        {
+            return this.DataType.ToString();
+        }
+
+        public string DescriptorColumn() {
+            return "DataType";
+        }
+        public static string GetKeyColumn()
+        {
+            return "PostingID";
+        }        
+        public static string GetDescriptorColumn()
+        {
+            return "DataType";
+        }
+        
+        #region ' Foreign Keys '
+        #endregion
+        
+
+        int _PostingID;
+        public int PostingID
+        {
+            get { return _PostingID; }
+            set
+            {
+                if(_PostingID!=value){
+                    _PostingID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PostingID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _DataType;
+        public string DataType
+        {
+            get { return _DataType; }
+            set
+            {
+                if(_DataType!=value){
+                    _DataType=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="DataType");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int? _key;
+        public int? key
+        {
+            get { return _key; }
+            set
+            {
+                if(_key!=value){
+                    _key=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="key");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _DefaultRouteId;
+        public string DefaultRouteId
+        {
+            get { return _DefaultRouteId; }
+            set
+            {
+                if(_DefaultRouteId!=value){
+                    _DefaultRouteId=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="DefaultRouteId");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PreviousRouteID;
+        public string PreviousRouteID
+        {
+            get { return _PreviousRouteID; }
+            set
+            {
+                if(_PreviousRouteID!=value){
+                    _PreviousRouteID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PreviousRouteID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int? _NumberOfPendingUpdates;
+        public int? NumberOfPendingUpdates
+        {
+            get { return _NumberOfPendingUpdates; }
+            set
+            {
+                if(_NumberOfPendingUpdates!=value){
+                    _NumberOfPendingUpdates=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="NumberOfPendingUpdates");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Originator;
+        public string Originator
+        {
+            get { return _Originator; }
+            set
+            {
+                if(_Originator!=value){
+                    _Originator=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Originator");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        bool? _IsDragNDrop;
+        public bool? IsDragNDrop
+        {
+            get { return _IsDragNDrop; }
+            set
+            {
+                if(_IsDragNDrop!=value){
+                    _IsDragNDrop=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IsDragNDrop");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+
+
+        public DbCommand GetUpdateCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToUpdateQuery(_db.Provider).GetCommand().ToDbCommand();
+            
+        }
+        public DbCommand GetInsertCommand() {
+ 
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToInsertQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+        
+        public DbCommand GetDeleteCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToDeleteQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+       
+        
+        public void Update(){
+            Update(_db.DataProvider);
+        }
+        
+        public void Update(IDataProvider provider){
+        
+            
+            if(this._dirtyColumns.Count>0)
+                _repo.Update(this,provider);
+            OnSaved();
+       }
+ 
+        public void Add(){
+            Add(_db.DataProvider);
+        }
+        
+        
+       
+        public void Add(IDataProvider provider){
+
+            
+            var key=KeyValue();
+            if(key==null){
+                var newKey=_repo.Add(this,provider);
+                this.SetKeyValue(newKey);
+            }else{
+                _repo.Add(this,provider);
+            }
+            SetIsNew(false);
+            OnSaved();
+        }
+        
+                
+        
+        public void Save() {
+            Save(_db.DataProvider);
+        }      
+        public void Save(IDataProvider provider) {
+            
+           
+            if (_isNew) {
+                Add(provider);
+                
+            } else {
+                Update(provider);
+            }
+            
+        }
+
+        
+
+        public void Delete(IDataProvider provider) {
+                   
+                 
+            _repo.Delete(KeyValue());
+            
+                    }
+
+
+        public void Delete() {
+            Delete(_db.DataProvider);
+        }
+
+
+        public static void Delete(Expression<Func<Posting, bool>> expression) {
+            var repo = GetRepo();
+            
+       
+            
+            repo.DeleteMany(expression);
+            
+        }
+
+        
+
+        public void Load(IDataReader rdr) {
+            Load(rdr, true);
+        }
+        public void Load(IDataReader rdr, bool closeReader) {
+            if (rdr.Read()) {
+
+                try {
+                    rdr.Load(this);
+                    SetIsNew(false);
+                    SetIsLoaded(true);
+                } catch {
+                    SetIsLoaded(false);
+                    throw;
+                }
+            }else{
+                SetIsLoaded(false);
+            }
+
+            if (closeReader)
+                rdr.Dispose();
+        }
+        
+
+    } 
+    
+    
+    /// <summary>
     /// A class which represents the CurrentDayPickups table in the Dispatch Database.
     /// </summary>
     public partial class CurrentDayPickup: IActiveRecord
@@ -4565,536 +5114,6 @@ namespace DispatchAR
 
 
         public static void Delete(Expression<Func<CurrentDayRoute, bool>> expression) {
-            var repo = GetRepo();
-            
-       
-            
-            repo.DeleteMany(expression);
-            
-        }
-
-        
-
-        public void Load(IDataReader rdr) {
-            Load(rdr, true);
-        }
-        public void Load(IDataReader rdr, bool closeReader) {
-            if (rdr.Read()) {
-
-                try {
-                    rdr.Load(this);
-                    SetIsNew(false);
-                    SetIsLoaded(true);
-                } catch {
-                    SetIsLoaded(false);
-                    throw;
-                }
-            }else{
-                SetIsLoaded(false);
-            }
-
-            if (closeReader)
-                rdr.Dispose();
-        }
-        
-
-    } 
-    
-    
-    /// <summary>
-    /// A class which represents the Postings table in the Dispatch Database.
-    /// </summary>
-    public partial class Posting: IActiveRecord
-    {
-    
-        #region Built-in testing
-        static TestRepository<Posting> _testRepo;
-        
-
-        
-        static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<Posting>(new DispatchAR.DispatchDB());
-        }
-        public static void ResetTestRepo(){
-            _testRepo = null;
-            SetTestRepo();
-        }
-        public static void Setup(List<Posting> testlist){
-            SetTestRepo();
-            _testRepo._items = testlist;
-        }
-        public static void Setup(Posting item) {
-            SetTestRepo();
-            _testRepo._items.Add(item);
-        }
-        public static void Setup(int testItems) {
-            SetTestRepo();
-            for(int i=0;i<testItems;i++){
-                Posting item=new Posting();
-                _testRepo._items.Add(item);
-            }
-        }
-        
-        public bool TestMode = false;
-
-
-        #endregion
-
-        IRepository<Posting> _repo;
-        ITable tbl;
-        bool _isNew;
-        public bool IsNew(){
-            return _isNew;
-        }
-        
-        public void SetIsLoaded(bool isLoaded){
-            _isLoaded=isLoaded;
-            if(isLoaded)
-                OnLoaded();
-        }
-        
-        public void SetIsNew(bool isNew){
-            _isNew=isNew;
-        }
-        bool _isLoaded;
-        public bool IsLoaded(){
-            return _isLoaded;
-        }
-                
-        List<IColumn> _dirtyColumns;
-        public bool IsDirty(){
-            return _dirtyColumns.Count>0;
-        }
-        
-        public List<IColumn> GetDirtyColumns (){
-            return _dirtyColumns;
-        }
-
-        DispatchAR.DispatchDB _db;
-        public Posting(string connectionString, string providerName) {
-
-            _db=new DispatchAR.DispatchDB(connectionString, providerName);
-            Init();            
-         }
-        void Init(){
-            TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
-            _dirtyColumns=new List<IColumn>();
-            if(TestMode){
-                Posting.SetTestRepo();
-                _repo=_testRepo;
-            }else{
-                _repo = new SubSonicRepository<Posting>(_db);
-            }
-            tbl=_repo.GetTable();
-            SetIsNew(true);
-            OnCreated();       
-
-        }
-        
-        public Posting(){
-             _db=new DispatchAR.DispatchDB();
-            Init();            
-        }
-        
-       
-        partial void OnCreated();
-            
-        partial void OnLoaded();
-        
-        partial void OnSaved();
-        
-        partial void OnChanged();
-        
-        public IList<IColumn> Columns{
-            get{
-                return tbl.Columns;
-            }
-        }
-
-        public Posting(Expression<Func<Posting, bool>> expression):this() {
-
-            SetIsLoaded(_repo.Load(this,expression));
-        }
-        
-       
-        
-        internal static IRepository<Posting> GetRepo(string connectionString, string providerName){
-            DispatchAR.DispatchDB db;
-            if(String.IsNullOrEmpty(connectionString)){
-                db=new DispatchAR.DispatchDB();
-            }else{
-                db=new DispatchAR.DispatchDB(connectionString, providerName);
-            }
-            IRepository<Posting> _repo;
-            
-            if(db.TestMode){
-                Posting.SetTestRepo();
-                _repo=_testRepo;
-            }else{
-                _repo = new SubSonicRepository<Posting>(db);
-            }
-            return _repo;        
-        }       
-        
-        internal static IRepository<Posting> GetRepo(){
-            return GetRepo("","");
-        }
-        
-        public static Posting SingleOrDefault(Expression<Func<Posting, bool>> expression) {
-
-            var repo = GetRepo();
-            var results=repo.Find(expression);
-            Posting single=null;
-            if(results.Count() > 0){
-                single=results.ToList()[0];
-                single.OnLoaded();
-                single.SetIsLoaded(true);
-                single.SetIsNew(false);
-            }
-
-            return single;
-        }      
-        
-        public static Posting SingleOrDefault(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
-            var repo = GetRepo(connectionString,providerName);
-            var results=repo.Find(expression);
-            Posting single=null;
-            if(results.Count() > 0){
-                single=results.ToList()[0];
-            }
-
-            return single;
-
-
-        }
-        
-        
-        public static bool Exists(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
-           
-            return All(connectionString,providerName).Any(expression);
-        }        
-        public static bool Exists(Expression<Func<Posting, bool>> expression) {
-           
-            return All().Any(expression);
-        }        
-
-        public static IList<Posting> Find(Expression<Func<Posting, bool>> expression) {
-            
-            var repo = GetRepo();
-            return repo.Find(expression).ToList();
-        }
-        
-        public static IList<Posting> Find(Expression<Func<Posting, bool>> expression,string connectionString, string providerName) {
-
-            var repo = GetRepo(connectionString,providerName);
-            return repo.Find(expression).ToList();
-
-        }
-        public static IQueryable<Posting> All(string connectionString, string providerName) {
-            return GetRepo(connectionString,providerName).GetAll();
-        }
-        public static IQueryable<Posting> All() {
-            return GetRepo().GetAll();
-        }
-        
-        public static PagedList<Posting> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
-            return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
-        }
-      
-        public static PagedList<Posting> GetPaged(string sortBy, int pageIndex, int pageSize) {
-            return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
-        }
-
-        public static PagedList<Posting> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
-            return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
-            
-        }
-
-
-        public static PagedList<Posting> GetPaged(int pageIndex, int pageSize) {
-            return GetRepo().GetPaged(pageIndex, pageSize);
-            
-        }
-
-        public string KeyName()
-        {
-            return "PostingID";
-        }
-
-        public object KeyValue()
-        {
-            return this.PostingID;
-        }
-        
-        public void SetKeyValue(object value) {
-            if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<int>();
-                this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
-            }
-        }
-        
-        public override string ToString(){
-            return this.DataType.ToString();
-        }
-
-        public override bool Equals(object obj){
-            if(obj.GetType()==typeof(Posting)){
-                Posting compare=(Posting)obj;
-                return compare.KeyValue()==this.KeyValue();
-            }else{
-                return base.Equals(obj);
-            }
-        }
-
-        
-        public override int GetHashCode() {
-            return this.PostingID;
-        }
-        
-        public string DescriptorValue()
-        {
-            return this.DataType.ToString();
-        }
-
-        public string DescriptorColumn() {
-            return "DataType";
-        }
-        public static string GetKeyColumn()
-        {
-            return "PostingID";
-        }        
-        public static string GetDescriptorColumn()
-        {
-            return "DataType";
-        }
-        
-        #region ' Foreign Keys '
-        #endregion
-        
-
-        int _PostingID;
-        public int PostingID
-        {
-            get { return _PostingID; }
-            set
-            {
-                if(_PostingID!=value){
-                    _PostingID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PostingID");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _DataType;
-        public string DataType
-        {
-            get { return _DataType; }
-            set
-            {
-                if(_DataType!=value){
-                    _DataType=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="DataType");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _JobType;
-        public string JobType
-        {
-            get { return _JobType; }
-            set
-            {
-                if(_JobType!=value){
-                    _JobType=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="JobType");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        int? _key;
-        public int? key
-        {
-            get { return _key; }
-            set
-            {
-                if(_key!=value){
-                    _key=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="key");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _MsgFor;
-        public string MsgFor
-        {
-            get { return _MsgFor; }
-            set
-            {
-                if(_MsgFor!=value){
-                    _MsgFor=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MsgFor");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _DefaultRouteId;
-        public string DefaultRouteId
-        {
-            get { return _DefaultRouteId; }
-            set
-            {
-                if(_DefaultRouteId!=value){
-                    _DefaultRouteId=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="DefaultRouteId");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _PreviousRouteID;
-        public string PreviousRouteID
-        {
-            get { return _PreviousRouteID; }
-            set
-            {
-                if(_PreviousRouteID!=value){
-                    _PreviousRouteID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PreviousRouteID");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-
-
-        public DbCommand GetUpdateCommand() {
-            if(TestMode)
-                return _db.DataProvider.CreateCommand();
-            else
-                return this.ToUpdateQuery(_db.Provider).GetCommand().ToDbCommand();
-            
-        }
-        public DbCommand GetInsertCommand() {
- 
-            if(TestMode)
-                return _db.DataProvider.CreateCommand();
-            else
-                return this.ToInsertQuery(_db.Provider).GetCommand().ToDbCommand();
-        }
-        
-        public DbCommand GetDeleteCommand() {
-            if(TestMode)
-                return _db.DataProvider.CreateCommand();
-            else
-                return this.ToDeleteQuery(_db.Provider).GetCommand().ToDbCommand();
-        }
-       
-        
-        public void Update(){
-            Update(_db.DataProvider);
-        }
-        
-        public void Update(IDataProvider provider){
-        
-            
-            if(this._dirtyColumns.Count>0)
-                _repo.Update(this,provider);
-            OnSaved();
-       }
- 
-        public void Add(){
-            Add(_db.DataProvider);
-        }
-        
-        
-       
-        public void Add(IDataProvider provider){
-
-            
-            var key=KeyValue();
-            if(key==null){
-                var newKey=_repo.Add(this,provider);
-                this.SetKeyValue(newKey);
-            }else{
-                _repo.Add(this,provider);
-            }
-            SetIsNew(false);
-            OnSaved();
-        }
-        
-                
-        
-        public void Save() {
-            Save(_db.DataProvider);
-        }      
-        public void Save(IDataProvider provider) {
-            
-           
-            if (_isNew) {
-                Add(provider);
-                
-            } else {
-                Update(provider);
-            }
-            
-        }
-
-        
-
-        public void Delete(IDataProvider provider) {
-                   
-                 
-            _repo.Delete(KeyValue());
-            
-                    }
-
-
-        public void Delete() {
-            Delete(_db.DataProvider);
-        }
-
-
-        public static void Delete(Expression<Func<Posting, bool>> expression) {
             var repo = GetRepo();
             
        

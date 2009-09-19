@@ -299,7 +299,8 @@ namespace WinClient //Dispatch3
         
         pu.CDPPreviousRouteID = pu.CDPDefaultRouteID;
         pu.CDPDefaultRouteID = this.Tag.ToString();
-        pu.CDPChecked = false;
+        // now unused...
+        //pu.CDPChecked = false;
         pu.CDPStation = Environment.MachineName;
         // should be unused...
         //pu.UserName = Environment.UserName;

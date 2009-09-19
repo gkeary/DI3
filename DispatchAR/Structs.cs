@@ -513,6 +513,201 @@ namespace DispatchAR {
         }
         
         /// <summary>
+        /// Table: Postings
+        /// Primary Key: PostingID
+        /// </summary>
+
+        public class PostingsTable: DatabaseTable {
+            
+            public PostingsTable(IDataProvider provider):base("Postings",provider){
+                ClassName = "Posting";
+                SchemaName = "dbo";
+                
+
+                Columns.Add(new DatabaseColumn("PostingID", this)
+                {
+	                IsPrimaryKey = true,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = true,
+	                IsForeignKey = false,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("DataType", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50
+                });
+
+                Columns.Add(new DatabaseColumn("key", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("DefaultRouteId", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50
+                });
+
+                Columns.Add(new DatabaseColumn("PreviousRouteID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50
+                });
+
+                Columns.Add(new DatabaseColumn("NumberOfPendingUpdates", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("Originator", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50
+                });
+
+                Columns.Add(new DatabaseColumn("IsDragNDrop", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Boolean,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0
+                });
+                    
+                
+                
+            }
+            
+            public IColumn PostingID{
+                get{
+                    return this.GetColumn("PostingID");
+                }
+            }
+				
+   			public static string PostingIDColumn{
+			      get{
+        			return "PostingID";
+      			}
+		    }
+            
+            public IColumn DataType{
+                get{
+                    return this.GetColumn("DataType");
+                }
+            }
+				
+   			public static string DataTypeColumn{
+			      get{
+        			return "DataType";
+      			}
+		    }
+            
+            public IColumn key{
+                get{
+                    return this.GetColumn("key");
+                }
+            }
+				
+   			public static string keyColumn{
+			      get{
+        			return "key";
+      			}
+		    }
+            
+            public IColumn DefaultRouteId{
+                get{
+                    return this.GetColumn("DefaultRouteId");
+                }
+            }
+				
+   			public static string DefaultRouteIdColumn{
+			      get{
+        			return "DefaultRouteId";
+      			}
+		    }
+            
+            public IColumn PreviousRouteID{
+                get{
+                    return this.GetColumn("PreviousRouteID");
+                }
+            }
+				
+   			public static string PreviousRouteIDColumn{
+			      get{
+        			return "PreviousRouteID";
+      			}
+		    }
+            
+            public IColumn NumberOfPendingUpdates{
+                get{
+                    return this.GetColumn("NumberOfPendingUpdates");
+                }
+            }
+				
+   			public static string NumberOfPendingUpdatesColumn{
+			      get{
+        			return "NumberOfPendingUpdates";
+      			}
+		    }
+            
+            public IColumn Originator{
+                get{
+                    return this.GetColumn("Originator");
+                }
+            }
+				
+   			public static string OriginatorColumn{
+			      get{
+        			return "Originator";
+      			}
+		    }
+            
+            public IColumn IsDragNDrop{
+                get{
+                    return this.GetColumn("IsDragNDrop");
+                }
+            }
+				
+   			public static string IsDragNDropColumn{
+			      get{
+        			return "IsDragNDrop";
+      			}
+		    }
+            
+                    
+        }
+        
+        /// <summary>
         /// Table: CurrentDayPickups
         /// Primary Key: CurrentDayPickupID
         /// </summary>
@@ -2669,179 +2864,6 @@ namespace DispatchAR {
    			public static string TerminalColumn{
 			      get{
         			return "Terminal";
-      			}
-		    }
-            
-                    
-        }
-        
-        /// <summary>
-        /// Table: Postings
-        /// Primary Key: PostingID
-        /// </summary>
-
-        public class PostingsTable: DatabaseTable {
-            
-            public PostingsTable(IDataProvider provider):base("Postings",provider){
-                ClassName = "Posting";
-                SchemaName = "dbo";
-                
-
-                Columns.Add(new DatabaseColumn("PostingID", this)
-                {
-	                IsPrimaryKey = true,
-	                DataType = DbType.Int32,
-	                IsNullable = false,
-	                AutoIncrement = true,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("DataType", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("JobType", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("key", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("MsgFor", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("DefaultRouteId", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("PreviousRouteID", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-                    
-                
-                
-            }
-            
-            public IColumn PostingID{
-                get{
-                    return this.GetColumn("PostingID");
-                }
-            }
-				
-   			public static string PostingIDColumn{
-			      get{
-        			return "PostingID";
-      			}
-		    }
-            
-            public IColumn DataType{
-                get{
-                    return this.GetColumn("DataType");
-                }
-            }
-				
-   			public static string DataTypeColumn{
-			      get{
-        			return "DataType";
-      			}
-		    }
-            
-            public IColumn JobType{
-                get{
-                    return this.GetColumn("JobType");
-                }
-            }
-				
-   			public static string JobTypeColumn{
-			      get{
-        			return "JobType";
-      			}
-		    }
-            
-            public IColumn key{
-                get{
-                    return this.GetColumn("key");
-                }
-            }
-				
-   			public static string keyColumn{
-			      get{
-        			return "key";
-      			}
-		    }
-            
-            public IColumn MsgFor{
-                get{
-                    return this.GetColumn("MsgFor");
-                }
-            }
-				
-   			public static string MsgForColumn{
-			      get{
-        			return "MsgFor";
-      			}
-		    }
-            
-            public IColumn DefaultRouteId{
-                get{
-                    return this.GetColumn("DefaultRouteId");
-                }
-            }
-				
-   			public static string DefaultRouteIdColumn{
-			      get{
-        			return "DefaultRouteId";
-      			}
-		    }
-            
-            public IColumn PreviousRouteID{
-                get{
-                    return this.GetColumn("PreviousRouteID");
-                }
-            }
-				
-   			public static string PreviousRouteIDColumn{
-			      get{
-        			return "PreviousRouteID";
       			}
 		    }
             

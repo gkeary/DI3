@@ -371,6 +371,18 @@ namespace WinClient
     //    public void AddMany<T>(System.Collections.Generic.IEnumerable<T> items)
     //where T : new(), class
     //Member of SubSonic.Repository.SimpleRepository
+        // I THINK THIS IS HANDLED NOW IN frmDefaultRoutes SaveAllCDR & friends. ???
+        //internal static List<CurrentDayRoute> LoadCDRFromRoute()
+        //{
+        //    var bll = (BLL.CurrentDay.CurrentDayRouteBLL)WinClient.ApplicationContext["CDRBLL"];
+        //    var tmpRoute = bll.GetAll();
+        //    foreach (tr in tmpRoute) {
+        //        var n = new DispatchAR.CurrentDayRoute();
+        //        n.CDR
+        //        CDRList.Add(
+        //    CDRList.AddRange((BLL.CurrentDay.CurrentDayRouteBLL) GetRouteCollection());
+        //    return CDRList;
+        //}
 
         internal static List<CurrentDayRoute> GetCDRCollection()
         {
@@ -461,6 +473,103 @@ namespace WinClient
             var postingBLL = (PostingBLL)WinClient.ApplicationContext["PostingBLL"];
             postingBLL.DeleteAll(PostingList); 
             PostingList.Clear();
+        }
+        internal static void LoadvDefaultRoutes()
+        {
+            RouteList.Clear();
+            if (RouteList.Count == 0)
+            {
+                var rteBLL = (BLL.RouteBLL)WinClient.ApplicationContext["RouteBLL"];
+                var tmplist = rteBLL.GetAll();
+                var db = new DispatchAR.DispatchDB();
+                var provider = db.Provider;
+                var list = new SubSonic.Query.Select(provider,"CurrentDayRouteID")
+                                             .From<CurrentDayRoute>()
+                                             .InnerJoin<DRIVER>()
+                                             .Where("CurrentDayRouteID").IsEqualTo("00");
+                string sql = list.ToString();
+                foreach (var tt in tmplist)
+                {
+                }
+                //vDefaultRoutes  = tmplist.ToList<Route>();
+            }
+            //return RouteList;            
+        }
+        //public void Exec_SimpleJoin()
+        //{
+        //    var q = new Select(provider, "productid").From<OrderDetail>()
+        //        .InnerJoin<Product>()
+        //        .Where("CategoryID").IsEqualTo(5);
+        //    string sql = q.ToString();
+        //    int records = q.GetRecordCount();
+        //    Assert.Equal(100, records);
+        //}
+ 
+
+        internal static void PopulateCDRFromvDefaultRoutes()
+        {
+#if true
+            CDRList.Clear();
+            //RouteList.Clear();
+
+            if (CDRList.Count == 0)
+            //if (RouteList.Count == 0)
+            {
+                var rteBLL = (BLL.RouteBLL)WinClient.ApplicationContext["RouteBLL"];
+                var tmplist = rteBLL.GetAll();
+                var dvrBLL = (BLL.DriverBLL)WinClient.ApplicationContext["DriverBLL"];
+                var tmpdvr = dvrBLL.GetAll();
+
+                foreach (var rr in tmplist)
+                {
+                    foreach (var dd in tmpdvr)
+                    {
+                        if (rr.DefaultDriverID == dd.DriverID)
+                        {
+                            var item = new DispatchAR.CurrentDayRoute();
+                            item.CDRDriverLastName = dd.FirstName + " " + dd.LastName;
+                            item.CDRDefaultDriverID = dd.DriverID;
+                            item.CDRRouteID = rr.RouteID;
+                            item.CDRRouteName = rr.RouteName;
+                            item.Terminal = Properties.Settings.Default.terminal;
+                            CDRList.Add(item);
+
+
+                        }
+                    }
+                }
+            }
+                //var db = new DispatchAR.DispatchDB();
+                //var provider = db.Provider;
+                ////var l1 = SubSonic.Query.Select.AllColumnsFrom<DispatchAR.DispatchDB.Routes>()
+                //string[] cols = {"DRIVERS.LastName", "DRIVERS.FirstName",
+                //                 "Routes.RouteID", "Routes.RouteName", 
+                //                    "Routes.DefaultDRIVERID", 
+                //                    "Routes.DRIVERMessage" };
+
+                //var list1 = new SubSonic.Query.Select(cols).From<Route>()
+                //                             .InnerJoin<DRIVER>("DefaultDriverID", "DriverID");
+                //                             //.Where("CurrentDayRouteID").IsEqualTo("00"); string sql = list.ToString();
+                //foreach (var tt in list.ToList<Route>())
+                //{
+                //    Console.WriteLine(tt.ToString());
+                //}
+                ////vDefaultRoutes  = tmplist.ToList<Route>();
+            //}
+            //return RouteList;            e
+#else
+
+            ///
+            /// this runs the proc.
+            ///  but select within it it tossed into bit bucket
+            ///  
+            var db= new DispatchAR.DispatchDB();
+            var sp = db.SelectFromVDefaultRoutes();
+            List<DispatchAR.CurrentDayRoute> ll = sp.ExecuteTypedList<DispatchAR.CurrentDayRoute>();
+            CDRList.AddRange(ll);
+
+            //throw new NotImplementedException();
+#endif
         }
         #endregion static methods
     }
