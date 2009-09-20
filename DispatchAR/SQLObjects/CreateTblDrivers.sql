@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[DRIVERS]    Script Date: 09/20/2009 04:01:18 ******/
+/****** Object:  Table [dbo].[DRIVERS]    Script Date: 09/20/2009 05:09:59 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,14 +15,6 @@ CREATE TABLE [dbo].[DRIVERS](
 	[FirstName] [nvarchar](20) NULL,
 	[MiddleInitial] [nvarchar](1) NULL,
 	[DriverSyncID] [nvarchar](50) NULL,
-	[DriverCreatedBy] [nvarchar](50) NULL,
-	[DriverCreatedTime] [datetime] NULL,
-	[DriverEditedBy] [nvarchar](50) NULL,
-	[DriverEditedTime] [datetime] NULL,
-	[DriverSent] [bit] NULL,
-	[DriverSentTime] [datetime] NULL,
-	[DriverSendConfirmed] [bit] NULL,
-	[DriverReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
  CONSTRAINT [PK_DRIVER] PRIMARY KEY CLUSTERED 
 (

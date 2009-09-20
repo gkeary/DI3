@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[CUSTOMERS]    Script Date: 09/20/2009 03:59:35 ******/
+/****** Object:  Table [dbo].[CUSTOMERS]    Script Date: 09/20/2009 04:48:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -21,14 +21,6 @@ CREATE TABLE [dbo].[CUSTOMERS](
 	[Comment] [nvarchar](30) NULL,
 	[DefaultRouteID] [nvarchar](2) NULL,
 	[CustomerSyncID] [nvarchar](50) NULL,
-	[CustomerCreatedBy] [nvarchar](50) NULL,
-	[CustomerCreatedTime] [datetime] NULL,
-	[CustomerEditedBy] [nvarchar](50) NULL,
-	[CustomerEditedTime] [datetime] NULL,
-	[CustomerSent] [bit] NULL,
-	[CustomerSentTime] [datetime] NULL,
-	[CustomerSendConfirmed] [bit] NULL,
-	[CustomerReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
 	[InfoString] [nchar](255) NULL,
  CONSTRAINT [PK_CUSTOMER] PRIMARY KEY CLUSTERED 
