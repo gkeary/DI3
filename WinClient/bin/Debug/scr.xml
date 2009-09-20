@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/16/2009 04:36:28--><Screens>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/19/2009 08:16:06--><Screens>
 <Items xmlns="scr">
-<Item Title="00 Laconia --- 3 Pickups" Left="603" Top="424" Width="340" Height="230" />
+<Item Title="00 Laconia --- 3 Pickups" Left="441" Top="1" Width="446" Height="445" />
 <Item Title="02 Keene --- 3 Pickups" Left="605" Top="140" Width="340" Height="230" />
 <Item Title="04 Wolfboro --- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="06 Claremont --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
@@ -8,7 +8,7 @@
 <Item Title="10 Lebanon --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="12 Conway --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="14 Berlin --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
-<Item Title="16 Concord --- 2 Pickups" Left="253" Top="26" Width="523" Height="516" />
+<Item Title="16 Concord --- 2 Pickups" Left="253" Top="35" Width="523" Height="516" />
 <Item Title="17 Concord --- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="18 Concord --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
 <Item Title="20 Lebanon --- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
