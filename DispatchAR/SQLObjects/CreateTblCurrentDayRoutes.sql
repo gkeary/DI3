@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[CurrentDayRoutes]    Script Date: 09/20/2009 03:58:27 ******/
+/****** Object:  Table [dbo].[CurrentDayRoutes]    Script Date: 09/20/2009 04:41:31 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,17 +16,6 @@ CREATE TABLE [dbo].[CurrentDayRoutes](
 	[CDRDriverLastName] [nvarchar](20) NULL,
 	[CDRDriverMessage] [nvarchar](100) NULL,
 	[CDRStation] [nvarchar](50) NULL,
-	[CDRChecked] [bit] NOT NULL,
-	[CDRDate] [datetime] NULL,
-	[CDRSyncID] [nvarchar](50) NULL,
-	[CDRCreatedBy] [nvarchar](50) NULL,
-	[CDRCreatedTime] [datetime] NULL,
-	[CDREditedBy] [nvarchar](50) NULL,
-	[CDREditedTime] [datetime] NULL,
-	[CDRSent] [bit] NOT NULL,
-	[CDRSentTime] [datetime] NULL,
-	[CDRSendConfirmed] [bit] NOT NULL,
-	[CDRReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
  CONSTRAINT [PK_CurrentDayRoutes] PRIMARY KEY CLUSTERED 
 (
