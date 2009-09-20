@@ -510,16 +510,16 @@ private void SaveToCurrentDayRoute(
     CurrentDayRoute cdr = new DispatchAR.CurrentDayRoute {
                             // now unused...
                             //CDRChecked = true,
-                            CDRDate= DateTime.Now,
-                            CDRCreatedBy= usr,
-                            CDRSyncID = "strCDRSyncID",
+                            //CDRDate= DateTime.Now,
+                            //CDRCreatedBy= usr,
+                            //CDRSyncID = "strCDRSyncID",
                             CDRDefaultDriverID=strDriverID,
                             CDRDriverLastName= strDriverName,
                             CDRDriverMessage="",
                             CDRRouteID=strRouteID,
                             CDRRouteName= strRouteName,
                             CDRStation = Environment.MachineName,
-                            CDRCreatedTime = DateTime.Now,
+                            //CDRCreatedTime = DateTime.Now,
                             Terminal= terminal,
                             CurrentDayRouteID=key
                         };

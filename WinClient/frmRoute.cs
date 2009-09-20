@@ -305,7 +305,6 @@ namespace WinClient //Dispatch3
         // should be unused...
         //pu.UserName = Environment.UserName;
         pu.Terminal = Properties.Settings.Default.terminal;
-        pu.CDPSentTime = DateTime.Today;
         
         // TODO: see how to do this...
         // or see if its done by the 

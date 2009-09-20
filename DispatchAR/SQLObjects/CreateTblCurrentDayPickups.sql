@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[CurrentDayPickups]    Script Date: 09/20/2009 03:52:46 ******/
+/****** Object:  Table [dbo].[CurrentDayPickups]    Script Date: 09/20/2009 04:13:52 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -23,17 +23,7 @@ CREATE TABLE [dbo].[CurrentDayPickups](
 	[CDPDispatchTime] [datetime] NULL,
 	[CDPNotes] [nvarchar](3) NULL,
 	[CDPStation] [nvarchar](50) NULL,
-	[CDPChecked] [bit] NOT NULL,
 	[CDPDeleted] [bit] NOT NULL,
-	[CDPSyncID] [nvarchar](50) NULL,
-	[CDPCreatedBy] [nvarchar](50) NULL,
-	[CDPCreatedTime] [datetime] NULL,
-	[CDPEditedBy] [nvarchar](50) NULL,
-	[CDPEditedTime] [datetime] NULL,
-	[CDPSent] [bit] NOT NULL,
-	[CDPSentTime] [datetime] NULL,
-	[CDPSendConfirmed] [bit] NOT NULL,
-	[CDPReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
  CONSTRAINT [PK_CurrentDayPickups] PRIMARY KEY CLUSTERED 
 (
@@ -46,16 +36,7 @@ GO
 ALTER TABLE [dbo].[CurrentDayPickups] ADD  DEFAULT (0) FOR [CDPDispatched]
 GO
 
-ALTER TABLE [dbo].[CurrentDayPickups] ADD  DEFAULT (0) FOR [CDPChecked]
-GO
-
 ALTER TABLE [dbo].[CurrentDayPickups] ADD  DEFAULT (0) FOR [CDPDeleted]
-GO
-
-ALTER TABLE [dbo].[CurrentDayPickups] ADD  DEFAULT (0) FOR [CDPSent]
-GO
-
-ALTER TABLE [dbo].[CurrentDayPickups] ADD  DEFAULT (0) FOR [CDPSendConfirmed]
 GO
 
 ALTER TABLE [dbo].[CurrentDayPickups] ADD  CONSTRAINT [DF_CDP_Terminal]  DEFAULT ('NH') FOR [Terminal]

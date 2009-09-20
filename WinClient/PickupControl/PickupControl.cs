@@ -113,14 +113,11 @@ namespace WinClient //PickupControlLibrary
             // SaveAndPostCDP still needed?
 
             CurrentPickup.CDPStation= Environment.MachineName;
-            CurrentPickup.CDPChecked = false;
-            CurrentPickup.CDPSent = true;
-            CurrentPickup.CDPSentTime=DateTime.Now;
             
             // PostedCount & Save not present in DispatchLINQ
             //CurrentPickup.PostedCount = Settings.Default.ActiveStations - 1;
             CurrentPickup.Terminal = Properties.Settings.Default.terminal;
-            CurrentPickup.CDPEditedBy = "";
+            CurrentPickup.CDPEditedBy = ""; // used by DnDrop (see frmRoute.cs (SaveDragNDropPickup() )
             // how to save this record??
             // does it use the property changed/property changing events?
             //CurrentPickup.Save();

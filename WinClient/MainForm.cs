@@ -429,8 +429,8 @@ namespace WinClient //Dispatch3
             {
                 foreach (DispatchAR.Pickup p in Program.PickupList)
                 {
-                    intCDPSyncCount++;
-                    string strCDPSyncID = Environment.MachineName + "-CDP-" + intCDPSyncCount.ToString();
+                   // intCDPSyncCount++;
+                   // string strCDPSyncID = Environment.MachineName + "-CDP-" + intCDPSyncCount.ToString();
                     string strRouteName = p.RouteName;
                     string strDriverName = p.DriverName;
                     // p.RouteName & p.DriverName are null in the table
@@ -469,14 +469,14 @@ namespace WinClient //Dispatch3
                             // now unused...
                             //CDPChecked = true,
                             CDPComment = strComment,
-                            CDPSyncID = strCDPSyncID,
+                     //       CDPSyncID = strCDPSyncID,
                             CDPDriverName = strDriverName,
                             //CDPRouteName = strRouteName,// duplicated below
                             CDPCustomerName = strCustomerName,
                             CDPDispatched = false,
-                            CDPCreatedBy = Environment.MachineName,
+                     //       CDPCreatedBy = Environment.MachineName,
                             CDPStation = Environment.MachineName,
-                            CDPCreatedTime = DateTime.Now,
+                      //      CDPCreatedTime = DateTime.Now,
                             CDPPickupDate = mToday,
                             CDPDefaultRouteID = p.DefaultRouteID,
                             CDPCustomerID = p.CustomerID,
@@ -515,12 +515,12 @@ namespace WinClient //Dispatch3
                     Program.CDRList.Add(new  DispatchAR.CurrentDayRoute { 
                         // now unused...
                         //CDRChecked = true, 
-                        CDRSyncID = strCDRSyncID, 
+                        //CDRSyncID = strCDRSyncID, 
                         CDRDriverLastName = dvrName, 
                         CDRRouteName = strRouteName, 
-                        CDRCreatedBy = Environment.MachineName, 
-                        CDRCreatedTime = DateTime.Now, 
-                        CDRDate = DateTime.Today, 
+                        //CDRCreatedBy = Environment.MachineName, 
+                        //CDRCreatedTime = DateTime.Now, 
+                        //CDRDate = DateTime.Today, 
                         CDRDefaultDriverID = r.DefaultDriverID, 
                         CDRRouteID = r.RouteID, 
                         CDRStation = Environment.MachineName, 

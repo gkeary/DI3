@@ -859,111 +859,11 @@ namespace DispatchAR {
 	                MaxLength = 50
                 });
 
-                Columns.Add(new DatabaseColumn("CDPChecked", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
                 Columns.Add(new DatabaseColumn("CDPDeleted", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Boolean,
 	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPSyncID", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDPCreatedBy", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDPCreatedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPEditedBy", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDPEditedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPSent", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPSentTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPSendConfirmed", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDPReceivedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0
@@ -977,6 +877,16 @@ namespace DispatchAR {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 30
+                });
+
+                Columns.Add(new DatabaseColumn("CDPEditedBy", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50
                 });
                     
                 
@@ -1151,18 +1061,6 @@ namespace DispatchAR {
       			}
 		    }
             
-            public IColumn CDPChecked{
-                get{
-                    return this.GetColumn("CDPChecked");
-                }
-            }
-				
-   			public static string CDPCheckedColumn{
-			      get{
-        			return "CDPChecked";
-      			}
-		    }
-            
             public IColumn CDPDeleted{
                 get{
                     return this.GetColumn("CDPDeleted");
@@ -1175,39 +1073,15 @@ namespace DispatchAR {
       			}
 		    }
             
-            public IColumn CDPSyncID{
+            public IColumn Terminal{
                 get{
-                    return this.GetColumn("CDPSyncID");
+                    return this.GetColumn("Terminal");
                 }
             }
 				
-   			public static string CDPSyncIDColumn{
+   			public static string TerminalColumn{
 			      get{
-        			return "CDPSyncID";
-      			}
-		    }
-            
-            public IColumn CDPCreatedBy{
-                get{
-                    return this.GetColumn("CDPCreatedBy");
-                }
-            }
-				
-   			public static string CDPCreatedByColumn{
-			      get{
-        			return "CDPCreatedBy";
-      			}
-		    }
-            
-            public IColumn CDPCreatedTime{
-                get{
-                    return this.GetColumn("CDPCreatedTime");
-                }
-            }
-				
-   			public static string CDPCreatedTimeColumn{
-			      get{
-        			return "CDPCreatedTime";
+        			return "Terminal";
       			}
 		    }
             
@@ -1220,78 +1094,6 @@ namespace DispatchAR {
    			public static string CDPEditedByColumn{
 			      get{
         			return "CDPEditedBy";
-      			}
-		    }
-            
-            public IColumn CDPEditedTime{
-                get{
-                    return this.GetColumn("CDPEditedTime");
-                }
-            }
-				
-   			public static string CDPEditedTimeColumn{
-			      get{
-        			return "CDPEditedTime";
-      			}
-		    }
-            
-            public IColumn CDPSent{
-                get{
-                    return this.GetColumn("CDPSent");
-                }
-            }
-				
-   			public static string CDPSentColumn{
-			      get{
-        			return "CDPSent";
-      			}
-		    }
-            
-            public IColumn CDPSentTime{
-                get{
-                    return this.GetColumn("CDPSentTime");
-                }
-            }
-				
-   			public static string CDPSentTimeColumn{
-			      get{
-        			return "CDPSentTime";
-      			}
-		    }
-            
-            public IColumn CDPSendConfirmed{
-                get{
-                    return this.GetColumn("CDPSendConfirmed");
-                }
-            }
-				
-   			public static string CDPSendConfirmedColumn{
-			      get{
-        			return "CDPSendConfirmed";
-      			}
-		    }
-            
-            public IColumn CDPReceivedTime{
-                get{
-                    return this.GetColumn("CDPReceivedTime");
-                }
-            }
-				
-   			public static string CDPReceivedTimeColumn{
-			      get{
-        			return "CDPReceivedTime";
-      			}
-		    }
-            
-            public IColumn Terminal{
-                get{
-                    return this.GetColumn("Terminal");
-                }
-            }
-				
-   			public static string TerminalColumn{
-			      get{
-        			return "Terminal";
       			}
 		    }
             
@@ -2515,116 +2317,6 @@ namespace DispatchAR {
 	                MaxLength = 50
                 });
 
-                Columns.Add(new DatabaseColumn("CDRChecked", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRDate", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRSyncID", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDRCreatedBy", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDRCreatedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDREditedBy", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50
-                });
-
-                Columns.Add(new DatabaseColumn("CDREditedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRSent", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRSentTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRSendConfirmed", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Boolean,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CDRReceivedTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0
-                });
-
                 Columns.Add(new DatabaseColumn("Terminal", this)
                 {
 	                IsPrimaryKey = false,
@@ -2720,138 +2412,6 @@ namespace DispatchAR {
    			public static string CDRStationColumn{
 			      get{
         			return "CDRStation";
-      			}
-		    }
-            
-            public IColumn CDRChecked{
-                get{
-                    return this.GetColumn("CDRChecked");
-                }
-            }
-				
-   			public static string CDRCheckedColumn{
-			      get{
-        			return "CDRChecked";
-      			}
-		    }
-            
-            public IColumn CDRDate{
-                get{
-                    return this.GetColumn("CDRDate");
-                }
-            }
-				
-   			public static string CDRDateColumn{
-			      get{
-        			return "CDRDate";
-      			}
-		    }
-            
-            public IColumn CDRSyncID{
-                get{
-                    return this.GetColumn("CDRSyncID");
-                }
-            }
-				
-   			public static string CDRSyncIDColumn{
-			      get{
-        			return "CDRSyncID";
-      			}
-		    }
-            
-            public IColumn CDRCreatedBy{
-                get{
-                    return this.GetColumn("CDRCreatedBy");
-                }
-            }
-				
-   			public static string CDRCreatedByColumn{
-			      get{
-        			return "CDRCreatedBy";
-      			}
-		    }
-            
-            public IColumn CDRCreatedTime{
-                get{
-                    return this.GetColumn("CDRCreatedTime");
-                }
-            }
-				
-   			public static string CDRCreatedTimeColumn{
-			      get{
-        			return "CDRCreatedTime";
-      			}
-		    }
-            
-            public IColumn CDREditedBy{
-                get{
-                    return this.GetColumn("CDREditedBy");
-                }
-            }
-				
-   			public static string CDREditedByColumn{
-			      get{
-        			return "CDREditedBy";
-      			}
-		    }
-            
-            public IColumn CDREditedTime{
-                get{
-                    return this.GetColumn("CDREditedTime");
-                }
-            }
-				
-   			public static string CDREditedTimeColumn{
-			      get{
-        			return "CDREditedTime";
-      			}
-		    }
-            
-            public IColumn CDRSent{
-                get{
-                    return this.GetColumn("CDRSent");
-                }
-            }
-				
-   			public static string CDRSentColumn{
-			      get{
-        			return "CDRSent";
-      			}
-		    }
-            
-            public IColumn CDRSentTime{
-                get{
-                    return this.GetColumn("CDRSentTime");
-                }
-            }
-				
-   			public static string CDRSentTimeColumn{
-			      get{
-        			return "CDRSentTime";
-      			}
-		    }
-            
-            public IColumn CDRSendConfirmed{
-                get{
-                    return this.GetColumn("CDRSendConfirmed");
-                }
-            }
-				
-   			public static string CDRSendConfirmedColumn{
-			      get{
-        			return "CDRSendConfirmed";
-      			}
-		    }
-            
-            public IColumn CDRReceivedTime{
-                get{
-                    return this.GetColumn("CDRReceivedTime");
-                }
-            }
-				
-   			public static string CDRReceivedTimeColumn{
-			      get{
-        			return "CDRReceivedTime";
       			}
 		    }
             
