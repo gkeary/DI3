@@ -125,7 +125,6 @@ namespace DispatchAR
         public Query<Posting> Postings { get; set; }
         public Query<CurrentDayPickup> CurrentDayPickups { get; set; }
         public Query<DRIVER> DRIVERS { get; set; }
-        public Query<ScreenPosition> ScreenPositions { get; set; }
         public Query<Pickup> Pickups { get; set; }
         public Query<CurrentDayRoute> CurrentDayRoutes { get; set; }
         public Query<Route> Routes { get; set; }
@@ -236,7 +235,6 @@ namespace DispatchAR
             Postings = new Query<Posting>(provider);
             CurrentDayPickups = new Query<CurrentDayPickup>(provider);
             DRIVERS = new Query<DRIVER>(provider);
-            ScreenPositions = new Query<ScreenPosition>(provider);
             Pickups = new Query<Pickup>(provider);
             CurrentDayRoutes = new Query<CurrentDayRoute>(provider);
             Routes = new Query<Route>(provider);
@@ -250,7 +248,6 @@ namespace DispatchAR
             	DataProvider.Schema.Tables.Add(new PostingsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new CurrentDayPickupsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new DRIVERSTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new ScreenPositionsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new PickupsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new CurrentDayRoutesTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new RoutesTable(DataProvider));

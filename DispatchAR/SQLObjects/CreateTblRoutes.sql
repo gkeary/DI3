@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[Routes]    Script Date: 09/20/2009 04:03:22 ******/
+/****** Object:  Table [dbo].[Routes]    Script Date: 09/20/2009 05:19:10 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,14 +16,6 @@ CREATE TABLE [dbo].[Routes](
 	[DriverMessage] [nvarchar](100) NULL,
 	[Screen] [smallint] NULL,
 	[RouteSyncID] [nvarchar](50) NULL,
-	[RouteCreatedBy] [nvarchar](50) NULL,
-	[RouteCreatedTime] [datetime] NULL,
-	[RouteEditedBy] [nvarchar](50) NULL,
-	[RouteEditedTime] [datetime] NULL,
-	[RouteSent] [bit] NULL,
-	[RouteSentTime] [datetime] NULL,
-	[RouteSendConfirmed] [bit] NULL,
-	[RouteReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
  CONSTRAINT [PK_ROUTE2] PRIMARY KEY CLUSTERED 
 (
