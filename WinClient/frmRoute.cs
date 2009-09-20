@@ -98,10 +98,10 @@ namespace WinClient //Dispatch3
     {
         
         GetPickupsForThisInstance();
-        int routecount = 20;
+        //int routecount = 20;
         // pickuphash should be gone now...
         //LoadPickupHash();
-        //var routecount = PickupsThisRoute.Count();
+        var routecount = PickupsThisRoute.Count();
 
         // Add the number of AllPickupsToday to the title 
         // it always starts with a "---" search for DailyCount or newmdichild to see 

@@ -68,7 +68,7 @@
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContainer.Location = new System.Drawing.Point(0, 24);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(332, 172);
+            this.pnlContainer.Size = new System.Drawing.Size(332, 198);
             this.pnlContainer.TabIndex = 3;
             // 
             // mnuRoute
@@ -106,7 +106,7 @@
             this.AllowDrop = true;
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 13);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(332, 196);
+            this.ClientSize = new System.Drawing.Size(332, 222);
             this.ControlBox = false;
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.txtDriverMessage);
@@ -116,6 +116,7 @@
             this.Name = "frmRoute";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Route ---";
+            this.Load += new System.EventHandler(this.frmRoute_Load);
             this.mnuRoute.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PickupBindingSource)).EndInit();
             this.ResumeLayout(false);
