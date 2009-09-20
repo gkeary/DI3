@@ -1,7 +1,7 @@
 ﻿USE [Dispatch]
 GO
 
-/****** Object:  Table [dbo].[Pickups]    Script Date: 09/20/2009 04:02:00 ******/
+/****** Object:  Table [dbo].[Pickups]    Script Date: 09/20/2009 05:14:39 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -26,14 +26,6 @@ CREATE TABLE [dbo].[Pickups](
 	[DispatchTime] [datetime] NULL,
 	[Notes] [nvarchar](3) NULL,
 	[PickupSyncID] [nvarchar](50) NULL,
-	[PickupCreatedBy] [nvarchar](50) NULL,
-	[PickupCreatedTime] [datetime] NULL,
-	[PickupEditedBy] [nvarchar](50) NULL,
-	[PickupEditedTime] [datetime] NULL,
-	[PickupSent] [bit] NULL,
-	[PickupSentTime] [datetime] NULL,
-	[PickupSendConfirmed] [bit] NULL,
-	[PickupReceivedTime] [datetime] NULL,
 	[Terminal] [nchar](30) NOT NULL,
  CONSTRAINT [PK_Pickup] PRIMARY KEY CLUSTERED 
 (
