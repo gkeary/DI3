@@ -126,8 +126,6 @@
     <Compile Include="PickupControl\PickupControl.Designer.cs">
       <DependentUpon>PickupControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PickupControl\Posting.cs" />
-    <Compile Include="PickupControl\Settings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddDrivers.resx">
