@@ -7,26 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-//using RossData;
-//using PickupControlLibrary;
 using System.IO;
-//using Dispatch.LINQ; 
 
 
-namespace WinClient //Dispatch3
+namespace WinClient 
 {
     public partial class MainForm : Form
     {
 
         // Todo: springify this...
+        // is Stream used ??
         private static Stream Stream = File.Open("scr1.xml", FileMode.OpenOrCreate);
-        //private static Stream _stream = File.Open("scr.xml", FileMode.OpenOrCreate);
-        //public Stream Stream { get; set; }
+        
+       
         public MainForm()
         {
             InitializeComponent();
-            // call the MainForm setup routine here  -- it used to be: MainForm(Program.XMLStream fileStream)
-            //Program.Stream stream; 
             setup(Stream);
         }
         #region Declarations
@@ -72,9 +68,6 @@ namespace WinClient //Dispatch3
             {
                 LoadfrmRoutes();
                 Stream.Close();
-                //'InputForm.PickupHash = CustomerListBoxHelper.PopulatePickupHash()
-                //'InputForm.Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash()
-                //'InputForm.CustomerHash = CustomerListBoxHelper.PopulateCustomerHash()
             }
             else
             {
@@ -214,10 +207,8 @@ namespace WinClient //Dispatch3
             foreach (Form frm in this.MdiChildren)
             {
                 if (!frm.Tag.Equals(p.DefaultRouteId))
-                //if (frm is InputForm || ! frm.Tag.Equals(p.DefaultRouteId)) 
                 {
                     continue;
-                    //goto LabelA;
                 }
                 frmRoute mdi = (frmRoute)frm;
                 switch (p.DataType)
@@ -226,7 +217,6 @@ namespace WinClient //Dispatch3
                         {
                             StringBuilder sb = new StringBuilder();
                             var cdr = Program.CDRList.Find(x => x.CurrentDayRouteID == p.key);
-                            //.ActiveRecord<CurrentDayRoute>.FetchByID(p.Key);
                             int pos1 = mdi.Text.IndexOf("---") + 4;
                             sb.Append(cdr.CDRRouteID + " ");
                             sb.Append(cdr.CDRRouteName + " ");
@@ -238,8 +228,6 @@ namespace WinClient //Dispatch3
                                 mdi.Controls[1].Text = cdr.CDRDriverMessage;
                                 mdi.Controls[2].Text = cdr.CDRDriverLastName;
                             }
-                            // now unused...
-                            //cdr.CDRChecked = true;
                             cdr.CDRStation = Environment.MachineName;
                             cdr.Terminal = Properties.Settings.Default.terminal;
                             cdr.Save();
@@ -272,13 +260,10 @@ namespace WinClient //Dispatch3
                 }
                 else
                 {
-                    //Posting VB$t_ref$S2 = p;
-                    //VB$t_ref$S2.NumberofPendingUpdates--;
                     p.NumberOfPendingUpdates--;
                     p.Save();
                 };
             };
-            //LabelA:
         }
 
 
@@ -310,8 +295,6 @@ namespace WinClient //Dispatch3
 
         private void SyncRouteTitles()
         {
-            //CDRCollection.Clear(); // are these 2 steps necessary?
-            //CDRCollection.Load();
             Form[] MDIForms = this.MdiChildren;
             int limit = MDIForms.Length - 1;
             for (int i = 0; i <= limit; i++)
@@ -322,12 +305,6 @@ namespace WinClient //Dispatch3
                     foreach (var route in Program.CDRList)
                     {
                         if (route.CDRRouteID.Equals(routeform.Tag))
-                            // CDRChecked now unused...
-                        //if (!route.CDRChecked && (route.CDRRouteID.Equals(routeform.Tag)))
-                        //Conversions.ToBoolean(
-                        //Operators.AndObject(!route.CDRChecked, 
-                        //Operators.CompareObjectEqual(
-                        //routeform.Tag, route.CDRRouteID, false))))
                         {
                             StringBuilder title = new StringBuilder();
                             int pos1 = routeform.Text.IndexOf("---") + 4;//strings.InStr(routeform.Text, "---", CompareMethod.Binary);
@@ -341,8 +318,6 @@ namespace WinClient //Dispatch3
                                 routeform.Controls[1].Text = route.CDRDriverMessage;
                                 routeform.Controls[2].Text = route.CDRDriverLastName;
                             }
-                            // now unused...
-                            //route.CDRChecked = true;
                             route.CDRStation = Environment.MachineName;
                             route.Terminal = Properties.Settings.Default.terminal;
                             route.Save();
@@ -416,9 +391,7 @@ namespace WinClient //Dispatch3
         }
         public void PopulateCurrentDayPickups()
         {
-            int intCDPSyncCount = 0;
-            //Form frmNewForm = new Form();
-            //PickupCollection pucoll = new PickupCollection();
+            //int intCDPSyncCount = 0;
             bool addflag = false;
 
             if (Program.PickupList.Count == 0)
@@ -429,8 +402,6 @@ namespace WinClient //Dispatch3
             {
                 foreach (DispatchAR.Pickup p in Program.PickupList)
                 {
-                   // intCDPSyncCount++;
-                   // string strCDPSyncID = Environment.MachineName + "-CDP-" + intCDPSyncCount.ToString();
                     string strRouteName = p.RouteName;
                     string strDriverName = p.DriverName;
                     // p.RouteName & p.DriverName are null in the table
@@ -466,23 +437,15 @@ namespace WinClient //Dispatch3
                         addflag = false;
                         new DispatchAR.CurrentDayPickup
                         {
-                            // now unused...
-                            //CDPChecked = true,
                             CDPComment = strComment,
-                     //       CDPSyncID = strCDPSyncID,
                             CDPDriverName = strDriverName,
-                            //CDPRouteName = strRouteName,// duplicated below
                             CDPCustomerName = strCustomerName,
                             CDPDispatched = false,
-                     //       CDPCreatedBy = Environment.MachineName,
                             CDPStation = Environment.MachineName,
-                      //      CDPCreatedTime = DateTime.Now,
                             CDPPickupDate = mToday,
                             CDPDefaultRouteID = p.DefaultRouteID,
                             CDPCustomerID = p.CustomerID,
                             CDPRouteName = p.RouteName,
-                            //UserName = Environment.UserName,
-                            //PostedCount = Properties.Settings.Default.ActiveStations - 1,
                             Terminal = Properties.Settings.Default.terminal
                         }.Save();
                     }
@@ -497,9 +460,6 @@ namespace WinClient //Dispatch3
             }
             int intCDRSyncCount = 0;
 
-            //CDRCollection.Load();
-            //int CDRCount = CDRCollection.Count;
-            //VDefaultRouteCollection defRouteCollection = new VDefaultRouteCollection();
             if (Program.CDRList.Count == 0)
             {
                 foreach (var r in Program.RouteList)
@@ -513,19 +473,11 @@ namespace WinClient //Dispatch3
                     string strRouteName = r.RouteName.Replace("'", "''"); 
                     string strDriverMessage = r.DriverMessage.Replace("'","''");
                     Program.CDRList.Add(new  DispatchAR.CurrentDayRoute { 
-                        // now unused...
-                        //CDRChecked = true, 
-                        //CDRSyncID = strCDRSyncID, 
                         CDRDriverLastName = dvrName, 
                         CDRRouteName = strRouteName, 
-                        //CDRCreatedBy = Environment.MachineName, 
-                        //CDRCreatedTime = DateTime.Now, 
-                        //CDRDate = DateTime.Today, 
                         CDRDefaultDriverID = r.DefaultDriverID, 
                         CDRRouteID = r.RouteID, 
                         CDRStation = Environment.MachineName, 
-                        // also unused...
-                        //UserName = Environment.UserName, 
                         Terminal = Properties.Settings.Default.terminal 
                     });
                     /// ???
@@ -552,11 +504,6 @@ namespace WinClient //Dispatch3
             blnWindowOpen = false;
             sender = null;
         }
-
-
-
-
-
 
         private void mnuCloseRoutes_Click(object sender, EventArgs e)
         {
@@ -605,10 +552,8 @@ namespace WinClient //Dispatch3
 
         private void mnuDefaultRoutes_Click(object sender, EventArgs e)
         {
-
             PopulateCurrentDayRoutes();
             OpenfrmDefaultRoutes();
-
         }
 
         private void mnuDeleteDrivers_Click(object sender, EventArgs e)
@@ -667,7 +612,6 @@ namespace WinClient //Dispatch3
         private void mnuSaveWindowPositions_Click(object sender, EventArgs e)
         {
             Program.SaveWindowPositions(this);
-
         }
 
         private void mnuStartOfDay_Click(object sender, EventArgs e)
@@ -676,21 +620,5 @@ namespace WinClient //Dispatch3
             blnDayStarted = true;
         }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     } // class MainForm
 } //namespace WinClient (Dispatch3)
