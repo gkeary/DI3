@@ -39,12 +39,12 @@ namespace WinClient
                     sb.AppendLine(String.Format("{0} {1} -- Route: {2} ", dvr.FirstName, dvr.LastName, dvr.DriverID ));
                     sb.AppendLine(String.Format("ListChecked = {0}",itemChecked.ToString()));
                     //MessageBox.Show(sb.ToString());
-                    //TODO: fixup so Route default driver set to "";
+                    //TODO: DONE... see below
+                    //  fixup so Route default driver set to "";
                     driver.DeleteById(dvr.DriverID);
                     // try this...
                     var rr = (RouteBLL)WinClient.ApplicationContext["RouteBLL"];
                     rr.SetBlank(dvr.DriverID );
-
                 }
         }
 

@@ -48,7 +48,6 @@ namespace WinClient //PickupControlLibrary
               //from PickupControl.Designer.cs:
             //this.PUControlTooltip.SetToolTip(this.txtComment, "e.g. 2 SK Rdy @2PM"); 
             this.PUControlTooltip.SetToolTip(this.txtComment, this.txtComment.Text); 
-
             PUControlTooltip.SetToolTip(btnCustomerName, GetCustomerString());
             PUControlTooltip.IsBalloon=true;
         }
