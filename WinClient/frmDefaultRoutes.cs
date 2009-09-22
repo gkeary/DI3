@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using System.Runtime.CompilerServices;
+
 
 using DispatchAR;
 using System.Runtime.CompilerServices;
@@ -14,17 +14,9 @@ using System.Runtime.CompilerServices;
 namespace WinClient
 {
     public partial class frmDefaultRoutes : Form
-    {   
-        //List<CUSTOMER> CurrentDayRouteCollection = Program.CDRList;
-        //List<Route> Route2Collection= Program.RouteList;
-        //bool blnPanelRowChanged= false;
-        //bool blnRouteSaved = false;
-        //int intTxtMessagesIndex;
-        //string strCDRSyncID;
+    {
         List<DispatchAR.CurrentDayRoute> CurrentDayRouteCollection = Program.CDRList;
-        bool blnRouteSaved = false;
-        bool blnPanelRowChanged= false;
-        int intTxtMessagesIndex;
+        bool blnPanelRowChanged = false;
         string strCDRSyncID;
 
         public frmDefaultRoutes()
@@ -118,7 +110,7 @@ namespace WinClient
                 }
 
 
-                //var chkboxKeep = new CheckBox();
+                
                 var chkboxKeep = new TextBox();
                 using (var t5 = chkboxKeep)
                 {
@@ -157,145 +149,145 @@ namespace WinClient
             {
                 Program.PopulateCDRFromvDefaultRoutes();
             }
-    List<CurrentDayRoute>.Enumerator CDREnumerator= Program.CDRList.GetEnumerator();
-    try
-    {
-        int i = 0;
-        while (CDREnumerator.MoveNext())
-        {
-            CurrentDayRoute cdr = CDREnumerator.Current;
-            int intDriverIDTabIndex = ((i + i) + i) + 1;
-            int intKeepButtonTabIndex = ((i + i) + i) + 2;
-            TextBox txtboxRouteId = new TextBox();
-            TextBox tref0 = txtboxRouteId;
-            tref0.Text = cdr.CDRRouteID;
-            if (i == 0)
+            List<CurrentDayRoute>.Enumerator CDREnumerator = Program.CDRList.GetEnumerator();
+            try
             {
-                tref0.Top = 8;
+                int i = 0;
+                while (CDREnumerator.MoveNext())
+                {
+                    CurrentDayRoute cdr = CDREnumerator.Current;
+                    int intDriverIDTabIndex = ((i + i) + i) + 1;
+                    int intKeepButtonTabIndex = ((i + i) + i) + 2;
+                    TextBox txtboxRouteId = new TextBox();
+                    TextBox tref0 = txtboxRouteId;
+                    tref0.Text = cdr.CDRRouteID;
+                    if (i == 0)
+                    {
+                        tref0.Top = 8;
+                    }
+                    else
+                    {
+                        tref0.Top = (i * 0x17) + 8;
+                    }
+                    tref0.Left = 8;
+                    tref0.Width = 0x23;
+                    tref0.Name = "txtrouteID" + i.ToString();
+                    tref0.TextAlign = HorizontalAlignment.Center;
+                    tref0.TabStop = false;
+                    tref0.Enabled = false;
+                    tref0 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(txtboxRouteId);
+                    TextBox txtboxRouteText = new TextBox();
+                    TextBox tref1 = txtboxRouteText;
+                    tref1.Text = cdr.CDRRouteName;
+                    if (i == 0)
+                    {
+                        tref1.Top = 8;
+                    }
+                    else
+                    {
+                        tref1.Top = (i * 0x17) + 8;
+                    }
+                    tref1.Left = 50;
+                    tref1.Width = 100;
+                    tref1.Name = "txtRouteText" + i.ToString();
+                    tref1.MaxLength = 20;
+                    tref1.TabIndex = intDriverIDTabIndex;
+                    tref1 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(txtboxRouteText);
+                    txtboxRouteText.KeyDown += new KeyEventHandler(this.txtboxRouteText_KeyDown);
+                    txtboxRouteText.TextChanged += new EventHandler(this.txtboxRouteText_TextChanged);
+                    TextBox txtboxDriverID = new TextBox();
+                    TextBox tref2 = txtboxDriverID;
+                    tref2.Text = cdr.CDRDefaultDriverID;
+                    if (i == 0)
+                    {
+                        tref2.Top = 8;
+                    }
+                    else
+                    {
+                        tref2.Top = (i * 0x17) + 8;
+                    }
+                    tref2.Left = 0xa1;
+                    tref2.Width = 50;
+                    tref2.Name = "txtDriverID" + i.ToString();
+                    tref2.MaxLength = 2;
+                    tref2.CharacterCasing = CharacterCasing.Upper;
+                    tref2.TabIndex = intDriverIDTabIndex;
+                    tref2 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(txtboxDriverID);
+                    txtboxDriverID.KeyDown += new KeyEventHandler(this.txtboxDriverID_KeyDown);
+                    txtboxDriverID.TextChanged += new EventHandler(this.txtboxDriverID_TextChanged);
+                    TextBox txtboxLastName = new TextBox();
+                    TextBox tref3 = txtboxLastName;
+                    tref3.Text = cdr.CDRDriverLastName;
+                    if (i == 0)
+                    {
+                        tref3.Top = 8;
+                    }
+                    else
+                    {
+                        tref3.Top = (i * 0x17) + 8;
+                    }
+                    tref3.Left = 0xd4;
+                    tref3.Width = 150;
+                    tref3.Name = "txtLastName" + i.ToString();
+                    tref3.TextAlign = HorizontalAlignment.Left;
+                    tref3.TabStop = false;
+                    tref3.Enabled = false;
+                    tref3 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(txtboxLastName);
+                    CheckBox chkboxKeep = new CheckBox();
+                    CheckBox tref4 = chkboxKeep;
+                    tref4.Name = "chkboxKeep" + i.ToString();
+                    if (i == 0)
+                    {
+                        tref4.Top = 8;
+                    }
+                    else
+                    {
+                        tref4.Top = (i * 0x17) + 8;
+                    }
+                    tref4.Left = 370;
+                    tref4.Text = "Keep";
+                    tref4.Width = 60;
+                    tref4.TabIndex = intKeepButtonTabIndex;
+                    tref4.Enabled = true;
+                    tref4 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(chkboxKeep);
+                    TextBox txtboxPrimaryKey = new TextBox();
+                    TextBox tref5 = txtboxPrimaryKey;
+                    tref5.Text = cdr.CurrentDayRouteID.ToString();
+                    if (i == 0)
+                    {
+                        tref5.Top = 8;
+                    }
+                    else
+                    {
+                        tref5.Top = (i * 0x17) + 8;
+                    }
+                    tref5.Left = 0x1b3;
+                    tref5.Width = 150;
+                    tref5.Name = "txtPrimaryKey" + i.ToString();
+                    tref5.TextAlign = HorizontalAlignment.Left;
+                    tref5.TabStop = false;
+                    tref5.Visible = false;
+                    tref5.Enabled = false;
+                    tref5 = null;
+                    this.pnlCurrentDayRoutes.Controls.Add(txtboxPrimaryKey);
+                    i++;
+                }
             }
-            else
+            finally
             {
-                tref0.Top = (i * 0x17) + 8;
+                CDREnumerator.Dispose();
             }
-            tref0.Left = 8;
-            tref0.Width = 0x23;
-            tref0.Name = "txtrouteID" + i.ToString();
-            tref0.TextAlign = HorizontalAlignment.Center;
-            tref0.TabStop = false;
-            tref0.Enabled = false;
-            tref0 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(txtboxRouteId);
-            TextBox txtboxRouteText = new TextBox();
-            TextBox tref1 = txtboxRouteText;
-            tref1.Text = cdr.CDRRouteName;
-            if (i == 0)
-            {
-                tref1.Top = 8;
-            }
-            else
-            {
-                tref1.Top = (i * 0x17) + 8;
-            }
-            tref1.Left = 50;
-            tref1.Width = 100;
-            tref1.Name = "txtRouteText" + i.ToString();
-            tref1.MaxLength = 20;
-            tref1.TabIndex = intDriverIDTabIndex;
-            tref1 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(txtboxRouteText);
-            txtboxRouteText.KeyDown += new KeyEventHandler(this.txtboxRouteText_KeyDown);
-            txtboxRouteText.TextChanged += new EventHandler(this.txtboxRouteText_TextChanged);
-            TextBox txtboxDriverID = new TextBox();
-            TextBox tref2 = txtboxDriverID;
-            tref2.Text = cdr.CDRDefaultDriverID;
-            if (i == 0)
-            {
-                tref2.Top = 8;
-            }
-            else
-            {
-                tref2.Top = (i * 0x17) + 8;
-            }
-            tref2.Left = 0xa1;
-            tref2.Width = 50;
-            tref2.Name = "txtDriverID" + i.ToString();
-            tref2.MaxLength = 2;
-            tref2.CharacterCasing = CharacterCasing.Upper;
-            tref2.TabIndex = intDriverIDTabIndex;
-            tref2 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(txtboxDriverID);
-            txtboxDriverID.KeyDown += new KeyEventHandler(this.txtboxDriverID_KeyDown);
-            txtboxDriverID.TextChanged += new EventHandler(this.txtboxDriverID_TextChanged);
-            TextBox txtboxLastName = new TextBox();
-            TextBox tref3 = txtboxLastName;
-            tref3.Text = cdr.CDRDriverLastName;
-            if (i == 0)
-            {
-                tref3.Top = 8;
-            }
-            else
-            {
-                tref3.Top = (i * 0x17) + 8;
-            }
-            tref3.Left = 0xd4;
-            tref3.Width = 150;
-            tref3.Name = "txtLastName" + i.ToString();
-            tref3.TextAlign = HorizontalAlignment.Left;
-            tref3.TabStop = false;
-            tref3.Enabled = false;
-            tref3 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(txtboxLastName);
-            CheckBox chkboxKeep = new CheckBox();
-            CheckBox tref4 = chkboxKeep;
-            tref4.Name = "chkboxKeep" + i.ToString();
-            if (i == 0)
-            {
-                tref4.Top = 8;
-            }
-            else
-            {
-                tref4.Top = (i * 0x17) + 8;
-            }
-            tref4.Left = 370;
-            tref4.Text = "Keep";
-            tref4.Width = 60;
-            tref4.TabIndex = intKeepButtonTabIndex;
-            tref4.Enabled = true;
-            tref4 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(chkboxKeep);
-            TextBox txtboxPrimaryKey = new TextBox();
-            TextBox tref5 = txtboxPrimaryKey;
-            tref5.Text = cdr.CurrentDayRouteID.ToString();
-            if (i == 0)
-            {
-                tref5.Top = 8;
-            }
-            else
-            {
-                tref5.Top = (i * 0x17) + 8;
-            }
-            tref5.Left = 0x1b3;
-            tref5.Width = 150;
-            tref5.Name = "txtPrimaryKey" + i.ToString();
-            tref5.TextAlign = HorizontalAlignment.Left;
-            tref5.TabStop = false;
-            tref5.Visible = false;
-            tref5.Enabled = false;
-            tref5 = null;
-            this.pnlCurrentDayRoutes.Controls.Add(txtboxPrimaryKey);
-            i++;
-        }
-    }
-    finally
-    {
-        CDREnumerator.Dispose();
-    }
 #endif
         }
         public void txtboxDriverID_TextChanged(object sender, KeyEventArgs e)
         {
-//                private void btnSetRoutes_KeyDown(object sender, KeyEventArgs e)
-}
+            //                private void btnSetRoutes_KeyDown(object sender, KeyEventArgs e)
+        }
         public void txtboxDriverID_KeyDown(object sender, KeyEventArgs e)
         {
             int NextOneDown;
@@ -336,11 +328,11 @@ namespace WinClient
 
         public void txtboxRouteText_TextChanged(object sender, EventArgs e)
         {
-            CheckBox checkbox = (CheckBox) 
+            CheckBox checkbox = (CheckBox)
                 this.pnlCurrentDayRoutes.Controls[
                                     this.pnlCurrentDayRoutes
                                         .Controls
-                                        .GetChildIndex((Control)sender)+ 3
+                                        .GetChildIndex((Control)sender) + 3
                                         ];
             this.blnPanelRowChanged = true;
             checkbox.Enabled = true;
@@ -352,11 +344,11 @@ namespace WinClient
             int NextOneUp;
             Panel pnl = this.pnlCurrentDayRoutes;
             if ((pnl.Controls.GetChildIndex((Control)sender) + 5) > pnl.Controls.Count)
-                 { NextOneDown = 2; }
+            { NextOneDown = 2; }
             else { NextOneDown = pnl.Controls.GetChildIndex((Control)sender) + 5; }
-            
+
             if ((pnl.Controls.GetChildIndex((Control)sender) - 4) < 0)
-                 { NextOneUp = pnl.Controls.Count - 3; }
+            { NextOneUp = pnl.Controls.Count - 3; }
             else { NextOneUp = pnl.Controls.GetChildIndex((Control)sender) - 4; }
 
             if (e.KeyValue == 13)
@@ -378,7 +370,7 @@ namespace WinClient
         public void txtboxDriverID_TextChanged(object sender, EventArgs e)
         {
             var foo = sender as TextBox;
-            if (foo.Text.Length == 2) 
+            if (foo.Text.Length == 2)
             {
                 this.ChangeDriver(RuntimeHelpers.GetObjectValue(sender), e);
             }
@@ -389,45 +381,41 @@ namespace WinClient
             int NextOneDown;
             int NextOneUp;
             Panel pnl = this.pnlCurrentDayRoutes;
-            if ((pnl.Controls.GetChildIndex((Control) sender) + 5) > pnl.Controls.Count)
+            if ((pnl.Controls.GetChildIndex((Control)sender) + 5) > pnl.Controls.Count)
             { NextOneDown = 1; }
-            else { NextOneDown = pnl.Controls.GetChildIndex((Control) sender) + 5; }
+            else { NextOneDown = pnl.Controls.GetChildIndex((Control)sender) + 5; }
 
-            if ((pnl.Controls.GetChildIndex((Control) sender) - 5) < 0)
+            if ((pnl.Controls.GetChildIndex((Control)sender) - 5) < 0)
             { NextOneUp = pnl.Controls.Count - 3; }
-            else { NextOneUp = pnl.Controls.GetChildIndex((Control) sender) - 5; }
+            else { NextOneUp = pnl.Controls.GetChildIndex((Control)sender) - 5; }
 
-
-            //int intEndPos = Strings.InStr(Strings.InStr(this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender)].Name, "_", CompareMethod.Text) + 1, this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender)].Name, "_", CompareMethod.Text);
-            //var drcoll = new DriverCollection();
-            //drcoll.Load();
-            //int i = 0;
-            if (Program.DriverList.Count == 0) {
+            if (Program.DriverList.Count == 0)
+            {
                 Program.GetDriverCollection();
             }
-    
+
             foreach (var d in Program.DriverList)
             {
-                if (d.DriverID == null) 
+                if (d.DriverID == null)
                 {
-                    pnl.Controls[pnl.Controls.GetChildIndex((Control) sender) + 1].Text = d.LastName;
+                    pnl.Controls[pnl.Controls.GetChildIndex((Control)sender) + 1].Text = d.LastName;
                     break;
                 }
             }
 
-            if (this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender) + 1].Text == "Driver not found!")
+            if (this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control)sender) + 1].Text == "Driver not found!")
             {
-                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender) + 1].ForeColor = Color.Red;
+                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control)sender) + 1].ForeColor = Color.Red;
             }
             else
             {
-                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender) + 1].ForeColor = SystemColors.WindowText;
-                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control) sender) + 2].Enabled = true;
+                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control)sender) + 1].ForeColor = SystemColors.WindowText;
+                this.pnlCurrentDayRoutes.Controls[this.pnlCurrentDayRoutes.Controls.GetChildIndex((Control)sender) + 2].Enabled = true;
             }
             this.pnlCurrentDayRoutes.Controls[NextOneDown].Focus();
         }
 
-    
+
 
         private void frmDefaultRoutes_Load(object sender, EventArgs e)
         {
@@ -436,7 +424,7 @@ namespace WinClient
                 this.Top = 45;
             }
             this.ConstructPanelFromCDRCollection();
-            this.pnlCurrentDayRoutes.Height = (Program.CDRList.Count+ 1) * 26;
+            this.pnlCurrentDayRoutes.Height = (Program.CDRList.Count + 1) * 26;
             this.Height = this.pnlCurrentDayRoutes.Height;
             var ctrlcount = this.pnlCurrentDayRoutes.Controls.Count - 1;
             for (int i = 0; i <= ctrlcount; i++)
@@ -478,70 +466,64 @@ namespace WinClient
                     CheckBox checkbox = (CheckBox)pnl.Controls[k + 4];
                     if (checkbox.Checked)
                     {
-                        SaveToRoute(strRouteName, strDriverId, 
+                        SaveToRoute(strRouteName, strDriverId,
                             strRouteId);
                     }
                 }
             }
         }
-private void SaveToRoute(string NewRouteName, string NewDriverId, string Routeid)
-{
-    foreach( var rr in Program.RouteList){
-            if (rr.RouteID == Routeid)
+        private void SaveToRoute(string NewRouteName, string NewDriverId, string Routeid)
+        {
+            foreach (var rr in Program.RouteList)
             {
-                rr.DefaultDriverID = NewDriverId;
-                rr.RouteID = Routeid;
-                rr.RouteName = NewRouteName;
-                rr.Save();
+                if (rr.RouteID == Routeid)
+                {
+                    rr.DefaultDriverID = NewDriverId;
+                    rr.RouteID = Routeid;
+                    rr.RouteName = NewRouteName;
+                    rr.Save();
+                }
             }
         }
-}
 
         // this may end up going away ???
-private void SaveToCurrentDayRoute(
-     int PrimaryKey, string strRouteID, string sync,
-     string strDriverID, string strDriverName, string strRouteName)
-{
-    int key = PrimaryKey;
-    string usr = Environment.UserName;
-    string terminal = Properties.Settings.Default.terminal;
-    int PostedCount = Properties.Settings.Default.ActiveStations - 1;
+        private void SaveToCurrentDayRoute(
+             int PrimaryKey, string strRouteID, string sync,
+             string strDriverID, string strDriverName, string strRouteName)
+        {
+            int key = PrimaryKey;
+            string usr = Environment.UserName;
+            string terminal = Properties.Settings.Default.terminal;
+            int PostedCount = Properties.Settings.Default.ActiveStations - 1;
 
-    CurrentDayRoute cdr = new DispatchAR.CurrentDayRoute {
-                            // now unused...
-                            //CDRChecked = true,
-                            //CDRDate= DateTime.Now,
-                            //CDRCreatedBy= usr,
-                            //CDRSyncID = "strCDRSyncID",
-                            CDRDefaultDriverID=strDriverID,
-                            CDRDriverLastName= strDriverName,
-                            CDRDriverMessage="",
-                            CDRRouteID=strRouteID,
-                            CDRRouteName= strRouteName,
-                            CDRStation = Environment.MachineName,
-                            //CDRCreatedTime = DateTime.Now,
-                            Terminal= terminal,
-                            CurrentDayRouteID=key
-                        };
-    // tried cdr.save and cdr.update
-    // need to put something that works in CurrentDayRouteBLL ...
-    //cdr.Save();
-    cdr.Update();
-    Program.CDRList.Clear();
-    Program.CDRList = Program.GetCDRCollection();
+            CurrentDayRoute cdr = new DispatchAR.CurrentDayRoute
+            {
+                CDRDefaultDriverID = strDriverID,
+                CDRDriverLastName = strDriverName,
+                CDRDriverMessage = "",
+                CDRRouteID = strRouteID,
+                CDRRouteName = strRouteName,
+                CDRStation = Environment.MachineName,
+                Terminal = terminal,
+                CurrentDayRouteID = key
+            };
+            // tried cdr.save and cdr.update
+            // need to put something that works in CurrentDayRouteBLL ...
+            //cdr.Save();
+            cdr.Update();
+            Program.CDRList.Clear();
+            Program.CDRList = Program.GetCDRCollection();
 
-    //CurrentDayRoute.Update(key, strRouteID, strRouteName, strDriverID, strDriverName,
-        //"", Environment.MachineName, false, DateTime.Now, "", "", 
-        //DateTime.Now, "", DateTime.Now, true, DateTime.Now, false, DateTime.Now, 
-        //usr, PostedCount, terminal);
-}
+            //CurrentDayRoute.Update(key, strRouteID, strRouteName, strDriverID, strDriverName,
+            //"", Environment.MachineName, false, DateTime.Now, "", "", 
+            //DateTime.Now, "", DateTime.Now, true, DateTime.Now, false, DateTime.Now, 
+            //usr, PostedCount, terminal);
+        }
 
-private void btnSetRoutes_Click(object sender, EventArgs e)
-{
-    this.SaveAllCDRRoutes();
-    this.Close();
-}
-
-
+        private void btnSetRoutes_Click(object sender, EventArgs e)
+        {
+            this.SaveAllCDRRoutes();
+            this.Close();
+        }
     }
 }

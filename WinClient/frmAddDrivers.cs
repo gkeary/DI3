@@ -10,20 +10,14 @@ using System.Windows.Forms;
 using DispatchAR;
 using SubSonic;
 
-namespace WinClient //Dispatch3
+namespace WinClient 
 {
     public partial class frmAddDrivers : Form
     {
         bool blnSaveDriver;
-        // TODO: inject this one too.
+        // TODO: inject DispatchDB too.
         DispatchDB db = new DispatchDB();
 
-       // Odbc.OdbcDataAdapter dadDrivers = new Odbc.OdbcDataAdapter();
-       // Data.DataSet dstDrivers = new Data.DataSet();
-        //public frmAddDrivers()
-        //{
-        //    InitializeComponent();
-        //}
 
         private void frmAddDrivers_Load(object sender, System.EventArgs e)
         {
@@ -129,12 +123,5 @@ namespace WinClient //Dispatch3
             ClearForm();
             txtDriverID.Focus();
         }
-
-    
-
-
-
-
-
     }
 }
