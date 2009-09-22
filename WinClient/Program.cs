@@ -34,7 +34,7 @@ namespace WinClient
         public static List<ScreenDimension>  ScreenList = new List<ScreenDimension>();
         private static int _screenheight;
         private static int _screenwidth;
-        //    private static Stream Stream;
+    
 
         public static int ScreenHeight
         {
@@ -47,11 +47,6 @@ namespace WinClient
             set { _screenwidth = value; }
         }
 
-        //public static Stream Stream
-        //{
-        //    get { return _stream; }
-        //    //set { _stream = value; }
-        //}
         #endregion
         /// <summary>
         /// The main entry point for the application.
@@ -62,7 +57,6 @@ namespace WinClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Program pr = new Program(); // cannot create instance of an abstract class.  look for instances of pr ???
-            // take this out when we remove the unused constructor Application.Run(new MainForm(_stream));
             Application.Run(new MainForm());
         }
 
