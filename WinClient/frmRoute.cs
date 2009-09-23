@@ -142,7 +142,7 @@ namespace WinClient
         //    bool @checked = false;
         //    var station = Environment.MachineName;
         //    string UserName = Environment.UserName;
-        //    string terminal = Dispatch3.Properties.Settings.Default.Terminal;
+        //    string terminal = WinClient.Properties.Settings.Default.Terminal;
 
         //    foreach (CurrentDayRoute r in CDRCollection.Load()) {
         //        if (r.CDRRouteID == this.Tag) {
