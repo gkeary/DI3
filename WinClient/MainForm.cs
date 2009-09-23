@@ -88,7 +88,7 @@ namespace WinClient
                          select cdr;
             var sdqry = from sd in Program.ScreenList
                         select sd;
-#if true
+
             for (int i = 0; i < RouteCount; i++)
             {
                 foreach (DispatchAR.CurrentDayRoute route in cdrqry)
@@ -104,21 +104,8 @@ namespace WinClient
                     }
 
                 }
+                return;
             }
-#else
-            foreach (ScreenDimension screen in sdqry)
-            {
-                foreach (DispatchAR.CurrentDayRoute route in cdrqry)
-                    {
-                        if (route.CDRRouteID.Equals(screen.WinTitle.Substring(0, 2)))
-                        {
-                            var rw = new frmRoute(screen, route);
-                            rw.MdiParent = this;
-                            rw.Show();
-                        }
-                    }
-                }
-#endif 
         }
 
 
@@ -142,7 +129,7 @@ namespace WinClient
         {
             for (int i = 0; i <= this.MdiChildren.Length - 1; i++)
             {
-                if ((string) MdiChildren[i].Tag == "Dynamic")
+                if (MdiChildren[i].Tag == "Dynamic")
                 {
                     RefreshThisRoute((frmRoute)MdiChildren[i]); // dangerous -- may throw an exception
                 }
@@ -634,4 +621,4 @@ namespace WinClient
         }
         #endregion
     } // class MainForm
-} //namespace WinClient (WinClient)
+} //namespace WinClient (Dispatch3)
