@@ -14,3 +14,7 @@ foo.txt
 *.cache
 *.exe
 *.exe.manifest
+*/bin
+*/obj
+/WinClient/bin
+/WinClient/obj
