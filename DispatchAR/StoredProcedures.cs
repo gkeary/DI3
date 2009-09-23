@@ -33,6 +33,10 @@ namespace DispatchAR{
             sp.Command.AddParameter("comment",comment,DbType.AnsiString);
             return sp;
         }
+        public StoredProcedure SelectFromVDefaultRoutes(){
+            StoredProcedure sp=new StoredProcedure("SelectFromVDefaultRoutes",this.Provider);
+            return sp;
+        }
 	
 	}
 	

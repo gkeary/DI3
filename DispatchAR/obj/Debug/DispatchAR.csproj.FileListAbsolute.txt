@@ -5,3 +5,11 @@ C:\w\SubSonic1\DispatchAR\bin\Debug\SubSonic.Core.dll
 C:\w\SubSonic1\DispatchAR\obj\Debug\ResolveAssemblyReference.cache
 C:\w\SubSonic1\DispatchAR\obj\Debug\DispatchAR.dll
 C:\w\SubSonic1\DispatchAR\obj\Debug\DispatchAR.pdb
+C:\Program Files\Git\DI3\DispatchAR\bin\Debug\DispatchAR.dll.config
+C:\Program Files\Git\DI3\DispatchAR\bin\Debug\DispatchAR.dll
+C:\Program Files\Git\DI3\DispatchAR\bin\Debug\DispatchAR.pdb
+C:\Program Files\Git\DI3\DispatchAR\obj\Debug\ResolveAssemblyReference.cache
+C:\Program Files\Git\DI3\DispatchAR\obj\Debug\DispatchAR.dll
+C:\Program Files\Git\DI3\DispatchAR\obj\Debug\DispatchAR.pdb
+C:\Program Files\Git\DI3\DispatchAR\bin\Debug\DAL.dll
+C:\Program Files\Git\DI3\DispatchAR\bin\Debug\DAL.pdb

@@ -29,6 +29,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,16 +65,27 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Spring.NET 1.2.0\bin\net\2.0\release\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SubSonic\SubSonic 3 Final\Binaries\SubSonic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
-    <Compile Include="Customer\CustomerBLL.cs" />
-    <Compile Include="Employee\EmployeeBLL.cs" />
-    <Compile Include="Interface\IBLL.cs" />
+    <Compile Include="CurrentDayPickup.cs" />
+    <Compile Include="CurrentDayRoute.cs" />
+    <Compile Include="CustomerBLL.cs" />
+    <Compile Include="DriverBLL.cs" />
+    <Compile Include="PickupBll.cs" />
+    <Compile Include="PostingBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -103,9 +115,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{E1E9220A-63B2-41C3-AA26-2DC58BE56C75}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\DispatchAR\DispatchAR.csproj">
+      <Project>{0C233CA2-04FF-45C7-BEC0-9E89C4384827}</Project>
+      <Name>DispatchAR</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

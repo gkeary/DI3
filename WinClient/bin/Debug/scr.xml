@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/20/2009 09:14:35--><Screens>
+<Items xmlns="scr">
+<Item Title="00 Laconia --- 3 Pickups-- 2 Pickups" Left="7" Top="293" Width="446" Height="445" />
+<Item Title="02 Keene --- 3 Pickups-- 3 Pickups" Left="605" Top="140" Width="340" Height="230" />
+<Item Title="04 Wolfboro --- 1 Pickup-- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="06 Claremont --- 2 Pickups-- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="08 Littleton --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="10 Lebanon --- 2 Pickups-- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="12 Conway --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="14 Berlin --- 2 Pickups-- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="16 Concord --- 2 Pickups-- 2 Pickups" Left="253" Top="35" Width="523" Height="516" />
+<Item Title="17 Concord --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="18 Concord --- 2 Pickups-- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="20 Lebanon --- 2 Pickups-- 2 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="22 Colebrook --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="28 Spare --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="30 York\Scar --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="50 Exeter --- 1 Pickup-- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="52 Portsmouth --- 4 Pickups-- 4 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="54 Dover --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="56 Milford --- 1 Pickup-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="58 Nashua --- 5 Pickups-- 6 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="60 Salem --- 4 Pickups-- 3 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="62 Manchester South --- 4 Pickups-- 4 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="64 Manchester East --- 1 Pickup-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="66 Manchester --- 2 Pickups-- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="68 Portland --- 4 Pickups-- 3 Pickups" Left="130" Top="157" Width="353" Height="230" />
+<Item Title="70 Portland --- 2 Pickups-- 3 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="72 Hypertherm --- 1 Pickup-- 1 Pickup" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="74 Spare --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="76 Spare --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="78 Spare --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+<Item Title="80 Spare --- 0 Pickups-- 0 Pickups" Left="0" Top="0" Width="340" Height="230" />
+</Items>
+</Screens>

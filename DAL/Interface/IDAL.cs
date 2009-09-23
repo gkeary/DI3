@@ -7,8 +7,8 @@ namespace DAL.Interface
 {
     public interface IDAL
     {
-        DataTable GetAll();
-        DataTable GetById(string ID);
-        bool SaveOrUpdate(DataTable entity);
+       DataTable GetAll();
+       DataTable GetById(string ID);
+       bool SaveOrUpdate(DataTable entity);
     }
 }

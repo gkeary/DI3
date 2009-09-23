@@ -29,6 +29,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,49 +65,89 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Spring.NET 1.2.0\bin\net\2.0\release\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SubSonic\SubSonic 3 Final\Binaries\SubSonic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\frmCustomer.cs">
+    <Compile Include="frmAddDrivers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer\frmCustomer.Designer.cs">
-      <DependentUpon>frmCustomer.cs</DependentUpon>
+    <Compile Include="frmAddDrivers.Designer.cs">
+      <DependentUpon>frmAddDrivers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Employee\frmEmployee.cs">
+    <Compile Include="frmDefaultRoutes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Employee\frmEmployee.Designer.cs">
-      <DependentUpon>frmEmployee.cs</DependentUpon>
+    <Compile Include="frmDefaultRoutes.Designer.cs">
+      <DependentUpon>frmDefaultRoutes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frmDeleteDrivers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="frmDeleteDrivers.Designer.cs">
+      <DependentUpon>frmDeleteDrivers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenters\Employee.cs" />
-    <Compile Include="Presenters\Customer.cs" />
-    <Compile Include="Presenters\IPresenter.cs" />
+    <Compile Include="frmOneTimePickup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOneTimePickup.Designer.cs">
+      <DependentUpon>frmOneTimePickup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRoute.Designer.cs">
+      <DependentUpon>frmRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PickupControl\PickupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PickupControl\PickupControl.Designer.cs">
+      <DependentUpon>PickupControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customer\frmCustomer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddDrivers.resx">
+      <DependentUpon>frmAddDrivers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Employee\frmEmployee.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="frmDefaultRoutes.resx">
+      <DependentUpon>frmDefaultRoutes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frmDeleteDrivers.resx">
+      <DependentUpon>frmDeleteDrivers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOneTimePickup.resx">
+      <DependentUpon>frmOneTimePickup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRoute.resx">
+      <DependentUpon>frmRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PickupControl\PickupControl.resx">
+      <DependentUpon>PickupControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,6 +160,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\DispatchAR.CUSTOMERSTable.datasource" />
+    <None Include="Properties\DataSources\DispatchAR.DRIVERTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,6 +171,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ScreenDimension.cs" />
     <Compile Include="WinClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +179,9 @@
       <Project>{2E3ACCD1-D396-404C-9297-486D0CFB2F50}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{E1E9220A-63B2-41C3-AA26-2DC58BE56C75}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\DispatchAR\DispatchAR.csproj">
+      <Project>{0C233CA2-04FF-45C7-BEC0-9E89C4384827}</Project>
+      <Name>DispatchAR</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +210,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\scr.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpringOriginal\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

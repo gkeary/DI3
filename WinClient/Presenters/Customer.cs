@@ -18,6 +18,8 @@ namespace WinClient.Presenters
 
         #region IPresenter Members
 
+        
+
         public DataTable GetData(string ID)
         {
             if (ID == null || ID.Length == 0)
@@ -37,5 +39,7 @@ namespace WinClient.Presenters
         }
 
         #endregion
+
+
     }
 }
