@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RossData;
+using DispatchAR;
 using System.Collections;
 
-namespace Dispatch3
+namespace WinClient
 {
     public class CustomerListBoxHelper
     {

@@ -326,7 +326,7 @@ namespace WinClient
                 // look at other ways to do this???
                 sb.Append("Data Source=");
                 sb.Append("tcp:");
-                // sb.Append(Dispatch3.Properties.Settings.Default.Server);
+                // sb.Append(WinClient.Properties.Settings.Default.Server);
                 sb.Append("\\sqlexpress;Initial Catalog=");
                 //  sb.Append(Settings.Default.DB);
                 sb.Append(";Uid=");

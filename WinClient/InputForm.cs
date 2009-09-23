@@ -1,13 +1,14 @@
 ﻿using System.IO;
 using System.ComponentModel;
-using RossData;
+using DispatchAR;
 using System.Text;
 using System.Xml;
 using System.Collections;
 using System.Windows.Forms;
-namespace WinClent //Dispatch3
+using WinClient;
+namespace WinClent //WinClient
 {
-public class InputForm
+partial class InputForm: Form
 {
     #region "Declarations"
 
@@ -185,7 +186,7 @@ InputForm_Load(object sender, System.EventArgs e)
             if (strComment.Length > 30)
             {
                 var sb = new StringBuilder();
-                sb.AppendLine("Only 30 characters allowed")
+                sb.AppendLine("Only 30 characters allowed");
                 sb.AppendLine("Discarding: " + strComment.Substring(31)); 
                    Strings.Mid(strComment, 31));
                 MessageBox.Show("Only 30 characters allowed" + Constants.vbCrLf + "Discarding: " + Strings.Mid(strComment, 31));

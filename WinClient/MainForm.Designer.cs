@@ -1,4 +1,4 @@
-﻿namespace WinClient //Dispatch3
+﻿namespace WinClient //WinClient
 {
     partial class MainForm
     {

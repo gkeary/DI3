@@ -1,7 +1,7 @@
-﻿namespace WinClient //Dispatch3
+﻿namespace WinClent //WinClient
 {
 
-    [Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
+    //[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
     partial class InputForm : System.Windows.Forms.Form
     {
 
@@ -36,7 +36,7 @@
         //NOTE: The following procedure is required by the Windows Form Designer
         //It can be modified using the Windows Form Designer.  
         //Do not modify it using the code editor.
-        [System.Diagnostics.DebuggerStepThrough()]
+        //[System.Diagnostics.DebuggerStepThrough()]
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();

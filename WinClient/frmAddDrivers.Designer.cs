@@ -1,4 +1,4 @@
-﻿namespace WinClient //Dispatch3
+﻿namespace WinClient //WinClient
 {
 //[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
 partial class frmAddDrivers : System.Windows.Forms.Form
