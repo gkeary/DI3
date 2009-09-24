@@ -16,6 +16,7 @@ namespace WinClient
 {
     public partial class frmRoute : Form
     {
+        
         private CurrentDayRoute _cdr;
 
         public CurrentDayRoute Cdr
@@ -84,18 +85,21 @@ namespace WinClient
             // Add the number of AllPickupsToday to the title 
             // it always starts with a "---" search for DailyCount or newmdichild to see 
             //    where the text gets initialized
-
+            var pos = Text.IndexOf("---");
+            Text= Text.Substring(0,pos);
+            
             if (routecount == 0)
             {
-                this.Text += "-- 0 Pickups";
+                Text = String.Concat( Text, "--- 0 Pickups");
             }
             else if (routecount == 1)
             {
-                this.Text += "-- 1 Pickup";
+                Text = String.Concat( Text, "--- 1 Pickup");
             }
             else
             {
-                this.Text += String.Format("-- {0} Pickups", routecount.ToString());
+                var z = String.Format("--- {0} Pickups", routecount.ToString());
+                Text = String.Concat(Text, z);
             }
 
             //finally got the right thing here!

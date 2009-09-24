@@ -565,6 +565,8 @@ namespace WinClient
             //throw new NotImplementedException();
 #endif
         }
+
+        
         #endregion static methods
     }
 }

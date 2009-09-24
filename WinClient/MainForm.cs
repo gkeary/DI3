@@ -104,6 +104,7 @@ namespace WinClient
                     }
 
                 }
+                // see if this helps with i++ warning ???
                 return;
             }
         }
@@ -217,6 +218,8 @@ namespace WinClient
                         {
                             StringBuilder sb = new StringBuilder();
                             var cdr = Program.CDRList.Find(x => x.CurrentDayRouteID == p.key);
+                            //var pos = Text.IndexOf("---");
+                            //Text= Text.Substring(0,pos);
                             int pos1 = mdi.Text.IndexOf("---") + 4;
                             sb.Append(cdr.CDRRouteID + " ");
                             sb.Append(cdr.CDRRouteName + " ");
@@ -304,20 +307,25 @@ namespace WinClient
                     frmRoute routeform = (frmRoute)MDIForms[i];
                     foreach (var route in Program.CDRList)
                     {
+                        // todo: add check for refresh necessary?
                         if (route.CDRRouteID.Equals(routeform.Tag))
                         {
                             StringBuilder title = new StringBuilder();
-                            int pos1 = routeform.Text.IndexOf("---") + 4;//strings.InStr(routeform.Text, "---", CompareMethod.Binary);
+                            int pos1 = routeform.Text.IndexOf("---");
+                            var savestr = routeform.Text.Substring(pos1);
+                            routeform.Text = "";
                             title.Append(route.CDRRouteID + " ");
-                            title.Append(route.CDRRouteName + " --- ");
-                            title.Append(routeform.Text.Substring(pos1));
+                            title.Append(route.CDRRouteName);// + " --- ");
+                            title.Append(savestr);
                             frmRoute reference = routeform;
-                            lock (reference)
-                            {
-                                routeform.Text = title.ToString();
-                                routeform.Controls[1].Text = route.CDRDriverMessage;
-                                routeform.Controls[2].Text = route.CDRDriverLastName;
-                            }
+                            
+                                lock (reference) {
+                                    var z = title.ToString();
+                                    routeform.Text = String.Concat(routeform.Text, z);
+                                    routeform.Controls[1].Text = route.CDRDriverMessage;
+                                    routeform.Controls[2].Text = route.CDRDriverLastName;
+                                }
+                           
                             route.CDRStation = Environment.MachineName;
                             route.Terminal = Properties.Settings.Default.terminal;
                             route.Save();
@@ -337,7 +345,7 @@ namespace WinClient
                 case 0:
                     this.SyncCustomerList();
                     break;
-                case 1:
+                case 3:
                     this.SyncPosting();
                     break;
 
