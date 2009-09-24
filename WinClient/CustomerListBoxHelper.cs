@@ -36,22 +36,22 @@ namespace WinClient
             }
         }
 
-        public static string GetRouteID(string custID)
-        {
-            //Dim pp As Pickup = PickupHash.Item("NEWEL")
-            //Dim pptrue As Boolean = PickupHash.Contains("NEWEL")
-            //Dim foo As String = PickupHash.Item("NEWEL").CustomerName
+        //public static string GetRouteID(string custID)
+        //{
+        //    Dim pp As Pickup = PickupHash.Item("NEWEL")
+        //    Dim pptrue As Boolean = PickupHash.Contains("NEWEL")
+        //    Dim foo As String = PickupHash.Item("NEWEL").CustomerName
 
-            if (CustListHash.Contains(custID))
-            {
-            // TODO:  replace w/ LINQ expression?
-            //    return CustListHash.Item(custID).DefaultRouteID;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //    if (CustListHash.Contains(custID))
+        //    {
+        //     TODO:  replace w/ LINQ expression?
+        //        return CustListHash.Item(custID).DefaultRouteID;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
         public static string GetRoute2RouteName(string routeID)
         {
             string retValue = "";

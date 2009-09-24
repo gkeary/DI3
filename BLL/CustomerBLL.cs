@@ -61,7 +61,7 @@ namespace BLL
          FROM         dbo.CUSTOMER
          ORDER BY CustomerName
         ************************************************/
-        public List<string> GetCustView()
+        public List<string> GetCustStringList()
         {
             var clist = new List<string>();
             
@@ -74,10 +74,10 @@ namespace BLL
             return clist;
 
         }
-    private static string BuildString(string input1, string input2, string input3) {
+    private static string BuildString(string keystring, string namestring, string citystring) {
        var sb = new StringBuilder();
-       sb.Append(input1);
-       switch (input1.Length) {
+       sb.Append(keystring);
+       switch (keystring.Length) {
            case 3: sb.Append("       => "); break;
            case 4: sb.Append("      => " ); break;
            case 5: sb.Append("     => "  ); break;
@@ -85,10 +85,15 @@ namespace BLL
            case 7: sb.Append("   => "    ); break;
            default: sb.Append("=> " ); break;
         };
-        sb.Append(input2 + " @ " + input3);
+        sb.Append(namestring + " @ " + citystring);
         return sb.ToString();                                    
 }
 
         #endregion
+
+    public  List<CUSTOMER> GetCustomerList()
+    {
+       return (List<CUSTOMER>) GetAll();
+    }
     }
 }

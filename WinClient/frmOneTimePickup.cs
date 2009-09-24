@@ -53,7 +53,7 @@ namespace WinClient
                 comboRoutes.Items.Add(cr.RouteID + " " + cr.RouteName);
             }
             var bll =(BLL.CustomerBLL)WinClient.ApplicationContext["CustomerBLL"];
-            custlist.AddRange(bll.GetCustView());
+            custlist.AddRange(bll.GetCustStringList());
             lstCustomers.DataSource = custlist;
         }
     }

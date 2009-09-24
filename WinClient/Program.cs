@@ -30,6 +30,8 @@ namespace WinClient
         public static List<CurrentDayRoute>  CDRList    = new List<CurrentDayRoute>();
         public static List<CurrentDayPickup> CDPList    = new List<CurrentDayPickup>();
         public static List<Pickup>           PickupList = new List<Pickup>();
+        public static List<CUSTOMER>           CustomerList = new List<CUSTOMER>();
+        public static List<string>           CustomerStringList = new List<string>();
         public static List<DispatchAR.Posting>          PostingList= new List<DispatchAR.Posting>();
         public static List<ScreenDimension>  ScreenList = new List<ScreenDimension>();
         private static int _screenheight;
@@ -61,6 +63,16 @@ namespace WinClient
         }
 
         #region static methods
+        public static void GetCustomerList() {
+            var bll = (BLL.CustomerBLL)WinClient.ApplicationContext["CustomerBLL"];
+            CustomerList.AddRange(bll.GetCustomerList());
+            // example usage: lstCustomers.DataSource = custlist; 
+        }
+        public static void GetCustomerStringList() {
+            var bll = (BLL.CustomerBLL)WinClient.ApplicationContext["CustomerBLL"];
+            CustomerStringList.AddRange(bll.GetCustStringList());
+            // example usage: lstCustomers.DataSource = custlist;
+        }
         public static void ComputeScreenBoundaries()
         {
             int intShortestHeight = 0;

@@ -5,15 +5,15 @@ using System.Text;
 using System.Xml;
 using System.Collections;
 using System.Windows.Forms;
-using WinClient;
-namespace WinClent //WinClient
+
+namespace WinClient 
 {
 partial class InputForm: Form
 {
     #region "Declarations"
 
-    static internal CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
-    static internal CurrentDayRouteController CDRController = new CurrentDayRouteController();
+    //static internal CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
+//    static internal CurrentDayRouteController CDRController = new CurrentDayRouteController();
     static internal CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
     static internal CurrentDayPickupController CDPController = new CurrentDayPickupController();
 
@@ -155,8 +155,11 @@ InputForm_Load(object sender, System.EventArgs e)
         txtPhone.Text = cust.Phone;
 
         txtDefaultRoute.Text = cust.DefaultRouteID;
-        txtRouteName.Text = CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
-        txtDefaultDriverID.Text = CustomerListBoxHelper.GetRoute2DefaultDriverID(cust.DefaultRouteID);
+        // change these so I can eliminate CustomerListBoxHelper.cs
+        //txtRouteName.Text = CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
+        //txtDefaultDriverID.Text = CustomerListBoxHelper.GetRoute2DefaultDriverID(cust.DefaultRouteID);
+
+        xxx
     }
 
     #region "Data Maintenance"
@@ -400,8 +403,8 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
     }
     private void UpdateCDPRecords(int custTableId)
     {
-        CurrentDayPickupCollection cdpcollection = new CurrentDayPickupCollection();
-        Customer cust = Customer.FetchByID(custTableId);
+        CurrentDayPickupCollection cdpcollection = Program.CDPList; // new CurrentDayPickupCollection();
+        CUSTOMER cust = Customer.FetchByID(custTableId);
         cdpcollection.Load();
         foreach (CurrentDayPickup cdp in cdpcollection)
         {
@@ -424,10 +427,6 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
             {
                 continue;
             }
-            if (win is TabForm)
-            {
-                continue;
-            }
             if (win.Tag == routeTag)
             {
                 functionReturnValue = win;
@@ -436,32 +435,28 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
         }
         return functionReturnValue;
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-txtComment_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
+    private void txtComment_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
     {
         if ((e.KeyValue == 13))
         {
             if ((!string.IsNullOrEmpty(lblCustomerName.Text)))
             {
                 AddPickup();
-
                 txtCustomerID.Focus();
                 StringSoFar.Length = 0;
             }
         }
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-listboxCustomer_MouseDoubleClick(System.Object sender, System.Windows.Forms.MouseEventArgs e)
+    private void listboxCustomer_MouseDoubleClick(System.Object sender, System.Windows.Forms.MouseEventArgs e)
     {
         RefreshInputWindowControls();
         txtCustomerID.Text = sender.selectedvalue;
         txtComment.Focus();
         StringSoFar.Length = 0;
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-txtCustomerID_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
+    private void txtCustomerID_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
     {
-        Customer Cust = default(Customer);
+        CUSTOMER Cust = default(CUSTOMER);
         string TestString = StringSoFar.ToString();
         int CurrentIndex = listboxCustomer.SelectedIndex;
         string nextchar = Strings.UCase(Strings.Chr(e.KeyValue));

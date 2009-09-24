@@ -340,12 +340,12 @@ namespace WinClient
             this.tick++;
 
             this.Text = "Dispatch v3.0 (Spring) --  tick: " + this.tick.ToString();
-            switch ((this.tick % 3))
+            switch ((this.tick % 13))
             {
                 case 0:
                     this.SyncCustomerList();
                     break;
-                case 3:
+                case 13:
                     this.SyncPosting();
                     break;
 
