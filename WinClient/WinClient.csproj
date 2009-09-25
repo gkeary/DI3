@@ -84,7 +84,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerListBoxHelper.cs" />
     <Compile Include="frmAddDrivers.cs">
       <SubType>Form</SubType>
     </Compile>

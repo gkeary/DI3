@@ -32,3 +32,4 @@ C:\Program Files\Git\DI3\WinClient\bin\Release\Spring.Aop.pdb
 C:\Program Files\Git\DI3\WinClient\bin\Release\Spring.Aop.xml
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.exe
 C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.pdb
+C:\Program Files\Git\DI3\WinClient\obj\Release\WinClient.InputForm.resources

@@ -10,31 +10,31 @@ namespace WinClient
     public class CustomerListBoxHelper
     {
 
-        private static VCustomerListCollection mCustomerListCollection = new VCustomerListCollection();
-        private static CustomerCollection mCustomerCollection = new CustomerCollection();
-        private static PickupCollection mPickupCollection = new PickupCollection();
-        private static ROUTE2Collection mRoute2Collection = new ROUTE2Collection();
+        //private static VCustomerListCollection mCustomerListCollection = new VCustomerListCollection();
+        //private static CustomerCollection mCustomerCollection = new CustomerCollection();
+        //private static PickupCollection mPickupCollection = new PickupCollection();
+        //private static ROUTE2Collection mRoute2Collection = new ROUTE2Collection();
         //private static Hashtable PickupHash = new Hashtable();
         private static Hashtable CustListHash = new Hashtable();
         private static Hashtable CustomerHash = new Hashtable();
         private static Hashtable Route2Hash = new Hashtable();
 
-        public static string GetCustomerName(string custID)
-        {
-            //Dim pp As Pickup = PickupHash.Item("NEWEL")
-            //Dim pptrue As Boolean = PickupHash.Contains("NEWEL")
-            //Dim foo As String = PickupHash.Item("NEWEL").CustomerName
+        //public static string GetCustomerName(string custID)
+        //{
+        //    //Dim pp As Pickup = PickupHash.Item("NEWEL")
+        //    //Dim pptrue As Boolean = PickupHash.Contains("NEWEL")
+        //    //Dim foo As String = PickupHash.Item("NEWEL").CustomerName
 
-            if (PickupHash.Contains(custID))
-            {
-            // TODO:  replace w/ LINQ expression?
-                //return PickupHash.Item(custID).CustomerName;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //    if (PickupHash.Contains(custID))
+        //    {
+        //    // TODO:  replace w/ LINQ expression?
+        //        //return PickupHash.Item(custID).CustomerName;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
         //public static string GetRouteID(string custID)
         //{
@@ -52,43 +52,43 @@ namespace WinClient
         //        return "";
         //    }
         //}
-        public static string GetRoute2RouteName(string routeID)
-        {
-            string retValue = "";
+        //public static string GetRoute2RouteName(string routeID)
+        //{
+        //    string retValue = "";
 
-            if (Route2Hash.Count > 0)
-            {
-                foreach (ROUTE2 r2 in Route2Hash.Values)
-                {
-                    if (r2.RouteID == routeID)
-                    {
-                        retValue = r2.RouteName;
-                    }
-                }
-            }
-            else
-            {
-            }
-            return retValue;
-        }
-        public static string GetRoute2DefaultDriverID(string routeID)
-        {
-            string retvalue = "";
-            if (Route2Hash.Count > 0)
-            {
-                foreach (ROUTE2 r2 in Route2Hash.Values)
-                {
-                    if (r2.RouteID == routeID)
-                    {
-                        retvalue = r2.DefaultDriverID;
-                    }
-                }
-            }
-            else
-            {
-            }
-            return retvalue;
-        }
+        //    if (Route2Hash.Count > 0)
+        //    {
+        //        foreach (ROUTE2 r2 in Route2Hash.Values)
+        //        {
+        //            if (r2.RouteID == routeID)
+        //            {
+        //                retValue = r2.RouteName;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //    }
+        //    return retValue;
+        //}
+        //public static string GetRoute2DefaultDriverID(string routeID)
+        //{
+        //    string retvalue = "";
+        //    if (Route2Hash.Count > 0)
+        //    {
+        //        foreach (ROUTE2 r2 in Route2Hash.Values)
+        //        {
+        //            if (r2.RouteID == routeID)
+        //            {
+        //                retvalue = r2.DefaultDriverID;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //    }
+        //    return retvalue;
+        //}
 
 
         //Public Shared Function getRoute2TableID(ByVal RouteID As String) As Integer

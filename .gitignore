@@ -18,3 +18,7 @@ foo.txt
 */obj
 /WinClient/bin
 /WinClient/obj
+/BLL/obj
+/DispatchAR/obj
+/BLL/bin
+/DispatchAR/bin
