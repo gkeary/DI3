@@ -14,31 +14,19 @@ partial class InputForm: Form
 {
     #region "Declarations"
 
-    //static internal CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
-//    static internal CurrentDayRouteController CDRController = new CurrentDayRouteController();
-    //static internal CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
-    //static internal CurrentDayPickupController CDPController = new CurrentDayPickupController();
 
     public int intCDPSyncCount = 0;
     public static bool blnWindowOpen = false;
     public static bool blnDayStarted = false;
     public static object objSourcePickup = new object();
     // declarations for mainform listbox functionality
-    //public Hashtable PickupHash = new Hashtable();
-    //Public CustomerHash1 As Hashtable = New Hashtable()  'bug is this hash redundant?
     public Hashtable CustomerHash = new Hashtable();
-    //public Hashtable Route2Hash = new Hashtable();
-    //Private mCustomerListCollection As VCustomerListCollection = New VCustomerListCollection()
     public List<CUSTOMER> mCustomerCollection = Program.CustomerList; //CustomerCollection();
     public List<Route>  mRoute2Collection = Program.RouteList; // ROUTE2Collection();
-    //lstCustAddPickup should have a binding source?
     private BindingSource CustomerBindingSource = new BindingSource();
-    //Private tick As Integer = 0
     private Form DestinationForm;
     private Form SourceForm;
-    //Private SourceRow As DataGridViewRow
     private const int CtrlMask = 8;
-    //private MainForm MainWindow; // this.ParentForm;
     private StringBuilder StringSoFar = new StringBuilder();
     #endregion
     #region "Initializing routines"
@@ -56,26 +44,21 @@ partial class InputForm: Form
         InitializeComponent();
 
         // Add any initialization after the InitializeComponent() call.
-        // initialize the collections and hashes...
-        //mRoute2Collection.Load();
-        //mCustomerCollection.Load();
-        //mCustomerCollection.Sort("InfoString", true);
-        //CustomerListBoxHelper.PopulateCustomerHash();
-        //CustomerListBoxHelper.PopulateRoute2Hash();
         pnlCustomerDetails.Visible = true;
-        //MainWindow =  (MainForm) this.ParentForm;
 
         if (MainForm.blnDayStarted)
         {
             //LoadMDIRoutes()
             //PickupHash = CustomerListBoxHelper.PopulatePickupHash();
             //Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash();
-            CustomerHash = CustomerListBoxHelper.PopulateCustomerHash();
+//            CustomerHash = CustomerListBoxHelper.PopulateCustomerHash();
         }
     }
     private void InputForm_Load(object sender, System.EventArgs e)
     {
-        if (Program.ScreenArray.Count == 0 | Program.ScreenArray == null)
+        return;
+        // issues here... blows up
+        if (Program.CDRList.Count == 0 | Program.CDRList == null)
         {
             this.Text = "Input";
             this.Top = 0;
@@ -87,12 +70,15 @@ partial class InputForm: Form
         {
             // requires that TabForm occupies Program.ScreenArray.Item(0) AND
             // requires that Input   occupies Program.ScreenArray.Item(LAST)
-            int lastindex = Program.ScreenArray.Count() - 1;
+            int lastindex = Program.ScreenList.Count - 1;
             this.Text = "Input";
-            this.Top = Program.ScreenArray.Item(lastindex).TopInt;
-            this.Left = Program.ScreenArray.Item(lastindex).LeftInt;
-            this.Width = Program.ScreenArray.Item(lastindex).WidthInt;
-            this.Height = Program.ScreenArray.Item(lastindex).HeightInt;
+
+            var inputscreen = Program.ScreenList
+                                .Find(x => x.WinTitle == "Input");
+            this.Top = inputscreen.TopInt;
+            this.Left = inputscreen.LeftInt;
+            this.Width = inputscreen.WidthInt;
+            this.Height = inputscreen.HeightInt;
         }
         this.Tag = this.Text;
 
@@ -131,10 +117,14 @@ partial class InputForm: Form
         {
             listboxCustomer.SelectedIndex = 0;
         }
-        Customer cust = listboxCustomer.SelectedItem;
+        CUSTOMER cust = (CUSTOMER)listboxCustomer.SelectedItem;
 
         //'now populate customer related values on pnlAddpickup from lstCustomer
-        lblDefaultRouteID.Text = "Default route: " + cust.DefaultRouteID + " " + CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
+        lblDefaultRouteID.Text = "Default route: " +
+              cust.DefaultRouteID + " " +
+              Program.RouteList.Find(x => x.RouteID == cust.DefaultRouteID).RouteName;
+
+             // CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
         lblCustomerName.Text = cust.CustomerName;
         lblCustomerCity.Text = cust.City;
 
@@ -158,9 +148,13 @@ partial class InputForm: Form
         // change these so I can eliminate CustomerListBoxHelper.cs
         //txtRouteName.Text = CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
         //txtDefaultDriverID.Text = CustomerListBoxHelper.GetRoute2DefaultDriverID(cust.DefaultRouteID);
-
-        var routes = Program.RouteList;
-        txtRouteName.Text = routes.
+        var rte = new Route();
+        var cc = new CUSTOMER();
+        var theRoute = Program.RouteList
+                            .Find(x => x.RouteID == cust.DefaultRouteID);
+                            
+        txtRouteName.Text = theRoute.RouteName;
+        txtDefaultDriverID.Text = theRoute.DefaultDriverID;
     }
 
     #region "Data Maintenance"
@@ -216,7 +210,7 @@ partial class InputForm: Form
         //pu.UserName = Environment.UserName;
         // needed or not ?? pu.CDPStation = Properties.Settings.Default.ActiveStations - 1;
         //pu.PostedCount = My.MySettings.Default.ActiveStations - 1;
-        pu.Terminal = My.MySettings.Default.Terminal;
+        pu.Terminal = Properties.Settings.Default.terminal;
         //pu.CDPCreatedBy = Environment.MachineName;
         //pu.CDPCreatedTime = Now;
         //pu.CDPEditedBy = "";
@@ -240,13 +234,13 @@ partial class InputForm: Form
         frmRoute frm = default(frmRoute);
         for (i = 0; i <= this.ParentForm.MdiChildren.Length - 1; i++)
         {
-            if (((this.ParentForm.MdiChildren(i)) is TabForm | (this.ParentForm.MdiChildren(i)) is InputForm))
+            if ( (this.ParentForm.MdiChildren[i]) is InputForm)
             {
                 continue;
             }
-            if ((txtDefaultRoute.Text == this.ParentForm.MdiChildren(i).Text.Substring(0, 2)))
+            if ((txtDefaultRoute.Text == this.ParentForm.MdiChildren[i].Text.Substring(0, 2)))
             {
-                frm = this.ParentForm.MdiChildren(i);
+                frm = (frmRoute) ParentForm.MdiChildren[i];
                 frm.RefreshDynamicPickupControls();
                 //MainWindow.RefreshThisRoute(frm) ' sometimes threw an exception 
                 break; // TODO: might not be correct. Was : Exit For

@@ -223,7 +223,7 @@ namespace WinClient
             {
                 if (((MDIForms[i]) is frmRoute))
                 //todo: fix this once InputForm works...
-                //if (((MDIForms[i]) is InputForm))
+                if (((MDIForms[i]) is InputForm))
                 {
                     continue;
                 }

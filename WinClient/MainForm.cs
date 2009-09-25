@@ -112,12 +112,12 @@ namespace WinClient
 
         private void LoadInputWindow()
         {
-            return;
+
             // InputForm has many issues
             // stub it out for now...
-            //var InputForm = new InputForm();
-            // InputForm.MdiParent = this;
-            //InputForm.Show();
+             var InputForm = new InputForm();
+             InputForm.MdiParent = this;
+            InputForm.Show();
         }
 
         public void RefreshThisRoute(frmRoute whichForm)
@@ -350,7 +350,7 @@ namespace WinClient
                     break;
 
                 case 2:
-                    this.SyncRouteTitles();
+                   // this.SyncRouteTitles();
                     frmRoute.DailyCount = Program.CDPList.Count;
                     break;
             }

@@ -153,7 +153,7 @@
         // mnuDefaultRoutes
         // 
         this.mnuDefaultRoutes.Index = 3;
-        this.mnuDefaultRoutes.Text = "Set routes for today";
+        this.mnuDefaultRoutes.Text = "Set routename for today";
         this.mnuDefaultRoutes.Click += new System.EventHandler(this.mnuDefaultRoutes_Click);
         // 
         // mnuExit
