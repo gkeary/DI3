@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/24/2009 04:25:05--><Screens>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><!--Created at 9/25/2009 12:53:23--><Screens>
 <Items xmlns="scr">
 <Item Title="00 Laconia--- 2 Pickups" Left="7" Top="293" Width="446" Height="445" />
 <Item Title="02 Keene--- 3 Pickups" Left="605" Top="140" Width="340" Height="256" />
@@ -31,5 +31,6 @@
 <Item Title="76 Spare--- 0 Pickups" Left="0" Top="0" Width="340" Height="256" />
 <Item Title="78 Spare--- 0 Pickups" Left="0" Top="0" Width="340" Height="256" />
 <Item Title="80 Spare--- 0 Pickups" Left="0" Top="0" Width="340" Height="256" />
+<Item Title="Input" Left="66" Top="87" Width="560" Height="451" />
 </Items>
 </Screens>

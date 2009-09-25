@@ -15,7 +15,7 @@ namespace BLL
        ///
        /// </summary>
         private IQueryable<CUSTOMER> qry = null;
-        //private SimpleRepository repo;
+        private SimpleRepository repo;
 
         public CustomerBLL() : base()
         {
@@ -93,7 +93,8 @@ namespace BLL
 
     public  List<CUSTOMER> GetCustomerList()
     {
-       return (List<CUSTOMER>) GetAll();
+       return (List<CUSTOMER>)Repo.All<CUSTOMER>();
+       //return (List<CUSTOMER>) GetAll();
     }
     }
 }

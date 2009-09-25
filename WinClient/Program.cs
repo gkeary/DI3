@@ -63,9 +63,11 @@ namespace WinClient
         }
 
         #region static methods
-        public static void GetCustomerList() {
+        public static void GetCustomerCollection() {
             var bll = (BLL.CustomerBLL)WinClient.ApplicationContext["CustomerBLL"];
-            CustomerList.AddRange(bll.GetCustomerList());
+            var tmplist = bll.GetAll();
+            CustomerList = tmplist.ToList<CUSTOMER>();
+            //CustomerList.AddRange(bll.GetCustomerList());
             // example usage: lstCustomers.DataSource = custlist; 
         }
         public static void GetCustomerStringList() {

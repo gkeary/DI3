@@ -142,9 +142,9 @@ namespace WinClient
         {
             {
                 return;
-                //MyProject.Forms.InputForm.mCustomerCollection.Clear();
-                //MyProject.Forms.InputForm.mCustomerCollection.Load();
-                //MyProject.Forms.InputForm.bsrcCustomerList.DataSource = MyProject.Forms.InputForm.mCustomerCollection;
+                //MyProject.Forms.InputForm.inputCustList.Clear();
+                //MyProject.Forms.InputForm.inputCustList.Load();
+                //MyProject.Forms.InputForm.bsrcCustomerList.DataSource = MyProject.Forms.InputForm.inputCustList;
                 //MyProject.Forms.InputForm.listboxCustomer.DataSource = null;
                 //MyProject.Forms.InputForm.listboxCustomer.DisplayMember = "InfoString";
                 //MyProject.Forms.InputForm.listboxCustomer.ValueMember = "CustomerID";
