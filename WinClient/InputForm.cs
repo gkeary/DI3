@@ -5,6 +5,8 @@ using System.Text;
 using System.Xml;
 using System.Collections;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System;
 
 namespace WinClient 
 {
@@ -22,13 +24,12 @@ partial class InputForm: Form
     public static bool blnDayStarted = false;
     public static object objSourcePickup = new object();
     // declarations for mainform listbox functionality
-    public Hashtable PickupHash = new Hashtable();
+    //public Hashtable PickupHash = new Hashtable();
     //Public CustomerHash1 As Hashtable = New Hashtable()  'bug is this hash redundant?
     public Hashtable CustomerHash = new Hashtable();
-    public Hashtable Route2Hash = new Hashtable();
-    public CustomerListBoxHelper Helper = new CustomerListBoxHelper();
+    //public Hashtable Route2Hash = new Hashtable();
     //Private mCustomerListCollection As VCustomerListCollection = New VCustomerListCollection()
-    public List<string> mCustomerCollection = Program.CustomerStringList; //CustomerCollection();
+    public List<CUSTOMER> mCustomerCollection = Program.CustomerList; //CustomerCollection();
     public List<Route>  mRoute2Collection = Program.RouteList; // ROUTE2Collection();
     //lstCustAddPickup should have a binding source?
     private BindingSource CustomerBindingSource = new BindingSource();
@@ -36,7 +37,7 @@ partial class InputForm: Form
     private Form DestinationForm;
     private Form SourceForm;
     //Private SourceRow As DataGridViewRow
-    private const var CtrlMask = 8;
+    private const int CtrlMask = 8;
     //private MainForm MainWindow; // this.ParentForm;
     private StringBuilder StringSoFar = new StringBuilder();
     #endregion
@@ -56,24 +57,23 @@ partial class InputForm: Form
 
         // Add any initialization after the InitializeComponent() call.
         // initialize the collections and hashes...
-        mRoute2Collection.Load();
-        mCustomerCollection.Load();
-        mCustomerCollection.Sort("InfoString", true);
-        CustomerListBoxHelper.PopulateCustomerHash();
-        CustomerListBoxHelper.PopulateRoute2Hash();
+        //mRoute2Collection.Load();
+        //mCustomerCollection.Load();
+        //mCustomerCollection.Sort("InfoString", true);
+        //CustomerListBoxHelper.PopulateCustomerHash();
+        //CustomerListBoxHelper.PopulateRoute2Hash();
         pnlCustomerDetails.Visible = true;
-        //\MainWindow =  (MainForm) this.ParentForm;
+        //MainWindow =  (MainForm) this.ParentForm;
 
         if (MainForm.blnDayStarted)
         {
             //LoadMDIRoutes()
-            PickupHash = CustomerListBoxHelper.PopulatePickupHash();
-            Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash();
+            //PickupHash = CustomerListBoxHelper.PopulatePickupHash();
+            //Route2Hash = CustomerListBoxHelper.PopulateRoute2Hash();
             CustomerHash = CustomerListBoxHelper.PopulateCustomerHash();
         }
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-InputForm_Load(object sender, System.EventArgs e)
+    private void InputForm_Load(object sender, System.EventArgs e)
     {
         if (Program.ScreenArray.Count == 0 | Program.ScreenArray == null)
         {
@@ -159,7 +159,8 @@ InputForm_Load(object sender, System.EventArgs e)
         //txtRouteName.Text = CustomerListBoxHelper.GetRoute2RouteName(cust.DefaultRouteID);
         //txtDefaultDriverID.Text = CustomerListBoxHelper.GetRoute2DefaultDriverID(cust.DefaultRouteID);
 
-        xxx
+        var routes = Program.RouteList;
+        txtRouteName.Text = routes.
     }
 
     #region "Data Maintenance"
@@ -191,39 +192,49 @@ InputForm_Load(object sender, System.EventArgs e)
                 var sb = new StringBuilder();
                 sb.AppendLine("Only 30 characters allowed");
                 sb.AppendLine("Discarding: " + strComment.Substring(31)); 
-                   Strings.Mid(strComment, 31));
-                MessageBox.Show("Only 30 characters allowed" + Constants.vbCrLf + "Discarding: " + Strings.Mid(strComment, 31));
-                strComment = Strings.Mid(strComment, 1, 30);
+                   //Strings.Mid(strComment, 31));
+                MessageBox.Show("Only 30 characters allowed\n Discarding: " + strComment.Substring(31));
+                strComment = strComment.Substring(1, 31);// Strings.Mid(strComment, 1, 30);
             }
       
 
         intCDPSyncCount += 1;
-        strCDPSyncID = Environment.MachineName + "_Pkp_" + intCDPSyncCount.ToString;
+        strCDPSyncID = Environment.MachineName+ "_Pkp_"+ intCDPSyncCount.ToString();
         CurrentDayPickup pu = new CurrentDayPickup();
-        pu.CDPSyncID = strCDPSyncID;
         pu.CDPCustomerName = strCustomerName;
         // use the hidden one here
-        pu.CDPCustomerID = pnlCustomerDetails.Controls.Item("lblOrigCustID").Text;
+
+        var lbl =  pnlCustomerDetails.Controls.Find("lblOrigCustID",true);
+        pu.CDPCustomerID = lbl[0].Text; // pnlCustomerDetails.Controls.Find("lblOrigCustID");
         //pu.CDPCustomerID = txtCustomerID.Text
         pu.CDPComment = strComment;
-        pu.CDPPickupDate = Today;
+        pu.CDPPickupDate = DateTime.Today;
         pu.CDPDefaultRouteID = txtDefaultRoute.Text;
         pu.CDPDispatched = false;
         pu.CDPStation = Environment.MachineName;
-        pu.CDPChecked = false;
-        pu.UserName = Environment.UserName;
-        pu.PostedCount = My.MySettings.Default.ActiveStations - 1;
+        //pu.CDPChecked = false;
+        //pu.UserName = Environment.UserName;
+        // needed or not ?? pu.CDPStation = Properties.Settings.Default.ActiveStations - 1;
+        //pu.PostedCount = My.MySettings.Default.ActiveStations - 1;
         pu.Terminal = My.MySettings.Default.Terminal;
-        pu.CDPCreatedBy = Environment.MachineName;
-        pu.CDPCreatedTime = Now;
-        pu.CDPEditedBy = "";
+        //pu.CDPCreatedBy = Environment.MachineName;
+        //pu.CDPCreatedTime = Now;
+        //pu.CDPEditedBy = "";
         pu.Save();
 
         // post it
-        int pendingUpdates = My.MySettings.Default.ActiveStations - 1;
+        int pendingUpdates = Properties.Settings.Default.ActiveStations - 1;
         string initiatingUser = Environment.UserName;
-        Posting job = new Posting(pu, pendingUpdates, initiatingUser);
-        job.Save();
+        // another mess....
+        ///
+
+        //Posting job = new Posting();
+
+        // job.DataType = "CDP";
+        // job.= new Posting(pu, pendingUpdates, initiatingUser);
+        //Posting job = new Posting(pu, pendingUpdates, initiatingUser);
+        //Posting job = new Posting(pu, pendingUpdates, initiatingUser);
+        //job.Save();
 
         //Me.ParentForm.MdiChildren(0).Tag
         frmRoute frm = default(frmRoute);
@@ -264,14 +275,21 @@ InputForm_Load(object sender, System.EventArgs e)
         lblDefaultRouteID.Text = "";
         txtDefaultDriverID.Text = "";
     }
-    public void PostCustomerChange(ref int custtableId)
+    public void PostCustomerChange(string custID)
     {
-        int pendingUpdates = My.MySettings.Default.ActiveStations - 1;
+        int pendingUpdates = Properties.Settings.Default.ActiveStations - 1;
         string initiatingUser = Environment.UserName;
-        Posting job = new Posting(custtableId, pendingUpdates, initiatingUser);
-        job.Save();
+        throw new NotImplementedException();
+
+        // this is a mess
+        // put it in Program and have it call something in BLL
+        // which does the right thing....
+        //
+        //Posting job = new Posting();        
+        //Posting job = new Posting(custId, pendingUpdates, initiatingUser);
+        //job.Save();
     }
-    public object ExecuteSpUpdateCustomer()
+    public int ExecuteSpUpdateCustomer()
     {
         string strCustomerID = null;
         string strCustomerName = null;
@@ -284,7 +302,7 @@ InputForm_Load(object sender, System.EventArgs e)
 
         // setup and vet the parameters...    
 
-        if ((txtCustID.Text.Length == 0 | txtCustID.Text == System.DBNull.Value))
+        if (txtCustID.Text.Length == 0 | txtCustID.Text == null )  //System.DBNull.Value))
         {
             strCustomerID = "";
             MessageBox.Show("Customer ID cannot be empty. Please choose a unique one");
@@ -292,15 +310,21 @@ InputForm_Load(object sender, System.EventArgs e)
         }
         else
         {
-            strCustomerID = Strings.Replace(txtCustID.Text, "'", "''");
+            strCustomerID = txtCustID.Text.Replace( "'", "''");
+
         }
 
         //If (txtCustID.Text <> txtCustomerID.Text) Then
-        if ((Strings.RTrim(txtCustID.Text) != lblOrigCustID.Text))
+        if (txtCustID.Text.Trim()  != lblOrigCustID.Text)
         {
-            strCustomerID = Strings.UCase(Strings.RTrim(txtCustID.Text));
+            txtCustID.Text = txtCustID.Text.Trim();
+            strCustomerID = txtCustID.Text.ToUpper(); 
+            // Strings.UCase(Strings.RTrim(txtCustID.Text));
 
-            if (CustomerHash.Contains(txtCustID.Text))
+            var custid = mCustomerCollection
+                .Find(x => x.CustomerID == txtCustID.Text)
+                .CustomerID;
+            if (custid != null)
             {
                 MessageBox.Show("This Customer ID is in use. Please choose another");
                 return -1;
@@ -315,7 +339,7 @@ InputForm_Load(object sender, System.EventArgs e)
         }
         else
         {
-            strCustomerName = Strings.Replace(txtCustomerName.Text, "'", "''");
+            strCustomerName = txtCustomerName.Text.Replace( "'", "''");
         }
 
         if ((txtCity.Text.Length == 0))
@@ -325,7 +349,7 @@ InputForm_Load(object sender, System.EventArgs e)
         }
         else
         {
-            txtCity.Text = Strings.Replace(txtCity.Text, "'", "''");
+            txtCity.Text = txtCity.Text.Replace( "'", "''");
         }
 
         if ((txtDefaultRoute.Text.Length == 0))
@@ -335,25 +359,25 @@ InputForm_Load(object sender, System.EventArgs e)
         }
         else
         {
-            txtDefaultRoute.Text = Strings.Replace(txtDefaultRoute.Text, "'", "''");
+            txtDefaultRoute.Text = txtDefaultRoute.Text.Replace( "'", "''");
         }
 
-        strAddress1 = Strings.Replace(txtAddress1.Text, "'", "''");
-        strAddress2 = Strings.Replace(txtAddress2.Text, "'", "''");
-        strContact = Strings.Replace(txtContact.Text, "'", "''");
+        strAddress1 = txtAddress1.Text.Replace( "'", "''");
+        strAddress2 = txtAddress2.Text.Replace( "'", "''");
+        strContact = txtContact.Text.Replace( "'", "''");
         string strCity = txtCity.Text;
         string strState = txtState.Text;
         string strPhone = txtPhone.Text;
         int intcustomertableid = 0;
-        intcustomertableid = CustomerHash(lblOrigCustID.Text).CustomerTableID;
+//        intcustomertableid = CustomerHash(lblOrigCustID.Text).CustomerTableID;
 
         int rc = 0;
         //execute the puppy...
 
         try
         {
-            SPs.PUpdateCustomer(rc, intcustomertableid, strCustomerID, strCustomerName, txtDefaultRoute.Text, CustomerHash(lblOrigCustID.Text).CustomerSyncID, strAddress1, strAddress2, strCity, txtState.Text,
-            txtPhone.Text, txtClosingTime.Text, strContact, strComment).Execute();
+  //          SPs.PUpdateCustomer(rc, intcustomertableid, strCustomerID, strCustomerName, txtDefaultRoute.Text, CustomerHash(lblOrigCustID.Text).CustomerSyncID, strAddress1, strAddress2, strCity, txtState.Text,
+  //          txtPhone.Text, txtClosingTime.Text, strContact, strComment).Execute();
             lblCustomerName.Text = strCustomerName;
         }
         catch (Exception ex)
@@ -368,44 +392,45 @@ InputForm_Load(object sender, System.EventArgs e)
     #endregion
 
     #region "Eventhandlers"
-    private void  // ERROR: Handles clauses are not supported in C#
-listboxCustomer_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+    private void  listboxCustomer_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
     {
         if ((e.KeyValue == 13))
         {
             // the order of these 3 statements is important
             RefreshInputWindowControls();
-            txtCustomerID.Text = sender.selectedvalue;
+            var ss = sender as ListBox;
+            txtCustomerID.Text = ss.SelectedValue.ToString();
             txtComment.Focus();
             StringSoFar.Length = 0;
 
         }
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-listboxCustomer_SelectedIndexChanged(object sender, System.EventArgs e)
+    private void listboxCustomer_SelectedIndexChanged(object sender, System.EventArgs e)
     {
         RefreshInputWindowControls();
     }
-    private void  // ERROR: Handles clauses are not supported in C#
-BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
+    private void BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
     {
         int result = 0;
         result = ExecuteSpUpdateCustomer();
         if (result == 0)
         {
-            CustomerHash = CustomerListBoxHelper.PopulateCustomerHash();
+            Program.CustomerList.Clear();
+            Program.GetCustomerList();
+            //CustomerHash = CustomerListBoxHelper.PopulateCustomerHash();
 
             listboxCustomer.SelectedIndex += 1;
             listboxCustomer.SelectedIndex -= 1;
-            UpdateCDPRecords(CustomerHash.Item(lblOrigCustID.Text).CustomerTableID);
-            PostCustomerChange(CustomerHash.Item(lblOrigCustID.Text).CustomerTableID);
+            UpdateCDPRecords(lblOrigCustID.Text);
+            PostCustomerChange(lblOrigCustID.Text);
         }
     }
-    private void UpdateCDPRecords(int custTableId)
+    private void UpdateCDPRecords(string custID)
     {
-        CurrentDayPickupCollection cdpcollection = Program.CDPList; // new CurrentDayPickupCollection();
-        CUSTOMER cust = Customer.FetchByID(custTableId);
-        cdpcollection.Load();
+        List<CurrentDayPickup> cdpcollection = Program.CDPList; // new CurrentDayPickupCollection();
+        //CurrentDayPickupCollection cdpcollection = Program.CDPList; // new CurrentDayPickupCollection();
+        CUSTOMER cust = mCustomerCollection.Find(x=> x.CustomerID == custID);
+        //cdpcollection.Load();
         foreach (CurrentDayPickup cdp in cdpcollection)
         {
             if (cdp.CDPCustomerID == cust.CustomerID)
@@ -421,7 +446,7 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
     {
         frmRoute functionReturnValue = default(frmRoute);
         functionReturnValue = null;
-        foreach (Form win in this.ParentForm.MdiChildren())
+        foreach (Form win in this.ParentForm.MdiChildren)
         {
             if (win is InputForm)
             {
@@ -429,7 +454,7 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
             }
             if (win.Tag == routeTag)
             {
-                functionReturnValue = win;
+                functionReturnValue = (frmRoute)win;
                 break; // TODO: might not be correct. Was : Exit For
             }
         }
@@ -449,8 +474,9 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
     }
     private void listboxCustomer_MouseDoubleClick(System.Object sender, System.Windows.Forms.MouseEventArgs e)
     {
+        var ss = sender as ListBox;
         RefreshInputWindowControls();
-        txtCustomerID.Text = sender.selectedvalue;
+        txtCustomerID.Text = ss.SelectedValue.ToString();
         txtComment.Focus();
         StringSoFar.Length = 0;
     }
@@ -459,7 +485,8 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
         CUSTOMER Cust = default(CUSTOMER);
         string TestString = StringSoFar.ToString();
         int CurrentIndex = listboxCustomer.SelectedIndex;
-        string nextchar = Strings.UCase(Strings.Chr(e.KeyValue));
+        string nextchar = e.KeyValue.ToString().ToUpper();//  Strings.UCase(Strings.Chr(e.KeyValue));
+        
 
         //from a forum someplace:
         //
@@ -475,24 +502,25 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
 
         if ((e.KeyValue == 13))
         {
-            if ((CustomerHash.Contains(txtCustomerID.Text)))
+            Cust = mCustomerCollection.Find(x => x.CustomerID == txtCustomerID.Text); //CustomerHash.Contains(txtCustomerID.Text)))
+            if ( Cust != null)  //CustomerHash.Contains(txtCustomerID.Text)))
             {
-                Cust = CustomerHash.Item(txtCustomerID.Text);
+                Cust = mCustomerCollection.Find(x => x.CustomerID == txtCustomerID.Text);//CustomerHash.Item(txtCustomerID.Text);
                 txtCustomerID.Text = StringSoFar.ToString();
                 //Cust.CustomerID
                 lblCustomerName.Text = Cust.CustomerName;
                 txtCustomerName.Text = Cust.CustomerName;
                 txtDefaultRoute.Text = Cust.DefaultRouteID;
-                txtRouteName.Text = CustomerListBoxHelper.GetRoute2RouteName(Cust.DefaultRouteID);
-                txtDefaultDriverID.Text = CustomerListBoxHelper.GetRoute2DefaultDriverID(Cust.DefaultRouteID);
-                listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString);
+                txtRouteName.Text = "route2name";//CustomerListBoxHelper.GetRoute2RouteName(Cust.DefaultRouteID);
+                txtDefaultDriverID.Text = "defaultdriverid";//CustomerListBoxHelper.GetRoute2DefaultDriverID(Cust.DefaultRouteID);
+                listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString,0);
                 txtComment.Focus();
                 StringSoFar.Length = 0;
             }
             else
             {
-                int lbmax = listboxCustomer.Items.Count() - 1;
                 {
+                    int lbmax = listboxCustomer.Items.Count - 1;
                     listboxCustomer.SelectedIndex = listboxCustomer.FindString(txtCustomerID.Text, listboxCustomer.SelectedIndex);
                     //doing this should 'scroll it'
                     if (listboxCustomer.SelectedIndex < lbmax - 2)
@@ -528,12 +556,14 @@ BtnSaveCustomerInfo_Click(System.Object sender, System.EventArgs e)
                     break;
                 //txtCustomerID.Text = TestString + NextChar
             }
-            if (CustomerHash.Contains(StringSoFar.ToString()))
+            Cust = mCustomerCollection.Find(x => x.CustomerID == StringSoFar.ToString());
+            //if (CustomerHash.Contains(StringSoFar.ToString()))
+            if (Cust != null)
             {
                 //can I write to e?  no, but I can suppress other events... (I hope)
                 e.SuppressKeyPress = true;
                 //Now we can move to the right listbox entry
-                Cust = CustomerHash.Item(StringSoFar.ToString());
+                //Cust = CustomerHash.Item(StringSoFar.ToString());
                 listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString);
                 txtCustomerID.Text = StringSoFar.ToString();
             }
