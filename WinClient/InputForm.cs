@@ -14,8 +14,8 @@ partial class InputForm: Form
 
     //static internal CurrentDayRouteCollection CDRCollection = new CurrentDayRouteCollection();
 //    static internal CurrentDayRouteController CDRController = new CurrentDayRouteController();
-    static internal CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
-    static internal CurrentDayPickupController CDPController = new CurrentDayPickupController();
+    //static internal CurrentDayPickupCollection CDPCollection = new CurrentDayPickupCollection();
+    //static internal CurrentDayPickupController CDPController = new CurrentDayPickupController();
 
     public int intCDPSyncCount = 0;
     public static bool blnWindowOpen = false;
@@ -28,8 +28,8 @@ partial class InputForm: Form
     public Hashtable Route2Hash = new Hashtable();
     public CustomerListBoxHelper Helper = new CustomerListBoxHelper();
     //Private mCustomerListCollection As VCustomerListCollection = New VCustomerListCollection()
-    public CustomerCollection mCustomerCollection = new CustomerCollection();
-    public ROUTE2Collection mRoute2Collection = new ROUTE2Collection();
+    public List<string> mCustomerCollection = Program.CustomerStringList; //CustomerCollection();
+    public List<Route>  mRoute2Collection = Program.RouteList; // ROUTE2Collection();
     //lstCustAddPickup should have a binding source?
     private BindingSource CustomerBindingSource = new BindingSource();
     //Private tick As Integer = 0

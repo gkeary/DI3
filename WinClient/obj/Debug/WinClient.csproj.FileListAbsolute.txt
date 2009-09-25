@@ -49,3 +49,4 @@ C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmDefaultRoutes.resource
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmAddDrivers.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmDeleteDrivers.resources
 C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.frmOneTimePickup.resources
+C:\Program Files\Git\DI3\WinClient\obj\Debug\WinClient.InputForm.resources

@@ -1,4 +1,4 @@
-﻿namespace WinClent //WinClient
+﻿namespace WinClient
 {
 
     //[Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
