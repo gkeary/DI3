@@ -128,6 +128,7 @@
             this.listboxCustomer.Size = new System.Drawing.Size(281, 270);
             this.listboxCustomer.TabIndex = 2;
             this.listboxCustomer.SelectedIndexChanged += new System.EventHandler(this.listboxCustomer_SelectedIndexChanged);
+            this.listboxCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listboxCustomer_KeyDown);
             // 
             // pnlDataEntry
             // 
@@ -204,6 +205,8 @@
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.Size = new System.Drawing.Size(85, 20);
             this.txtCustomerID.TabIndex = 0;
+            //this.txtCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomerID_KeyDown);
+            this.txtCustomerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCustomerID_KeyPress);
             // 
             // lblComment
             // 
@@ -221,6 +224,7 @@
             this.txtComment.Size = new System.Drawing.Size(169, 20);
             this.txtComment.TabIndex = 6;
             this.txtComment.TabStop = false;
+            this.txtComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComment_KeyDown);
             // 
             // Button4
             // 

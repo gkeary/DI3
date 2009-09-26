@@ -474,12 +474,109 @@ namespace WinClient
             txtComment.Focus();
             StringSoFar.Length = 0;
         }
-        private void txtCustomerID_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
+        //private void txtCustomerID_KeyDown(System.Object sender, System.Windows.Forms.KeyEventArgs e)
+        //{
+        //    CUSTOMER Cust = default(CUSTOMER);
+        //    string TestString = StringSoFar.ToString();
+        //    int CurrentIndex = listboxCustomer.SelectedIndex;
+        //    string nextchar = e.KeyValue.ToString().ToUpper();
+
+
+        //    //from a forum someplace:
+        //    //
+        //    //        Keydown is used to receive keys, not chars. Use Keypress to evaluate chars.
+        //    //Keyvalues are not character values. For example, pressing the "A" key fires
+        //    //keydown with keycode = Keys.A, but the resulting char might be "a", "A", or
+        //    //chr(1) depending on the state of the shift and ctrl keys. Another example:
+        //    //function keys. They produce keydown events but no keypress events because
+        //    //they are not translated to chars.
+
+        //    // maybe I should move this code into the KEYPRESS event ???
+
+
+        //    if ((e.KeyValue == 13))
+        //    {
+        //        Cust = inputCustList.Find(x => x.CustomerID == txtCustomerID.Text); //CustomerHash.Contains(txtCustomerID.Text)))
+        //        if (Cust != null)  //CustomerHash.Contains(txtCustomerID.Text)))
+        //        {
+        //            Cust = inputCustList.Find(x => x.CustomerID == txtCustomerID.Text);//CustomerHash.Item(txtCustomerID.Text);
+        //            txtCustomerID.Text = StringSoFar.ToString();
+        //            //Cust.CustomerID
+        //            lblCustomerName.Text = Cust.CustomerName;
+        //            txtCustomerName.Text = Cust.CustomerName;
+        //            txtDefaultRoute.Text = Cust.DefaultRouteID;
+        //            txtRouteName.Text = "route2name";//CustomerListBoxHelper.GetRoute2RouteName(Cust.DefaultRouteID);
+        //            txtDefaultDriverID.Text = "defaultdriverid";//CustomerListBoxHelper.GetRoute2DefaultDriverID(Cust.DefaultRouteID);
+        //            listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString, 0);
+        //            txtComment.Focus();
+        //            StringSoFar.Length = 0;
+        //        }
+        //        else
+        //        {
+        //            {
+        //                int lbmax = listboxCustomer.Items.Count - 1;
+        //                listboxCustomer.SelectedIndex = listboxCustomer.FindString(txtCustomerID.Text, listboxCustomer.SelectedIndex);
+        //                //doing this should 'scroll it'
+        //                if (listboxCustomer.SelectedIndex < lbmax - 2)
+        //                {
+        //                    listboxCustomer.SelectedIndex += 2;
+        //                    listboxCustomer.SelectedIndex -= 2;
+        //                }
+        //                listboxCustomer.Focus();
+        //                StringSoFar.Length = 0;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        switch (TestString.Length)
+        //        {
+        //            case 0:
+        //                //txtCustomerID.Text = ""
+        //                //txtCustomerID.Text = NextChar
+        //                StringSoFar.Append(nextchar);
+        //                listboxCustomer.SelectedIndex = 0;
+        //                break;
+        //            case 1:
+        //            case 2:
+        //            case 3:
+        //            case 4:
+        //                StringSoFar.Append(nextchar);
+        //                break;
+        //            //txtCustomerID.Text = TestString + NextChar
+        //            //lstCustAddPickup.FindString(TestString)
+        //            default:
+        //                StringSoFar.Append(nextchar);
+        //                break;
+        //            //txtCustomerID.Text = TestString + NextChar
+        //        }
+        //        Cust = inputCustList.Find(x => x.CustomerID == StringSoFar.ToString());
+        //        //if (CustomerHash.Contains(StringSoFar.ToString()))
+        //        if (Cust != null)
+        //        {
+        //            //can I write to e?  no, but I can suppress other events... (I hope)
+        //            e.SuppressKeyPress = true;
+        //            //Now we can move to the right listbox entry
+        //            //Cust = CustomerHash.Item(StringSoFar.ToString());
+        //            listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString);
+        //            txtCustomerID.Text = StringSoFar.ToString();
+        //        }
+        //        // at this point the display should be correct...
+        //        //but don't change the focus --txtComment.Focus()
+        //    }
+        //}
+        private void btnCloseCustomerList_Click(object sender, System.EventArgs e)
+        {
+            listboxCustomer.Visible = false;
+        }
+
+        private void txtCustomerID_KeyPress(object sender, KeyPressEventArgs e)
         {
             CUSTOMER Cust = default(CUSTOMER);
             string TestString = StringSoFar.ToString();
             int CurrentIndex = listboxCustomer.SelectedIndex;
-            string nextchar = e.KeyValue.ToString().ToUpper();
+            char c = e.KeyChar;
+            string nextchar = c.ToString().ToUpper();
 
 
             //from a forum someplace:
@@ -494,7 +591,9 @@ namespace WinClient
             // maybe I should move this code into the KEYPRESS event ???
 
 
-            if ((e.KeyValue == 13))
+            //if (e.KeyChar.ToString() == "13")
+            //if ( 1 == 2  )
+            if (e.KeyChar == '\r' ) // finally  (this took about an hour!) 
             {
                 Cust = inputCustList.Find(x => x.CustomerID == txtCustomerID.Text); //CustomerHash.Contains(txtCustomerID.Text)))
                 if (Cust != null)  //CustomerHash.Contains(txtCustomerID.Text)))
@@ -555,7 +654,8 @@ namespace WinClient
                 if (Cust != null)
                 {
                     //can I write to e?  no, but I can suppress other events... (I hope)
-                    e.SuppressKeyPress = true;
+                    //??? e.SuppressKeyPress = true;
+
                     //Now we can move to the right listbox entry
                     //Cust = CustomerHash.Item(StringSoFar.ToString());
                     listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString);
@@ -564,11 +664,9 @@ namespace WinClient
                 // at this point the display should be correct...
                 //but don't change the focus --txtComment.Focus()
             }
-        }
-        private void btnCloseCustomerList_Click(object sender, System.EventArgs e)
-        {
-            listboxCustomer.Visible = false;
+
         }
         #endregion
+
     }
 }
