@@ -1,0 +1,1 @@
+an draw you a (pretty confusing, imho) graph of a single repository. YouÎéÎ÷d have to pull in all the branches you care about from the entire network in order to see other peopleÎéÎ÷s work. The network graph on GitHub is designed to make it easy to see which people you should pull from, and what theyÎéÎ÷re up to without having to leave the site at all!

@@ -594,9 +594,9 @@ namespace WinClient
             //if (e.KeyChar.ToString() == "13")
             //if ( 1 == 2  )
             if (e.KeyChar == '\r' ) // finally  (this took about an hour!) 
-            {
+            { // he hit enter
                 Cust = inputCustList.Find(x => x.CustomerID == txtCustomerID.Text); //CustomerHash.Contains(txtCustomerID.Text)))
-                if (Cust != null)  //CustomerHash.Contains(txtCustomerID.Text)))
+                if (Cust != null)  // match?
                 {
                     Cust = inputCustList.Find(x => x.CustomerID == txtCustomerID.Text);//CustomerHash.Item(txtCustomerID.Text);
                     txtCustomerID.Text = StringSoFar.ToString();
@@ -609,25 +609,20 @@ namespace WinClient
                     listboxCustomer.SelectedIndex = listboxCustomer.FindStringExact(Cust.InfoString, 0);
                     txtComment.Focus();
                     StringSoFar.Length = 0;
-                }
-                else
-                {
+                } else { // no match, scroll the listbox and reset StringSoFar
+                    int lbmax = listboxCustomer.Items.Count - 1;
+                    listboxCustomer.SelectedIndex = listboxCustomer.FindString(txtCustomerID.Text, listboxCustomer.SelectedIndex);
+                    //doing this should 'scroll it'
+                    if (listboxCustomer.SelectedIndex < lbmax - 2)
                     {
-                        int lbmax = listboxCustomer.Items.Count - 1;
-                        listboxCustomer.SelectedIndex = listboxCustomer.FindString(txtCustomerID.Text, listboxCustomer.SelectedIndex);
-                        //doing this should 'scroll it'
-                        if (listboxCustomer.SelectedIndex < lbmax - 2)
-                        {
-                            listboxCustomer.SelectedIndex += 2;
-                            listboxCustomer.SelectedIndex -= 2;
-                        }
-                        listboxCustomer.Focus();
-                        StringSoFar.Length = 0;
+                        listboxCustomer.SelectedIndex += 2;
+                        listboxCustomer.SelectedIndex -= 2;
                     }
+                    listboxCustomer.Focus();
+                    StringSoFar.Length = 0;
+                    //txtCustomerID.Text = ""; // needed?
                 }
-            }
-            else
-            {
+            } else {
                 switch (TestString.Length)
                 {
                     case 0:
