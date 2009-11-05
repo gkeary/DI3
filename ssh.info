@@ -1,3 +1,11 @@
+ref a: http://geekjacking.com/2008/07/24/github-push-error/
+ref b:  * i did not use this one but it seems to contain useful details
+     http://www.question-defense.com/2009/02/04/add-a-ssh-key-to-your-github-account-for-a-linux-server/
+
+
+ref c:  this one looks interesting as well...
+http://devlicio.us/blogs/sergio_pereira/archive/2009/05/06/git-ssh-putty-github-unfuddle-the-kitchen-sink.aspx
+
   501  ls ~
   502  ls 
   503  ls ~/.ssh/config
